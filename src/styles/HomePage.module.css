@@ -145,10 +145,12 @@
 
 /* ─── Hero Section ─── */
 .hero {
-  min-height: 92vh;
+  min-height: calc(100vh - 74px);
+  min-height: calc(100dvh - 74px);
   position: relative;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   margin-top: 74px;
   background: var(--d02-dark);
@@ -161,10 +163,10 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    90deg,
-    rgba(9, 13, 22, 0.96) 0%,
-    rgba(9, 13, 22, 0.8) 55%,
-    rgba(9, 13, 22, 0.35) 100%
+    180deg,
+    rgba(9, 13, 22, 0.4) 0%,
+    rgba(9, 13, 22, 0.75) 50%,
+    rgba(9, 13, 22, 0.95) 100%
   );
   z-index: 1;
 }
@@ -173,8 +175,8 @@
   z-index: 2;
   width: 100%;
   max-width: 1360px;
-  margin: 0 auto;
-  padding: 5rem 2rem 9.5rem;
+  margin: auto auto 1.5rem;
+  padding: 4.5rem 2rem 1.5rem;
   animation: countIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .techStatusChip {
@@ -217,7 +219,7 @@
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2.25rem;
-  max-width: 560px;
+  max-width: 620px;
 }
 .heroActions {
   display: flex;
@@ -227,10 +229,8 @@
 
 /* ─── Hero Telemetry HUD Strip ─── */
 .telemetryStrip {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
   background: #FFFFFF;
   padding: 1.25rem 2rem;
   z-index: 3;
@@ -1333,7 +1333,7 @@
     padding-bottom: 0;
   }
   .heroContent {
-    padding: 3.5rem 1.25rem 10.5rem;
+    padding: 3.5rem 1.25rem 2.25rem;
     text-align: center;
     display: flex;
     flex-direction: column;
