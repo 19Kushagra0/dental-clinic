@@ -146,6 +146,7 @@ export default function HomePage() {
             alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
             fill
             priority
+            fetchPriority="high"
             quality={65}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
