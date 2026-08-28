@@ -230,7 +230,6 @@ export default function BookingModal({
             {/* Clean Clinic Header */}
             <div className="sc-modal-header">
               <div className="sc-header-branding">
-                <span className="sc-header-dot" />
                 <div>
                   <h2 id="modal-headline" className="sc-header-title">Reserve Clinical Consultation</h2>
                   <p className="sc-header-sub">SmileCraft Digital Dental Studio · Banjara Hills, Hyderabad</p>
@@ -253,7 +252,7 @@ export default function BookingModal({
                 <aside className="sc-sidebar-panel">
                   {/* Selected Procedure Highlight */}
                   <div className="sc-summary-card">
-                    <div className="sc-summary-badge">Selected Procedure</div>
+                    <div className="sc-summary-badge">Selected Treatment</div>
                     <h3 className="sc-summary-title">{currentProtocol.name}</h3>
                     <p className="sc-summary-suite">{currentProtocol.suite} · {currentProtocol.duration}</p>
                     <div className="sc-summary-pill">{currentProtocol.advantage}</div>
@@ -274,7 +273,7 @@ export default function BookingModal({
 
                   {/* Transparent Fee Schedule */}
                   <div className="sc-fee-card">
-                    <div className="sc-fee-title">Consultation & Diagnostics</div>
+                    <div className="sc-fee-title">Fee Breakdown</div>
                     <div className="sc-fee-list">
                       <div className="sc-fee-item">
                         <span>3D Optical Digital Scan</span>
@@ -282,14 +281,14 @@ export default function BookingModal({
                       </div>
                       <div className="sc-fee-item">
                         <span>AI Smile Design Simulation</span>
-                        <span className="sc-fee-included">INCLUDED</span>
+                        <span className="sc-fee-included">Included</span>
                       </div>
                       <div className="sc-fee-item">
-                        <span>Doctor Examination & Plan</span>
-                        <span className="sc-fee-included">INCLUDED</span>
+                        <span>Doctor Consultation & Plan</span>
+                        <span className="sc-fee-included">Included</span>
                       </div>
                       <div className="sc-fee-total">
-                        <span>Payable at Clinic</span>
+                        <span>Payable at clinic</span>
                         <span className="sc-fee-price">₹500</span>
                       </div>
                     </div>
@@ -302,7 +301,7 @@ export default function BookingModal({
                       <span>Road No. 12, Banjara Hills</span>
                     </div>
                     <p className="sc-guarantee-text">
-                      ✓ No advance payment required · Pay at front desk after scan
+                      ✓ No advance payment required · Pay at front desk after consultation
                     </p>
                   </div>
                 </aside>
@@ -312,7 +311,7 @@ export default function BookingModal({
                   <form onSubmit={handleSubmit} className="sc-booking-form">
                     {/* 1. Select Treatment */}
                     <div className="sc-form-section">
-                      <label className="sc-section-label">1. Select Dental Care Protocol</label>
+                      <label className="sc-section-label">Select Treatment</label>
                       <div className="sc-treatment-matrix">
                         {CLINICAL_PROTOCOLS.map((protocol) => {
                           const isSelected = selectedTech === protocol.value;
@@ -337,7 +336,7 @@ export default function BookingModal({
 
                     {/* 2. Select Date & Time */}
                     <div className="sc-form-section">
-                      <label className="sc-section-label">2. Select Preferred Date & Window</label>
+                      <label className="sc-section-label">Select Date & Time</label>
                       
                       {/* Date Ribbon */}
                       <div className="sc-calendar-row">
@@ -378,7 +377,7 @@ export default function BookingModal({
 
                     {/* 3. Patient Contact */}
                     <div className="sc-form-section">
-                      <label className="sc-section-label">3. Patient Details</label>
+                      <label className="sc-section-label">Your Details</label>
                       <div className="sc-inputs-grid">
                         <div className="sc-input-wrapper">
                           <label className="sc-field-label">Full Name</label>
@@ -387,7 +386,7 @@ export default function BookingModal({
                             required
                             value={patientName}
                             onChange={(e) => setPatientName(e.target.value)}
-                            placeholder="Enter your name"
+                            placeholder="e.g. Ananya Rao"
                             className="sc-text-input"
                           />
                         </div>
