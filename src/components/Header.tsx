@@ -2,14 +2,12 @@
 
 import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
+import { useBooking } from "@/context/BookingContext";
 import MobileSidebar from "./MobileSidebar";
 
-interface HeaderProps {
-  onBookClick: () => void;
-}
-
-export default function Header({ onBookClick }: HeaderProps) {
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openBooking } = useBooking();
 
   // Close menu on resize to desktop
   useEffect(() => {
@@ -60,7 +58,7 @@ export default function Header({ onBookClick }: HeaderProps) {
             <a href="#specialists" className={styles.navLink}>Specialists</a>
             <button
               type="button"
-              onClick={onBookClick}
+              onClick={() => openBooking()}
               className={styles.navCta}
             >
               Book 3D Scan
@@ -86,7 +84,10 @@ export default function Header({ onBookClick }: HeaderProps) {
       <MobileSidebar
         isOpen={menuOpen}
         onClose={() => setMenuOpen(false)}
-        onBookClick={onBookClick}
+        onBookClick={() => {
+          setMenuOpen(false);
+          openBooking();
+        }}
       />
     </>
   );
