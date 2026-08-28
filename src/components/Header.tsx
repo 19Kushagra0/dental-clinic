@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/Header.css";
 import { useState, useEffect } from "react";
 import MobileSidebar from "./MobileSidebar";
 
