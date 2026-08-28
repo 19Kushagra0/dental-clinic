@@ -177,7 +177,6 @@
   max-width: 1360px;
   margin: auto auto 1.5rem;
   padding: 4.5rem 2rem 1.5rem;
-  animation: countIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 .techStatusChip {
   display: inline-flex;
