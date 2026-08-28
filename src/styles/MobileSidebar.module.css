@@ -1,7 +1,7 @@
-/* ─── SmileCraft Digital — Mobile Sidebar & Drawer Styles ─── */
+/* ─── SmileCraft Digital — Mobile Sidebar & Drawer Module ─── */
 
 /* ─── Mobile Overlay ─── */
-.d02-mobile-overlay {
+.overlay {
   display: none;
   position: fixed;
   inset: 0;
@@ -12,7 +12,7 @@
 }
 
 /* ─── Mobile Drawer ─── */
-.d02-mobile-drawer {
+.drawer {
   display: none;
   position: fixed;
   top: 0;
@@ -27,11 +27,11 @@
   overflow-y: auto;
 }
 
-.d02-mobile-drawer--open {
+.drawerOpen {
   transform: translateX(0);
 }
 
-.d02-mobile-drawer-inner {
+.drawerInner {
   padding: 5.5rem 2rem 2.5rem;
   display: flex;
   flex-direction: column;
@@ -39,14 +39,14 @@
   height: 100%;
 }
 
-.d02-mobile-nav {
+.nav {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   flex: 1;
 }
 
-.d02-mobile-nav-link {
+.navLink {
   font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 1.25rem;
   font-weight: 600;
@@ -59,23 +59,23 @@
   letter-spacing: -0.01em;
 }
 
-.d02-mobile-nav-link:hover {
+.navLink:hover {
   color: #38BDF8;
   transform: translateX(4px);
 }
 
-.d02-mobile-book-btn {
-  width: 100%;
-  margin-top: 1.5rem;
-  justify-content: center;
+.bookBtn {
+  width: 100% !important;
+  margin-top: 1.5rem !important;
+  justify-content: center !important;
 }
 
 /* ─── Show on mobile viewports ─── */
 @media (max-width: 930px) {
-  .d02-mobile-overlay {
+  .overlay {
     display: block;
   }
-  .d02-mobile-drawer {
+  .drawer {
     display: flex;
     flex-direction: column;
   }

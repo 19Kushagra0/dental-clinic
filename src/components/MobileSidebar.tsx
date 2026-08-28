@@ -1,6 +1,6 @@
 "use client";
 
-import "@/styles/MobileSidebar.css";
+import styles from "@/styles/MobileSidebar.module.css";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -27,21 +27,21 @@ export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSi
       {/* ── Overlay ── */}
       {isOpen && (
         <div
-          className="d02-mobile-overlay"
+          className={styles.overlay}
           onClick={onClose}
           aria-hidden="true"
         />
       )}
 
       {/* ── Drawer ── */}
-      <div className={`d02-mobile-drawer${isOpen ? " d02-mobile-drawer--open" : ""}`}>
-        <div className="d02-mobile-drawer-inner">
-          <nav className="d02-mobile-nav">
+      <div className={`${styles.drawer} ${isOpen ? styles.drawerOpen : ""}`}>
+        <div className={styles.drawerInner}>
+          <nav className={styles.nav}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="d02-mobile-nav-link"
+                className={styles.navLink}
                 onClick={onClose}
               >
                 {link.label}
@@ -50,7 +50,7 @@ export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSi
           </nav>
           <button
             type="button"
-            className="d02-btn-primary d02-mobile-book-btn"
+            className={`d02-btn-primary ${styles.bookBtn}`}
             onClick={handleBookClick}
           >
             Book 3D Scan ↗
