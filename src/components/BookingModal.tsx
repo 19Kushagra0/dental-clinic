@@ -2,7 +2,6 @@
 
 import styles from "@/styles/BookingModal.module.css";
 import React, { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   CloseIcon,
   DoctorIcon,
@@ -204,29 +203,21 @@ export default function BookingModal({
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${loc}`;
   };
 
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-          {/* Backdrop */}
-          <motion.div
-            className={styles.backdrop}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={handleClose}
-          />
+  if (!isOpen) return null;
 
-          {/* Modal Container */}
-          <motion.div
-            className={styles.window}
-            initial={{ opacity: 0, scale: 0.97, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.97, y: 10 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-          >
+  return (
+    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+      {/* Backdrop */}
+      <div
+        className={styles.backdrop}
+        onClick={handleClose}
+      />
+
+      {/* Modal Container */}
+      <div
+        className={styles.window}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
+      >
             {/* Clean Clinic Header */}
             <div className={styles.modalHeader}>
               <div className={styles.headerBranding}>
@@ -518,9 +509,7 @@ export default function BookingModal({
                 </div>
               </div>
             )}
-          </motion.div>
         </div>
-      )}
-    </AnimatePresence>
+      </div>
   );
 }

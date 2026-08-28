@@ -254,24 +254,11 @@ export default function HomePage() {
 
   const activeTech = technologies[activeTechIndex];
 
-  // Counter triggers
-  const telemetryRef = useRef<HTMLDivElement>(null);
-  const [telemetryInView, setTelemetryInView] = useState(false);
+  // Escape key closes modal only when active
   useEffect(() => {
-    const el = telemetryRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setTelemetryInView(true); obs.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Escape key closes modal
-  useEffect(() => {
+    if (!bookingOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && bookingOpen) {
+      if (e.key === "Escape") {
         setBookingOpen(false);
       }
     };
@@ -353,7 +340,7 @@ export default function HomePage() {
         </div>
 
         {/* Telemetry HUD Data Strip (Centered) */}
-        <div className={styles.telemetryStrip} ref={telemetryRef}>
+        <div className={styles.telemetryStrip}>
           <div className={styles.telemetryInner}>
             {[
               { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
@@ -364,7 +351,7 @@ export default function HomePage() {
               <div key={i} className={styles.telemetryItem}>
                 <div className={styles.telemetryNum}>{item.num}</div>
                 <div className={styles.telemetryData}>
-                  <span className={styles.telemetryVal}>{telemetryInView ? item.val : "—"}</span>
+                  <span className={styles.telemetryVal}>{item.val}</span>
                   <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
               </div>
