@@ -320,8 +320,8 @@ export default function HomePage() {
             alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
             fill
             priority
-            quality={80}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            quality={65}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
@@ -513,7 +513,8 @@ export default function HomePage() {
                   src="/smile-after.jpg"
                   alt="After smile restoration: aligned luminous teeth with porcelain veneers"
                   fill
-                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  quality={70}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                   style={{ objectFit: "cover" }}
                 />
                 <div className={`${styles.sliderBadge} ${styles.badgeAfter}`}>
@@ -531,7 +532,8 @@ export default function HomePage() {
                     src="/smile-before.jpg"
                     alt="Before treatment: natural dental baseline with mild misalignment"
                     fill
-                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    quality={70}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                     style={{ objectFit: "cover" }}
                   />
                 </div>
