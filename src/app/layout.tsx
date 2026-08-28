@@ -4,14 +4,14 @@ import "./globals.css";
 
 const barlow = Barlow({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-barlow",
   display: "swap",
 });
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["700", "800"],
   variable: "--font-barlow-condensed",
   display: "swap",
 });
@@ -60,6 +60,13 @@ export const metadata: Metadata = {
         height: 630,
         type: "image/jpeg",
         alt: "SmileCraft Digital Dental Studio - High-Precision 3D Dental Technology Banjara Hills",
+      },
+      {
+        url: "/og-image-square.jpg",
+        width: 800,
+        height: 800,
+        type: "image/jpeg",
+        alt: "SmileCraft Digital Dental Studio Banjara Hills",
       },
     ],
   },
