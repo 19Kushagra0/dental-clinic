@@ -1,5 +1,49 @@
 /* ─── SmileCraft Bespoke Studio Booking Modal (Clean Architectural White & Obsidian System) ─── */
 
+/* Sleek Dark Scrollbars */
+.sc-modal-body,
+.sc-form-panel,
+.sc-sidebar-panel,
+.sc-console-window,
+.sc-console-overlay {
+  scrollbar-width: thin;
+  scrollbar-color: #1E293B #080D18;
+}
+
+.sc-modal-body::-webkit-scrollbar,
+.sc-form-panel::-webkit-scrollbar,
+.sc-sidebar-panel::-webkit-scrollbar,
+.sc-console-window::-webkit-scrollbar,
+.sc-console-overlay::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sc-modal-body::-webkit-scrollbar-track,
+.sc-form-panel::-webkit-scrollbar-track,
+.sc-sidebar-panel::-webkit-scrollbar-track,
+.sc-console-window::-webkit-scrollbar-track,
+.sc-console-overlay::-webkit-scrollbar-track {
+  background: #080D18;
+}
+
+.sc-modal-body::-webkit-scrollbar-thumb,
+.sc-form-panel::-webkit-scrollbar-thumb,
+.sc-sidebar-panel::-webkit-scrollbar-thumb,
+.sc-console-window::-webkit-scrollbar-thumb,
+.sc-console-overlay::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+.sc-modal-body::-webkit-scrollbar-thumb:hover,
+.sc-form-panel::-webkit-scrollbar-thumb:hover,
+.sc-sidebar-panel::-webkit-scrollbar-thumb:hover,
+.sc-console-window::-webkit-scrollbar-thumb:hover,
+.sc-console-overlay::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
 .sc-console-overlay {
   position: fixed;
   inset: 0;

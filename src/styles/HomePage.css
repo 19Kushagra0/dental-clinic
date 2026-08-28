@@ -17,6 +17,30 @@
   --font-body: 'Barlow', system-ui, sans-serif;
 }
 
+/* Global Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090D16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E293B #090D16;
+}
+
 .d02-container {
   font-family: var(--font-body);
   background: var(--d02-dark);
