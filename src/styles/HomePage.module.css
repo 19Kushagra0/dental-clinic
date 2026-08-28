@@ -325,6 +325,9 @@
   max-width: 1360px;
   margin: 0 auto;
 }
+.sectionHeader {
+  margin-bottom: 2.5rem;
+}
 .sectionTitle {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 3.8vw, 3.4rem);
@@ -332,7 +335,15 @@
   letter-spacing: -0.01em;
   color: #ffffff;
   line-height: 1.1;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.sectionSubText {
+  color: rgba(255, 255, 255, 0.75);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  max-width: 680px;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
 
 /* ─── Interactive Technology Showcase Section ─── */
@@ -1237,6 +1248,75 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
+  .sectionHeader {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .sectionTitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .sectionSubText {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .treatmentsSubTitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .treatmentsKicker,
+  .workflowKicker,
+  .kickerBadge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroContent {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .heroTitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroLead {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroActions {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .techTabsNav {
+    justify-content: center;
+  }
+  .ctaLeft {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ctaH2 {
+    text-align: center;
+  }
+  .ctaSub {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ctaOfferBadge {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .ctaInner {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -1254,15 +1334,29 @@
   }
   .heroContent {
     padding: 3.5rem 1.25rem 10.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .heroTitle {
     font-size: clamp(2.4rem, 8.5vw, 3.8rem);
     margin-bottom: 1.25rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .heroLead {
     font-size: 0.96rem;
     line-height: 1.6;
     margin-bottom: 1.75rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .heroActions {
+    justify-content: center;
+    width: 100%;
   }
   .telemetryStrip {
     padding: 1rem 1.25rem;

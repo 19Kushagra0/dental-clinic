@@ -254,24 +254,11 @@ export default function HomePage() {
 
   const activeTech = technologies[activeTechIndex];
 
-  // Counter triggers
-  const telemetryRef = useRef<HTMLDivElement>(null);
-  const [telemetryInView, setTelemetryInView] = useState(false);
+  // Escape key closes modal only when active
   useEffect(() => {
-    const el = telemetryRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setTelemetryInView(true); obs.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  // Escape key closes modal
-  useEffect(() => {
+    if (!bookingOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && bookingOpen) {
+      if (e.key === "Escape") {
         setBookingOpen(false);
       }
     };
@@ -353,7 +340,7 @@ export default function HomePage() {
         </div>
 
         {/* Telemetry HUD Data Strip (Centered) */}
-        <div className={styles.telemetryStrip} ref={telemetryRef}>
+        <div className={styles.telemetryStrip}>
           <div className={styles.telemetryInner}>
             {[
               { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
@@ -364,7 +351,7 @@ export default function HomePage() {
               <div key={i} className={styles.telemetryItem}>
                 <div className={styles.telemetryNum}>{item.num}</div>
                 <div className={styles.telemetryData}>
-                  <span className={styles.telemetryVal}>{telemetryInView ? item.val : "—"}</span>
+                  <span className={styles.telemetryVal}>{item.val}</span>
                   <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
               </div>
@@ -388,7 +375,7 @@ export default function HomePage() {
       {/* ─── Interactive Technology Showcase Section ─── */}
       <section id="technology" className={styles.techSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Engineered for Precision. Built for Comfort.
             </h2>
@@ -456,11 +443,11 @@ export default function HomePage() {
       {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
       <section id="simulation" className={styles.smileSimSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Interactive 3D Smile Design Simulator
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.75)", maxWidth: "680px", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+            <p className={styles.sectionSubText}>
               Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
             </p>
           </div>
@@ -588,7 +575,7 @@ export default function HomePage() {
       {/* ─── Treatments Ribbon ─── */}
       <section id="treatments" className={styles.treatmentsSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <div className={styles.treatmentsKicker}>
               <span className={styles.kickerDot} />
               <span>ADVANCED PROTOCOLS</span>
@@ -626,11 +613,11 @@ export default function HomePage() {
       {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
       <section id="comparison" className={styles.compareSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               The Conventional Clinic vs. SmileCraft Digital
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: "600px", lineHeight: 1.7, marginBottom: "3rem" }}>
+            <p className={styles.sectionSubText}>
               Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
             </p>
           </div>
@@ -687,7 +674,7 @@ export default function HomePage() {
       {/* ─── 4-Step Digital Workflow Timeline ─── */}
       <section id="workflow" className={styles.workflowSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <div className={styles.workflowKicker}>
               <span className={styles.kickerDot} />
               <span>DIGITAL EXCELLENCE</span>
@@ -725,7 +712,7 @@ export default function HomePage() {
       {/* ─── Testimonials Section ─── */}
       <section className={styles.testiSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               800+ Verified Patients. Zero Guesswork.
             </h2>
@@ -756,7 +743,7 @@ export default function HomePage() {
       {/* ─── Doctors Section ─── */}
       <section id="specialists" className={styles.doctorsSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Digital Dental Surgeons & Specialists
             </h2>
