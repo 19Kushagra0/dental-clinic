@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-28T15:30:00.000Z",
+  "title": "Design System: SmileCraft Digital Dental Studio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Electric Cyan-Blue",
+        "canonical": "#0EA5E9",
+        "tonalRamp": ["#032b40", "#08496b", "#0a6c9c", "#0ea5e9", "#38bdf8", "#7dd3fc", "#bae6fd", "#f0f9ff"]
+      },
+      "primary-glow": {
+        "role": "accent",
+        "displayName": "Electric Sky Glow",
+        "canonical": "#38BDF8",
+        "tonalRamp": ["#083344", "#0e4b61", "#15657d", "#38bdf8", "#7dd3fc", "#bae6fd", "#e0f2fe", "#f0f9ff"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Luminous Cyan",
+        "canonical": "#06B6D4",
+        "tonalRamp": ["#042f38", "#08505e", "#0e7490", "#06b6d4", "#22d3ee", "#67e8f9", "#a5f3fc", "#ecfeff"]
+      },
+      "neutral-dark": {
+        "role": "background",
+        "displayName": "Cyber Dark Obsidian",
+        "canonical": "#0B0F19",
+        "tonalRamp": ["#04060a", "#070b12", "#0b0f19", "#111827", "#1e293b", "#334155", "#475569", "#64748b"]
+      },
+      "neutral-graphite": {
+        "role": "surface",
+        "displayName": "Graphite Slate",
+        "canonical": "#111827",
+        "tonalRamp": ["#0b0f19", "#111827", "#1f2937", "#374151", "#4b5563", "#6b7280", "#9ca3af", "#d1d5db"]
+      },
+      "neutral-surface": {
+        "role": "surface-elevated",
+        "displayName": "Elevated Deep Slate",
+        "canonical": "#1E293B",
+        "tonalRamp": ["#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1", "#f1f5f9"]
+      },
+      "neutral-white": {
+        "role": "on-dark",
+        "displayName": "Pure Crisp White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#6b7280", "#9ca3af", "#d1d5db", "#e5e7eb", "#f3f4f6", "#f9fafb", "#ffffff", "#ffffff"]
+      },
+      "neutral-muted": {
+        "role": "muted",
+        "displayName": "Muted Steel Gray",
+        "canonical": "#9CA3AF",
+        "tonalRamp": ["#1f2937", "#374151", "#4b5563", "#6b7280", "#9ca3af", "#d1d5db", "#e5e7eb", "#f3f4f6"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Barlow Condensed)", "purpose": "Hero statements, brand impact." },
+      "headline": { "displayName": "Headline (Barlow Condensed)", "purpose": "Section introductions." },
+      "title": { "displayName": "Title (Barlow Condensed)", "purpose": "Cards, technology names, specialist names." },
+      "body": { "displayName": "Body (Barlow)", "purpose": "Clinical narratives, descriptions." },
+      "label": { "displayName": "Label (Barlow)", "purpose": "Eyebrows, telemetry data badges, specs." }
+    },
+    "shadows": [
+      { "name": "cyber-glow", "value": "0 0 20px rgba(14, 165, 233, 0.35)", "purpose": "Primary CTA buttons and active tab glow." },
+      { "name": "modal-deep", "value": "0 30px 60px rgba(0, 0, 0, 0.5), 0 0 60px rgba(14, 165, 233, 0.25)", "purpose": "Diagnostic reservation modal elevation." }
+    ],
+    "motion": [
+      { "name": "ease-precision", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default easing for UI transitions and hover lifts." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1360px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "High-impact conversion button with clipped polygon corner.",
+      "html": "<button class=\"ds-btn-primary\">BOOK 3D OPTICAL SCAN</button>",
+      "css": ".ds-btn-primary { background: #0EA5E9; color: #0B0F19; font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 26px; border: none; clip-path: polygon(0 0, 100% 0, 100% 75%, 90% 100%, 0 100%); cursor: pointer; transition: all 0.2s ease; box-shadow: 0 0 20px rgba(14, 165, 233, 0.35); } .ds-btn-primary:hover { background: #38BDF8; transform: translateY(-2px); box-shadow: 0 4px 25px rgba(14, 165, 233, 0.6); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Subtle glass button with precision cyan hairline border.",
+      "html": "<a class=\"ds-btn-secondary\">CLINICAL DESK: +91 40 2345 6789</a>",
+      "css": ".ds-btn-secondary { background: rgba(255, 255, 255, 0.05); color: #FFFFFF; font-family: 'Barlow', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(14, 165, 233, 0.3); padding: 12px 26px; text-decoration: none; cursor: pointer; transition: all 0.2s ease; display: inline-block; } .ds-btn-secondary:hover { background: rgba(14, 165, 233, 0.15); border-color: #0EA5E9; }"
+    },
+    {
+      "name": "Treatment Chip",
+      "kind": "card",
+      "refersTo": "treatment-chip",
+      "description": "Interactive procedure card with top-border reveal on hover.",
+      "html": "<div class=\"ds-treatment-chip\"><div class=\"ds-treatment-icon\">🦷</div><div class=\"ds-treatment-title\">DENTAL IMPLANTS</div><div class=\"ds-treatment-sub\">3D CBCT GUIDED</div></div>",
+      "css": ".ds-treatment-chip { background: #111827; border: 1px solid rgba(14, 165, 233, 0.15); padding: 24px 20px; position: relative; cursor: pointer; transition: all 0.25s ease; font-family: 'Barlow', sans-serif; } .ds-treatment-chip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #0EA5E9; transform: scaleX(0); transition: transform 0.3s ease; } .ds-treatment-chip:hover { border-color: rgba(14, 165, 233, 0.45); background: #1E293B; transform: translateY(-4px); } .ds-treatment-chip:hover::before { transform: scaleX(1); } .ds-treatment-icon { color: #06B6D4; margin-bottom: 12px; font-size: 1.5rem; } .ds-treatment-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700; text-transform: uppercase; color: #fff; margin-bottom: 4px; } .ds-treatment-sub { font-size: 0.72rem; color: #06B6D4; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cyber-Precision Operatory",
+    "overview": "SmileCraft Digital Dental Studio expresses extreme clinical accuracy, sub-micron diagnostic confidence, and patient tranquility through a modern high-tech visual language. Rooted in deep cyber-dark foundations (#0B0F19), the interface radiates precision using electric cyan (#0EA5E9) and luminous cyan accents (#06B6D4), high-contrast tabular telemetry, and condensed technical typography.",
+    "keyCharacteristics": [
+      "Deep obsidian foundation paired with luminous cyan laser-accent glow lines.",
+      "High-contrast Barlow Condensed technical headlines paired with clean geometric Barlow body text.",
+      "Live telemetry data readouts communicating measurable diagnostic accuracy.",
+      "Clipped geometric polygons and sharp architectural borders reflecting robotic CAD/CAM milling precision."
+    ],
+    "rules": [
+      { "name": "The Precision Cyan Accent Rule", "body": "Cyan (#0EA5E9) is reserved for active diagnostic data, high-priority conversion triggers, and live system feedback. It illuminates the interface rather than washing over entire large backgrounds.", "section": "colors" },
+      { "name": "The Cyber Glow Rule", "body": "Depth is established through luminous neon glows (0 0 20px rgba(14, 165, 233, 0.35)) and value shifts from deep slate to elevated slate, never muddy gray drop shadows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do showcase tangible diagnostic accuracy metrics (< 20 µm, 60 Min, 90% Less Radiation).",
+      "Do emphasize patient comfort benefits alongside cutting-edge hardware.",
+      "Do use crisp vector React Icons from @/icons with dedicated semantic sizing.",
+      "Do maintain high WCAG AA contrast against dark backgrounds."
+    ],
+    "donts": [
+      "Don't use cartoon tooth graphics or generic smiling family stock clip art.",
+      "Don't use warm sepia or pastel beige tones that dilute the high-precision digital architecture.",
+      "Don't clutter screens with unformatted phone numbers or non-functional buttons.",
+      "Don't use unstyled default browser alert dialogs or generic form controls."
+    ]
+  }
+}
