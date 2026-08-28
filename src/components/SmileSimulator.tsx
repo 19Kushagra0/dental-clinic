@@ -3,13 +3,12 @@
 import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
-import { useBooking } from "@/context/BookingContext";
+import { openBookingDialog } from "@/components/BookingModalPortal";
 
 export default function SmileSimulator() {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDraggingSlider, setIsDraggingSlider] = useState(false);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
-  const { openBooking } = useBooking();
 
   const handleSliderMove = useCallback((clientX: number) => {
     if (!sliderContainerRef.current) return;
@@ -134,7 +133,7 @@ export default function SmileSimulator() {
         <div className={styles.simCtaWrap}>
           <button
             type="button"
-            onClick={() => openBooking("3D Digital Oral Scan & Smile Simulation")}
+            onClick={() => openBookingDialog("3D Digital Oral Scan & Smile Simulation")}
             className={styles.btnPrimary}
           >
             Simulate My Smile in 3D ↗

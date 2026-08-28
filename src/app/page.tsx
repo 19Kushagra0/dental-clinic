@@ -26,115 +26,12 @@ import {
 } from "@/icons";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TechShowcase, { TechnologyItem } from "@/components/TechShowcase";
+import TechShowcase from "@/components/TechShowcase";
 import SmileSimulator from "@/components/SmileSimulator";
 import { BookButton } from "@/components/BookingTrigger";
-import { BookingProvider } from "@/context/BookingContext";
+import BookingModalPortal from "@/components/BookingModalPortal";
 
-/* ─── Data ─── */
-const technologies: TechnologyItem[] = [
-  {
-    id: "scanner",
-    name: "3D Intraoral Optical Scanner",
-    badge: "Planmeca® Emerald S",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="6" y="18" width="36" height="20" rx="3" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M14 18V12a2 2 0 012-2h16a2 2 0 012 2v6" stroke="currentColor" strokeWidth="2.2" />
-        <circle cx="24" cy="28" r="4" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M24 24v-4M24 32v4M20 28h-4M28 28h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
-    ),
-    desc: "Captures 3D digital impressions of your entire mouth in under 60 seconds with sub-micron accuracy. Completely eliminates gooey impression trays and gagging.",
-    patientBenefit: "Zero gag reflex, no silicone taste, instant 3D smile visualization.",
-    specs: [
-      { k: "Scan Speed", v: "< 60 Seconds" },
-      { k: "Accuracy", v: "Sub-20 Microns" },
-      { k: "Impression Method", v: "100% Optical (No Putty)" },
-    ],
-  },
-  {
-    id: "cbct",
-    name: "3D Cone Beam CT (CBCT)",
-    badge: "Planmeca® ProMax 3D",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2.2" />
-        <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <path d="M15.5 15.5l3 3M29.5 29.5l3 3M15.5 32.5l3-3M29.5 18.5l3-3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
-    ),
-    desc: "Ultra-low dose 3D volumetric X-ray providing cross-sectional views of bone volume, density, and nerve proximity for 100% predictable implant placement.",
-    patientBenefit: "Computer-guided keyhole surgery without guesswork or exploratory incisions.",
-    specs: [
-      { k: "Resolution", v: "75 µm Isotropic Voxel" },
-      { k: "Radiation Reduction", v: "Up to 90% vs Medical CT" },
-      { k: "Surgical Guide", v: "CAD/CAM Custom Stent" },
-    ],
-  },
-  {
-    id: "cerec",
-    name: "CAD/CAM 5-Axis Milling Unit",
-    badge: "Dentsply Sirona CEREC®",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M16 24c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
-        <path d="M18 28h12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M8 18h32" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-      </svg>
-    ),
-    desc: "In-house precision robotic milling that fabricates high-strength monolithic zirconia and E-max porcelain crowns right during your appointment.",
-    patientBenefit: "Walk in with a damaged tooth, walk out with a permanent crown in 60 minutes.",
-    specs: [
-      { k: "Restoration Time", v: "Single Visit (60 Min)" },
-      { k: "Material", v: "E-Max® / Multilayer Zirconia" },
-      { k: "Temporary Tooth", v: "Never Needed" },
-    ],
-  },
-  {
-    id: "laser",
-    name: "Biolase® Waterlase Laser",
-    badge: "HydroPhotonics™ Dental Laser",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="2.2" />
-        <path d="M13.5 13.5l4 4M30.5 30.5l4 4M13.5 34.5l4-4M30.5 17.5l4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-        <circle cx="24" cy="24" r="3" fill="currentColor" opacity="0.5" />
-      </svg>
-    ),
-    desc: "Uses laser-energized water droplets to precisely cut hard and soft tissue without the heat, friction, or vibration of traditional drills.",
-    patientBenefit: "Painless gum recontouring, cavity prep without needles in most cases, faster healing.",
-    specs: [
-      { k: "Wavelength", v: "2780 nm Er,Cr:YSGG" },
-      { k: "Anesthesia Required", v: "Minimal / None" },
-      { k: "Bleeding & Swelling", v: "Virtually Zero" },
-    ],
-  },
-  {
-    id: "wand",
-    name: "The Wand® Computerized Anesthesia",
-    badge: "Milestone Scientific STA",
-    icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
-        <path d="M12 36L28 12l4 4L16 40z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
-        <path d="M28 12l5-3 3 3-3 5" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-        <circle cx="12" cy="36" r="2.5" fill="currentColor" />
-        <path d="M22 18l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-      </svg>
-    ),
-    desc: "Microprocessor-controlled single-tooth anesthesia delivering numbing solution below the patient's pain perception threshold.",
-    patientBenefit: "No syringe sting, no heavy numb face or drooping lips after your visit.",
-    specs: [
-      { k: "Flow Rate Control", v: "Computer Dynamic Pressure" },
-      { k: "Numbing Area", v: "Single Tooth Target" },
-      { k: "Discomfort Level", v: "Pain-Free Delivery" },
-    ],
-  },
-];
-
+/* ─── Static Data (Zero Client Hydration Overhead) ─── */
 const comparisonData = [
   {
     feature: "Dental Impressions",
@@ -238,359 +135,360 @@ const certBadges = [
 /* ─── Server-Rendered Landing Page (Zero JS Hydration Overhead) ─── */
 export default function HomePage() {
   return (
-    <BookingProvider>
-      <div className={styles.container}>
-        <Header />
+    <div className={styles.container}>
+      <Header />
 
-        {/* ─── Hero Section ─── */}
-        <section className={styles.hero} aria-label="Digital Dental Technology Hero">
-          <div className={styles.heroBg}>
-            <Image
-              src="/dental-scanner-3d.jpg"
-              alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
-              fill
-              priority
-              quality={65}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              style={{ objectFit: "cover", objectPosition: "center" }}
-            />
+      {/* ─── Hero Section ─── */}
+      <section className={styles.hero} aria-label="Digital Dental Technology Hero">
+        <div className={styles.heroBg}>
+          <Image
+            src="/dental-scanner-3d.jpg"
+            alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
+            fill
+            priority
+            quality={65}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+        </div>
+        <div className={styles.heroOverlay} />
+
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            Digital Precision.
+            <br />
+            <span className={styles.heroTitleCyan}>Measurable</span>
+            <br />
+            Outcomes.
+          </h1>
+
+          <p className={styles.heroLead}>
+            Rejecting obsolete guesswork and messy impression trays. Experience sub-micron 3D oral scanning,
+            same-day CAD/CAM ceramic crowns, and computer-guided keyhole implant surgery in Banjara Hills.
+          </p>
+
+          <div className={styles.heroActions}>
+            <BookButton className={styles.btnPrimary}>
+              Book 3D Optical Scan
+            </BookButton>
+            <a href="tel:+914023456789" className={styles.btnSecondary}>
+              <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
+              Clinical Desk: +91 40 2345 6789
+            </a>
           </div>
-          <div className={styles.heroOverlay} />
+        </div>
 
-          <div className={styles.heroContent}>
-            <h1 className={`${styles.heroTitle} ${styles.animFadeInUp}`}>
-              Digital Precision.
-              <br />
-              <span className={styles.heroTitleCyan}>Measurable</span>
-              <br />
-              Outcomes.
-            </h1>
-
-            <p className={`${styles.heroLead} ${styles.animFadeInUp} ${styles.animDelay1}`}>
-              Rejecting obsolete guesswork and messy impression trays. Experience sub-micron 3D oral scanning,
-              same-day CAD/CAM ceramic crowns, and computer-guided keyhole implant surgery in Banjara Hills.
-            </p>
-
-            <div className={`${styles.heroActions} ${styles.animFadeInUp} ${styles.animDelay2}`}>
-              <BookButton className={styles.btnPrimary}>
-                Book 3D Optical Scan
-              </BookButton>
-              <a href="tel:+914023456789" className={styles.btnSecondary}>
-                <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
-                Clinical Desk: +91 40 2345 6789
-              </a>
-            </div>
-          </div>
-
-          {/* Telemetry HUD Data Strip */}
-          <div className={styles.telemetryStrip}>
-            <div className={styles.telemetryInner}>
-              {[
-                { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
-                { num: "02", val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
-                { num: "03", val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
-                { num: "04", val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
-              ].map((item, i) => (
-                <div key={i} className={styles.telemetryItem}>
-                  <div className={styles.telemetryNum}>{item.num}</div>
-                  <div className={styles.telemetryData}>
-                    <span className={styles.telemetryVal}>{item.val}</span>
-                    <span className={styles.telemetryLbl}>{item.lbl}</span>
-                  </div>
+        {/* Telemetry HUD Data Strip */}
+        <div className={styles.telemetryStrip}>
+          <div className={styles.telemetryInner}>
+            {[
+              { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
+              { num: "02", val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
+              { num: "03", val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
+              { num: "04", val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
+            ].map((item, i) => (
+              <div key={i} className={styles.telemetryItem}>
+                <div className={styles.telemetryNum}>{item.num}</div>
+                <div className={styles.telemetryData}>
+                  <span className={styles.telemetryVal}>{item.val}</span>
+                  <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Certification Badge Strip ─── */}
-        <div className={styles.certStrip}>
-          <div className={styles.certInner}>
-            {certBadges.map((b) => (
-              <div key={b.label} className={styles.certBadge}>
-                <span className={styles.badgeIcon}>{b.icon}</span>
-                <span>{b.label}</span>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* ─── Interactive Technology Showcase Section ─── */}
-        <section id="technology" className={styles.techSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                Engineered for Precision. Built for Comfort.
-              </h2>
+      {/* ─── Certification Badge Strip ─── */}
+      <div className={styles.certStrip}>
+        <div className={styles.certInner}>
+          {certBadges.map((b) => (
+            <div key={b.label} className={styles.certBadge}>
+              <span className={styles.badgeIcon}>{b.icon}</span>
+              <span>{b.label}</span>
             </div>
-            <TechShowcase technologies={technologies} />
-          </div>
-        </section>
-
-        {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
-        <section id="simulation" className={styles.smileSimSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                Interactive 3D Smile Design Simulator
-              </h2>
-              <p className={styles.sectionSubText}>
-                Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
-              </p>
-            </div>
-            <SmileSimulator />
-          </div>
-        </section>
-
-        {/* ─── Treatments Ribbon ─── */}
-        <section id="treatments" className={styles.treatmentsSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.treatmentsKicker}>
-                <span className={styles.kickerDot} />
-                <span>ADVANCED PROTOCOLS</span>
-              </div>
-              <h2 className={styles.sectionTitle}>
-                Comprehensive Digital Dental Care
-              </h2>
-              <p className={styles.treatmentsSubTitle}>
-                Fully digitized dental procedures using 3D imaging, precision lasers, and AI-assisted CAD/CAM restoration.
-              </p>
-            </div>
-            <div className={styles.treatmentsGrid}>
-              {treatments.map((t) => (
-                <BookButton
-                  key={t.label}
-                  treatment={t.bookingTech}
-                  className={styles.treatmentChip}
-                >
-                  <div className={styles.treatmentIconWrap}>{t.icon}</div>
-                  <div className={styles.treatmentText}>
-                    <span className={styles.treatmentLabel}>{t.label}</span>
-                    <span className={styles.treatmentSub}>{t.sub}</span>
-                  </div>
-                </BookButton>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
-        <section id="comparison" className={styles.compareSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                The Conventional Clinic vs. SmileCraft Digital
-              </h2>
-              <p className={styles.sectionSubText}>
-                Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
-              </p>
-            </div>
-
-            {/* Desktop / Tablet Table */}
-            <div className={styles.compareTableWrapper}>
-              <table className={styles.compareTable}>
-                <thead>
-                  <tr>
-                    <th style={{ width: "22%", background: "#0b0f19", color: "#9ca3af" }}>Procedure Phase</th>
-                    <th className={styles.thLegacy}>
-                      <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
-                    </th>
-                    <th className={styles.thSmilecraft}>
-                      <CheckIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> SmileCraft Precision Studio
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparisonData.map((row) => (
-                    <tr key={row.feature}>
-                      <td className={styles.tdFeature}>{row.feature}</td>
-                      <td className={styles.tdLegacy}>{row.legacy}</td>
-                      <td className={styles.tdSmilecraft}>{row.smilecraft}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Cards View (<640px) */}
-            <div className={styles.compareMobileCards}>
-              {comparisonData.map((row) => (
-                <div key={row.feature} className="bg-[#111827] border border-[rgba(255,255,255,0.08)] rounded-lg p-5 flex flex-col gap-3">
-                  <div className="font-bold text-white border-b border-[rgba(255,255,255,0.08)] pb-2">{row.feature}</div>
-                  <div className="bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-md p-3 flex flex-col gap-1">
-                    <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
-                      <XMarkIcon size={14} style={{ color: "#EF4444" }} /> Conventional Clinic
-                    </div>
-                    <div className="text-sm leading-relaxed text-slate-300">{row.legacy}</div>
-                  </div>
-                  <div className="bg-[rgba(2,132,199,0.08)] border border-[rgba(2,132,199,0.25)] rounded-md p-3 flex flex-col gap-1">
-                    <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
-                      <CheckIcon size={14} style={{ color: "#0284C7" }} /> SmileCraft Digital Studio
-                    </div>
-                    <div className="text-sm leading-relaxed text-slate-300">{row.smilecraft}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── 4-Step Digital Workflow Timeline ─── */}
-        <section id="workflow" className={styles.workflowSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.workflowKicker}>
-                <span className={styles.kickerDot} />
-                <span>DIGITAL EXCELLENCE</span>
-              </div>
-              <h2 className={styles.sectionTitle}>
-                Our 4-Stage Digital Patient Journey
-              </h2>
-            </div>
-
-            <div className={styles.workflowGrid}>
-              {[
-                { num: "01", title: "60-Sec Optical Scan", desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color." },
-                { num: "02", title: "3D AI Diagnosis", desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors." },
-                { num: "03", title: "Robotic & Guided Care", desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery." },
-                { num: "04", title: "Instant Restoration", desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners." },
-              ].map((step) => (
-                <div
-                  key={step.num}
-                  className={styles.workflowCard}
-                >
-                  <div className="flex flex-row items-center justify-between gap-3 w-full">
-                    <div className="flex items-center gap-2.5">
-                      <span className={styles.workflowStatusDot} />
-                      <h3 className={styles.workflowTitle}>{step.title}</h3>
-                    </div>
-                    <span className={styles.workflowNumBadge}>{step.num}</span>
-                  </div>
-                  <p className={styles.workflowDesc}>{step.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Testimonials Section ─── */}
-        <section className={styles.testiSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                800+ Verified Patients. Zero Guesswork.
-              </h2>
-            </div>
-
-            <div className={styles.testiGrid}>
-              {testimonials.map((t) => (
-                <div
-                  key={t.name}
-                  className={styles.testiCard}
-                >
-                  <StarRating count={t.rating} size={15} />
-                  <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
-                  <div className={styles.testiFooter}>
-                    <div className={styles.testiAvatar}>{t.initials}</div>
-                    <div>
-                      <div className={styles.testiName}>{t.name}</div>
-                      <div className={styles.testiRole}>{t.role}</div>
-                      <div className={styles.testiTreatment}>{t.treatment}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Doctors Section ─── */}
-        <section id="specialists" className={styles.doctorsSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                Digital Dental Surgeons & Specialists
-              </h2>
-            </div>
-
-            <div className={styles.doctorsGrid}>
-              {doctors.map((doc) => (
-                <div
-                  key={doc.name}
-                  className={styles.docCard}
-                >
-                  <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
-                    <span>{doc.initials}</span>
-                  </div>
-                  <h3 className={styles.docName}>{doc.name}</h3>
-                  <div className={styles.docBadge}>{doc.role}</div>
-                  <div className={styles.docDeg}>{doc.degrees}</div>
-                  <div className={styles.docCert}>
-                    <CheckIcon size={15} color="#0284C7" />
-                    <span>{doc.cert}</span>
-                  </div>
-                  <BookButton
-                    doctor={doc.name}
-                    treatment={doc.defaultTreatment}
-                    className={styles.docBookBtn}
-                  >
-                    Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
-                  </BookButton>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── CTA Section ─── */}
-        <section id="book" className={styles.ctaSection}>
-          <div className={styles.ctaInner}>
-            <div className={styles.ctaLeft}>
-              <h2 className={styles.ctaH2}>
-                Experience Dental Care Powered by Technology.
-              </h2>
-              <div className={styles.ctaOfferBadge}>
-                <TargetIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
-              </div>
-              <p className={styles.ctaSub}>
-                Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
-              </p>
-            </div>
-
-            <div className={styles.ctaRight}>
-              <div className={styles.ctaAddressCard}>
-                <div className={styles.ctaAddressTitle}>
-                  <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
-                </div>
-                <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
-                <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
-                <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
-              </div>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <BookButton
-                  className={styles.btnPrimary}
-                  style={{ padding: "1.1rem 2.5rem", background: "#0b0f19", color: "#fff" }}
-                >
-                  Book 3D Oral Scan Online
-                </BookButton>
-                <a
-                  href="https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20would%20like%20to%20book%20a%203D%20Digital%20Dental%20Scan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.btnWhatsapp}
-                  style={{ textAlign: "center", padding: "1.1rem 2.5rem" }}
-                >
-                  <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp +91 98765 43210
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <Footer />
+          ))}
+        </div>
       </div>
-    </BookingProvider>
+
+      {/* ─── Interactive Technology Showcase Section ─── */}
+      <section id="technology" className={styles.techSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Engineered for Precision. Built for Comfort.
+            </h2>
+          </div>
+          <TechShowcase />
+        </div>
+      </section>
+
+      {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
+      <section id="simulation" className={styles.smileSimSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Interactive 3D Smile Design Simulator
+            </h2>
+            <p className={styles.sectionSubText}>
+              Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
+            </p>
+          </div>
+          <SmileSimulator />
+        </div>
+      </section>
+
+      {/* ─── Treatments Ribbon ─── */}
+      <section id="treatments" className={styles.treatmentsSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.treatmentsKicker}>
+              <span className={styles.kickerDot} />
+              <span>ADVANCED PROTOCOLS</span>
+            </div>
+            <h2 className={styles.sectionTitle}>
+              Comprehensive Digital Dental Care
+            </h2>
+            <p className={styles.treatmentsSubTitle}>
+              Fully digitized dental procedures using 3D imaging, precision lasers, and AI-assisted CAD/CAM restoration.
+            </p>
+          </div>
+          <div className={styles.treatmentsGrid}>
+            {treatments.map((t) => (
+              <BookButton
+                key={t.label}
+                treatment={t.bookingTech}
+                className={styles.treatmentChip}
+              >
+                <div className={styles.treatmentIconWrap}>{t.icon}</div>
+                <div className={styles.treatmentText}>
+                  <span className={styles.treatmentLabel}>{t.label}</span>
+                  <span className={styles.treatmentSub}>{t.sub}</span>
+                </div>
+              </BookButton>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
+      <section id="comparison" className={styles.compareSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              The Conventional Clinic vs. SmileCraft Digital
+            </h2>
+            <p className={styles.sectionSubText}>
+              Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
+            </p>
+          </div>
+
+          {/* Desktop / Tablet Table */}
+          <div className={styles.compareTableWrapper}>
+            <table className={styles.compareTable}>
+              <thead>
+                <tr>
+                  <th style={{ width: "22%", background: "#0b0f19", color: "#9ca3af" }}>Procedure Phase</th>
+                  <th className={styles.thLegacy}>
+                    <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
+                  </th>
+                  <th className={styles.thSmilecraft}>
+                    <CheckIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> SmileCraft Precision Studio
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((row) => (
+                  <tr key={row.feature}>
+                    <td className={styles.tdFeature}>{row.feature}</td>
+                    <td className={styles.tdLegacy}>{row.legacy}</td>
+                    <td className={styles.tdSmilecraft}>{row.smilecraft}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Cards View (<640px) */}
+          <div className={styles.compareMobileCards}>
+            {comparisonData.map((row) => (
+              <div key={row.feature} className="bg-[#111827] border border-[rgba(255,255,255,0.08)] rounded-lg p-5 flex flex-col gap-3">
+                <div className="font-bold text-white border-b border-[rgba(255,255,255,0.08)] pb-2">{row.feature}</div>
+                <div className="bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
+                    <XMarkIcon size={14} style={{ color: "#EF4444" }} /> Conventional Clinic
+                  </div>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.legacy}</div>
+                </div>
+                <div className="bg-[rgba(2,132,199,0.08)] border border-[rgba(2,132,199,0.25)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
+                    <CheckIcon size={14} style={{ color: "#0284C7" }} /> SmileCraft Digital Studio
+                  </div>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.smilecraft}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4-Step Digital Workflow Timeline ─── */}
+      <section id="workflow" className={styles.workflowSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.workflowKicker}>
+              <span className={styles.kickerDot} />
+              <span>DIGITAL EXCELLENCE</span>
+            </div>
+            <h2 className={styles.sectionTitle}>
+              Our 4-Stage Digital Patient Journey
+            </h2>
+          </div>
+
+          <div className={styles.workflowGrid}>
+            {[
+              { num: "01", title: "60-Sec Optical Scan", desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color." },
+              { num: "02", title: "3D AI Diagnosis", desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors." },
+              { num: "03", title: "Robotic & Guided Care", desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery." },
+              { num: "04", title: "Instant Restoration", desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners." },
+            ].map((step) => (
+              <div
+                key={step.num}
+                className={styles.workflowCard}
+              >
+                <div className="flex flex-row items-center justify-between gap-3 w-full">
+                  <div className="flex items-center gap-2.5">
+                    <span className={styles.workflowStatusDot} />
+                    <h3 className={styles.workflowTitle}>{step.title}</h3>
+                  </div>
+                  <span className={styles.workflowNumBadge}>{step.num}</span>
+                </div>
+                <p className={styles.workflowDesc}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Testimonials Section ─── */}
+      <section className={styles.testiSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              800+ Verified Patients. Zero Guesswork.
+            </h2>
+          </div>
+
+          <div className={styles.testiGrid}>
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className={styles.testiCard}
+              >
+                <StarRating count={t.rating} size={15} />
+                <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
+                <div className={styles.testiFooter}>
+                  <div className={styles.testiAvatar}>{t.initials}</div>
+                  <div>
+                    <div className={styles.testiName}>{t.name}</div>
+                    <div className={styles.testiRole}>{t.role}</div>
+                    <div className={styles.testiTreatment}>{t.treatment}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Doctors Section ─── */}
+      <section id="specialists" className={styles.doctorsSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Digital Dental Surgeons & Specialists
+            </h2>
+          </div>
+
+          <div className={styles.doctorsGrid}>
+            {doctors.map((doc) => (
+              <div
+                key={doc.name}
+                className={styles.docCard}
+              >
+                <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
+                  <span>{doc.initials}</span>
+                </div>
+                <h3 className={styles.docName}>{doc.name}</h3>
+                <div className={styles.docBadge}>{doc.role}</div>
+                <div className={styles.docDeg}>{doc.degrees}</div>
+                <div className={styles.docCert}>
+                  <CheckIcon size={15} color="#0284C7" />
+                  <span>{doc.cert}</span>
+                </div>
+                <BookButton
+                  doctor={doc.name}
+                  treatment={doc.defaultTreatment}
+                  className={styles.docBookBtn}
+                >
+                  Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
+                </BookButton>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CTA Section ─── */}
+      <section id="book" className={styles.ctaSection}>
+        <div className={styles.ctaInner}>
+          <div className={styles.ctaLeft}>
+            <h2 className={styles.ctaH2}>
+              Experience Dental Care Powered by Technology.
+            </h2>
+            <div className={styles.ctaOfferBadge}>
+              <TargetIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
+            </div>
+            <p className={styles.ctaSub}>
+              Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
+            </p>
+          </div>
+
+          <div className={styles.ctaRight}>
+            <div className={styles.ctaAddressCard}>
+              <div className={styles.ctaAddressTitle}>
+                <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
+              </div>
+              <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
+              <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
+              <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <BookButton
+                className={styles.btnPrimary}
+                style={{ padding: "1.1rem 2.5rem", background: "#0b0f19", color: "#fff" }}
+              >
+                Book 3D Oral Scan Online
+              </BookButton>
+              <a
+                href="https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20would%20like%20to%20book%20a%203D%20Digital%20Dental%20Scan"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnWhatsapp}
+                style={{ textAlign: "center", padding: "1.1rem 2.5rem" }}
+              >
+                <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp +91 98765 43210
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+
+      {/* Zero-overhead Event-Driven Booking Portal */}
+      <BookingModalPortal />
+    </div>
   );
 }
