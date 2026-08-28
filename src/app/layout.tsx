@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-barlow",
+  display: "swap",
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-barlow-condensed",
+  display: "swap",
+});
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -68,19 +83,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* Modern Tech fonts — Barlow & Barlow Condensed */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
         {/* Structured data – LocalBusiness */}
         <script
           type="application/ld+json"
