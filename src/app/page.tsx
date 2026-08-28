@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import "@/styles/HomePage.css";
+import styles from "@/styles/HomePage.module.css";
 import {
   DentalImplantIcon,
   SmileDesignIcon,
@@ -26,9 +26,7 @@ import {
   CheckIcon,
   XMarkIcon,
   ArrowUpRightIcon,
-  CloseIcon,
   StarRating,
-  DoctorIcon,
 } from "@/icons";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -41,7 +39,7 @@ const technologies = [
     name: "3D Intraoral Optical Scanner",
     badge: "Planmeca® Emerald S",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="d02-tech-icon-svg">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="6" y="18" width="36" height="20" rx="3" stroke="currentColor" strokeWidth="2.2" />
         <path d="M14 18V12a2 2 0 012-2h16a2 2 0 012 2v6" stroke="currentColor" strokeWidth="2.2" />
         <circle cx="24" cy="28" r="4" stroke="currentColor" strokeWidth="2.2" />
@@ -61,7 +59,7 @@ const technologies = [
     name: "3D Cone Beam CT (CBCT)",
     badge: "Planmeca® ProMax 3D",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="d02-tech-icon-svg">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2.2" />
         <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2.2" />
         <path d="M24 10v4M24 34v4M10 24h4M34 24h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -81,7 +79,7 @@ const technologies = [
     name: "CAD/CAM 5-Axis Milling Unit",
     badge: "Dentsply Sirona CEREC®",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="d02-tech-icon-svg">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" strokeWidth="2.2" />
         <path d="M16 24c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
         <path d="M18 28h12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -101,7 +99,7 @@ const technologies = [
     name: "Biolase® Waterlase Laser",
     badge: "HydroPhotonics™ Dental Laser",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="d02-tech-icon-svg">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
         <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="2.2" />
         <path d="M13.5 13.5l4 4M30.5 30.5l4 4M13.5 34.5l4-4M30.5 17.5l4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -121,7 +119,7 @@ const technologies = [
     name: "The Wand® Computerized Anesthesia",
     badge: "Milestone Scientific STA",
     icon: (
-      <svg viewBox="0 0 48 48" fill="none" className="d02-tech-icon-svg">
+      <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M12 36L28 12l4 4L16 40z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
         <path d="M28 12l5-3 3 3-3 5" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
         <circle cx="12" cy="36" r="2.5" fill="currentColor" />
@@ -284,14 +282,14 @@ export default function HomePage() {
   }, []);
 
   // Scroll reveal refs
-  const { ref: techRef, inView: techInView } = useInView();
-  const { ref: smileRef, inView: smileInView } = useInView();
-  const { ref: treatRef, inView: treatInView } = useInView();
-  const { ref: compRef, inView: compInView } = useInView();
+  const { ref: techRef } = useInView();
+  const { ref: smileRef } = useInView();
+  const { ref: treatRef } = useInView();
+  const { ref: compRef } = useInView();
   const { ref: workflowRef, inView: workflowInView } = useInView();
-  const { ref: docRef, inView: docInView } = useInView();
-  const { ref: testiRef, inView: testiInView } = useInView();
-  const { ref: ctaRef, inView: ctaInView } = useInView();
+  const { ref: docRef } = useInView();
+  const { ref: testiRef } = useInView();
+  const { ref: ctaRef } = useInView();
 
   // Escape key closes modal
   useEffect(() => {
@@ -334,12 +332,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="d02-container">
+    <div className={styles.container}>
       <Header onBookClick={() => setBookingOpen(true)} />
 
       {/* ─── Hero Section ─── */}
-      <section className="d02-hero" aria-label="Digital Dental Technology Hero">
-        <div className="d02-hero-bg">
+      <section className={styles.hero} aria-label="Digital Dental Technology Hero">
+        <div className={styles.heroBg}>
           <Image
             src="/dental-scanner-3d.jpg"
             alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
@@ -349,25 +347,24 @@ export default function HomePage() {
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
-        <div className="d02-hero-overlay" />
-        <div className="d02-hero-grid-lines" />
+        <div className={styles.heroOverlay} />
 
-        <div className="d02-hero-content">
+        <div className={styles.heroContent}>
           <motion.h1
-            className="d02-hero-title"
+            className={styles.heroTitle}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             Digital Precision.
             <br />
-            <span className="d02-hero-title-cyan">Measurable</span>
+            <span className={styles.heroTitleCyan}>Measurable</span>
             <br />
             Outcomes.
           </motion.h1>
 
           <motion.p
-            className="d02-hero-lead"
+            className={styles.heroLead}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -377,15 +374,15 @@ export default function HomePage() {
           </motion.p>
 
           <motion.div
-            className="d02-hero-actions"
+            className={styles.heroActions}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
-            <button type="button" onClick={() => setBookingOpen(true)} className="d02-btn-primary">
+            <button type="button" onClick={() => setBookingOpen(true)} className={styles.btnPrimary}>
               Book 3D Optical Scan
             </button>
-            <a href="tel:+914023456789" className="d02-btn-secondary">
+            <a href="tel:+914023456789" className={styles.btnSecondary}>
               <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
               Clinical Desk: +91 40 2345 6789
             </a>
@@ -393,8 +390,8 @@ export default function HomePage() {
         </div>
 
         {/* Telemetry HUD Data Strip (Centered) */}
-        <div className="d02-telemetry-strip" ref={telemetryRef}>
-          <div className="d02-telemetry-inner">
+        <div className={styles.telemetryStrip} ref={telemetryRef}>
+          <div className={styles.telemetryInner}>
             {[
               { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
               { num: "02", val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
@@ -403,16 +400,16 @@ export default function HomePage() {
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="d02-telemetry-item"
+                className={styles.telemetryItem}
                 initial={{ opacity: 0, scale: 0.9, y: 15 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
               >
-                <div className="d02-telemetry-num">{item.num}</div>
-                <div className="d02-telemetry-data">
-                  <span className="d02-telemetry-val">{telemetryInView ? item.val : "—"}</span>
-                  <span className="d02-telemetry-lbl">{item.lbl}</span>
+                <div className={styles.telemetryNum}>{item.num}</div>
+                <div className={styles.telemetryData}>
+                  <span className={styles.telemetryVal}>{telemetryInView ? item.val : "—"}</span>
+                  <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
               </motion.div>
             ))}
@@ -421,11 +418,11 @@ export default function HomePage() {
       </section>
 
       {/* ─── Certification Badge Strip ─── */}
-      <div className="d02-cert-strip">
-        <div className="d02-cert-inner">
+      <div className={styles.certStrip}>
+        <div className={styles.certInner}>
           {certBadges.map((b) => (
-            <div key={b.label} className="d02-cert-badge">
-              <span className="d02-badge-icon">{b.icon}</span>
+            <div key={b.label} className={styles.certBadge}>
+              <span className={styles.badgeIcon}>{b.icon}</span>
               <span>{b.label}</span>
             </div>
           ))}
@@ -433,22 +430,22 @@ export default function HomePage() {
       </div>
 
       {/* ─── Interactive Technology Showcase Section ─── */}
-      <section id="technology" className="d02-tech-section">
-        <div className="d02-section-container" ref={techRef}>
+      <section id="technology" className={styles.techSection}>
+        <div className={styles.sectionContainer} ref={techRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               Engineered for Precision. Built for Comfort.
             </h2>
           </motion.div>
 
           {/* Tab buttons */}
           <motion.div
-            className="d02-tech-tabs-nav"
+            className={styles.techTabsNav}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -459,45 +456,45 @@ export default function HomePage() {
                 key={t.id}
                 type="button"
                 onClick={() => setActiveTechIndex(idx)}
-                className={`d02-tech-tab-btn ${activeTechIndex === idx ? "active" : ""}`}
+                className={`${styles.techTabBtn} ${activeTechIndex === idx ? styles.techTabBtnActive : ""}`}
               >
                 {t.name}
               </button>
             ))}
           </motion.div>
 
-          {/* Active tech card (Laboratory Console HUD) */}
+          {/* Active tech card */}
           <motion.div
-            className="d02-tech-card-active"
+            className={styles.techCardActive}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <div className="d02-tech-header">
-              <div className="d02-tech-header-left">
-                <div className="d02-tech-icon-wrap">{activeTech.icon}</div>
+            <div className={styles.techHeader}>
+              <div className={styles.techHeaderLeft}>
+                <div className={styles.techIconWrap}>{activeTech.icon}</div>
                 <div>
-                  <h3 className="d02-tech-h3">{activeTech.name}</h3>
+                  <h3 className={styles.techH3}>{activeTech.name}</h3>
                 </div>
               </div>
-              <span className="d02-tech-badge">{activeTech.badge}</span>
+              <span className={styles.techBadge}>{activeTech.badge}</span>
             </div>
 
-            <div className="d02-tech-body">
-              <p className="d02-tech-p">{activeTech.desc}</p>
-              <div className="d02-benefit-box">
-                <span className="d02-benefit-title">PATIENT ADVANTAGE</span>
-                <span className="d02-benefit-desc">{activeTech.patientBenefit}</span>
+            <div className={styles.techBody}>
+              <p className={styles.techP}>{activeTech.desc}</p>
+              <div className={styles.benefitBox}>
+                <span className={styles.benefitTitle}>PATIENT ADVANTAGE</span>
+                <span className={styles.benefitDesc}>{activeTech.patientBenefit}</span>
               </div>
             </div>
 
-            <div className="d02-tech-specs-bar">
-              <div className="d02-tech-specs-items">
+            <div className={styles.techSpecsBar}>
+              <div className={styles.techSpecsItems}>
                 {activeTech.specs.map((spec) => (
-                  <div key={spec.k} className="d02-tech-spec-col">
-                    <span className="d02-spec-k">{spec.k}</span>
-                    <span className="d02-spec-v">{spec.v}</span>
+                  <div key={spec.k} className={styles.techSpecCol}>
+                    <span className={styles.specK}>{spec.k}</span>
+                    <span className={styles.specV}>{spec.v}</span>
                   </div>
                 ))}
               </div>
@@ -508,7 +505,7 @@ export default function HomePage() {
                   setSelectedDoctor(null);
                   setBookingOpen(true);
                 }}
-                className="d02-btn-primary"
+                className={styles.btnPrimary}
               >
                 Book Diagnostic Scan <ArrowUpRightIcon size={14} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
               </button>
@@ -518,15 +515,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
-      <section id="simulation" className="d02-smile-sim-section">
-        <div className="d02-section-container" ref={smileRef}>
+      <section id="simulation" className={styles.smileSimSection}>
+        <div className={styles.sectionContainer} ref={smileRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               Interactive 3D Smile Design Simulator
             </h2>
             <p style={{ color: "rgba(255,255,255,0.75)", maxWidth: "680px", lineHeight: 1.7, marginBottom: "2.5rem" }}>
@@ -535,37 +532,37 @@ export default function HomePage() {
           </motion.div>
 
           <motion.div
-            className="d02-sim-card"
+            className={styles.simCard}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
             {/* Simulation Header Telemetry */}
-            <div className="d02-sim-header">
-              <div className="d02-sim-case-tag">
-                <span className="d02-pulse-cyan" />
+            <div className={styles.simHeader}>
+              <div className={styles.simCaseTag}>
+                <span className={styles.pulseCyan} />
                 <span>Clinical Study #SC-8420 · Porcelain Veneers & Whitening</span>
               </div>
-              <div className="d02-sim-quick-presets">
+              <div className={styles.simQuickPresets}>
                 <button
                   type="button"
                   onClick={() => setSliderPosition(0)}
-                  className={`d02-sim-preset-btn ${sliderPosition === 0 ? "active" : ""}`}
+                  className={`${styles.simPresetBtn} ${sliderPosition === 0 ? styles.simPresetBtnActive : ""}`}
                 >
                   Before Only
                 </button>
                 <button
                   type="button"
                   onClick={() => setSliderPosition(50)}
-                  className={`d02-sim-preset-btn ${sliderPosition === 50 ? "active" : ""}`}
+                  className={`${styles.simPresetBtn} ${sliderPosition === 50 ? styles.simPresetBtnActive : ""}`}
                 >
                   50% Split
                 </button>
                 <button
                   type="button"
                   onClick={() => setSliderPosition(100)}
-                  className={`d02-sim-preset-btn ${sliderPosition === 100 ? "active" : ""}`}
+                  className={`${styles.simPresetBtn} ${sliderPosition === 100 ? styles.simPresetBtnActive : ""}`}
                 >
                   After Only
                 </button>
@@ -574,7 +571,7 @@ export default function HomePage() {
 
             {/* Interactive Before/After Visual Frame */}
             <div
-              className="d02-slider-container"
+              className={styles.sliderContainer}
               ref={sliderContainerRef}
               onMouseDown={() => setIsDraggingSlider(true)}
               onMouseUp={() => setIsDraggingSlider(false)}
@@ -583,7 +580,7 @@ export default function HomePage() {
               onTouchMove={handleTouchMove}
             >
               {/* After Image (Full Background) */}
-              <div className="d02-slider-img-wrap" style={{ position: "absolute" }}>
+              <div className={styles.sliderImgWrap} style={{ position: "absolute" }}>
                 <Image
                   src="/smile-after.jpg"
                   alt="After smile restoration: aligned luminous teeth with porcelain veneers"
@@ -592,17 +589,17 @@ export default function HomePage() {
                   style={{ objectFit: "cover" }}
                   priority
                 />
-                <div className="d02-slider-badge d02-badge-after">
+                <div className={`${styles.sliderBadge} ${styles.badgeAfter}`}>
                   After · Digital Smile Design
                 </div>
               </div>
 
               {/* Before Image (Clipped Foreground) */}
               <div
-                className="d02-slider-clipped-wrap"
+                className={styles.sliderClippedWrap}
                 style={{ width: `${sliderPosition}%` }}
               >
-                <div className="d02-slider-clipped-img" style={{ position: "absolute" }}>
+                <div className={styles.sliderClippedImg} style={{ position: "absolute" }}>
                   <Image
                     src="/smile-before.jpg"
                     alt="Before treatment: natural dental baseline with mild misalignment"
@@ -612,45 +609,45 @@ export default function HomePage() {
                     priority
                   />
                 </div>
-                <div className="d02-slider-badge d02-badge-before">
+                <div className={`${styles.sliderBadge} ${styles.badgeBefore}`}>
                   Before · Baseline
                 </div>
               </div>
 
               {/* Vertical Draggable Divider Line */}
               <div
-                className="d02-slider-divider"
+                className={styles.sliderDivider}
                 style={{ left: `${sliderPosition}%` }}
               >
-                <div className="d02-slider-handle">
-                  <div className="d02-handle-arrow">◀</div>
-                  <div className="d02-handle-arrow">▶</div>
+                <div className={styles.sliderHandle}>
+                  <div className={styles.handleArrow}>◀</div>
+                  <div className={styles.handleArrow}>▶</div>
                 </div>
               </div>
             </div>
 
             {/* Simulation Metrics Footer */}
-            <div className="d02-sim-footer">
-              <div className="d02-sim-metric">
-                <span className="d02-sim-metric-val">99.4%</span>
-                <span className="d02-sim-metric-lbl">CAD Facial Symmetry</span>
+            <div className={styles.simFooter}>
+              <div className={styles.simMetric}>
+                <span className={styles.simMetricVal}>99.4%</span>
+                <span className={styles.simMetricLbl}>CAD Facial Symmetry</span>
               </div>
-              <div className="d02-sim-metric">
-                <span className="d02-sim-metric-val">BL1</span>
-                <span className="d02-sim-metric-lbl">Natural Vita Shade</span>
+              <div className={styles.simMetric}>
+                <span className={styles.simMetricVal}>BL1</span>
+                <span className={styles.simMetricLbl}>Natural Vita Shade</span>
               </div>
-              <div className="d02-sim-metric">
-                <span className="d02-sim-metric-val">0.3 mm</span>
-                <span className="d02-sim-metric-lbl">Micro-Prep Thickness</span>
+              <div className={styles.simMetric}>
+                <span className={styles.simMetricVal}>0.3 mm</span>
+                <span className={styles.simMetricLbl}>Micro-Prep Thickness</span>
               </div>
-              <div className="d02-sim-cta-wrap">
+              <div className={styles.simCtaWrap}>
                 <button
                   type="button"
                   onClick={() => {
                     setSelectedTech("3D Digital Oral Scan & Smile Simulation");
                     setBookingOpen(true);
                   }}
-                  className="d02-btn-primary"
+                  className={styles.btnPrimary}
                 >
                   Simulate My Smile in 3D ↗
                 </button>
@@ -661,26 +658,26 @@ export default function HomePage() {
       </section>
 
       {/* ─── Treatments Ribbon ─── */}
-      <section id="treatments" className="d02-treatments-section">
-        <div className="d02-section-container" ref={treatRef}>
+      <section id="treatments" className={styles.treatmentsSection}>
+        <div className={styles.sectionContainer} ref={treatRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="d02-treatments-kicker">
-              <span className="d02-kicker-dot" />
+            <div className={styles.treatmentsKicker}>
+              <span className={styles.kickerDot} />
               <span>ADVANCED PROTOCOLS</span>
             </div>
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               Comprehensive Digital Dental Care
             </h2>
-            <p className="d02-treatments-sub-title">
+            <p className={styles.treatmentsSubTitle}>
               Fully digitized dental procedures using 3D imaging, precision lasers, and AI-assisted CAD/CAM restoration.
             </p>
           </motion.div>
-          <div className="d02-treatments-grid">
+          <div className={styles.treatmentsGrid}>
             {treatments.map((t, i) => (
               <motion.button
                 key={t.label}
@@ -690,16 +687,16 @@ export default function HomePage() {
                   setSelectedDoctor(null);
                   setBookingOpen(true);
                 }}
-                className="d02-treatment-chip"
+                className={styles.treatmentChip}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
               >
-                <div className="d02-treatment-icon-wrap">{t.icon}</div>
-                <div className="d02-treatment-text">
-                  <span className="d02-treatment-label">{t.label}</span>
-                  <span className="d02-treatment-sub">{t.sub}</span>
+                <div className={styles.treatmentIconWrap}>{t.icon}</div>
+                <div className={styles.treatmentText}>
+                  <span className={styles.treatmentLabel}>{t.label}</span>
+                  <span className={styles.treatmentSub}>{t.sub}</span>
                 </div>
               </motion.button>
             ))}
@@ -708,15 +705,15 @@ export default function HomePage() {
       </section>
 
       {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
-      <section id="comparison" className="d02-compare-section">
-        <div className="d02-section-container" ref={compRef}>
+      <section id="comparison" className={styles.compareSection}>
+        <div className={styles.sectionContainer} ref={compRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               The Conventional Clinic vs. SmileCraft Digital
             </h2>
             <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: "600px", lineHeight: 1.7, marginBottom: "3rem" }}>
@@ -726,20 +723,20 @@ export default function HomePage() {
 
           {/* Desktop / Tablet Table */}
           <motion.div
-            className="d02-compare-table-wrapper"
+            className={styles.compareTableWrapper}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           >
-            <table className="d02-compare-table">
+            <table className={styles.compareTable}>
               <thead>
                 <tr>
                   <th style={{ width: "22%", background: "#0b0f19", color: "#9ca3af" }}>Procedure Phase</th>
-                  <th className="d02-th-legacy">
+                  <th className={styles.thLegacy}>
                     <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
                   </th>
-                  <th className="d02-th-smilecraft">
+                  <th className={styles.thSmilecraft}>
                     <CheckIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> SmileCraft Precision Studio
                   </th>
                 </tr>
@@ -747,9 +744,9 @@ export default function HomePage() {
               <tbody>
                 {comparisonData.map((row) => (
                   <tr key={row.feature}>
-                    <td className="d02-td-feature">{row.feature}</td>
-                    <td className="d02-td-legacy">{row.legacy}</td>
-                    <td className="d02-td-smilecraft">{row.smilecraft}</td>
+                    <td className={styles.tdFeature}>{row.feature}</td>
+                    <td className={styles.tdLegacy}>{row.legacy}</td>
+                    <td className={styles.tdSmilecraft}>{row.smilecraft}</td>
                   </tr>
                 ))}
               </tbody>
@@ -757,21 +754,21 @@ export default function HomePage() {
           </motion.div>
 
           {/* Mobile Cards View (<640px) */}
-          <div className="d02-compare-mobile-cards">
+          <div className={styles.compareMobileCards}>
             {comparisonData.map((row) => (
-              <div key={row.feature} className="d02-compare-mobile-card">
-                <div className="d02-compare-mobile-phase">{row.feature}</div>
-                <div className="d02-compare-mobile-row d02-compare-mobile-legacy">
-                  <div className="d02-compare-mobile-label">
+              <div key={row.feature} className="bg-[#111827] border border-[rgba(255,255,255,0.08)] rounded-lg p-5 flex flex-col gap-3">
+                <div className="font-bold text-white border-b border-[rgba(255,255,255,0.08)] pb-2">{row.feature}</div>
+                <div className="bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
                     <XMarkIcon size={14} style={{ color: "#EF4444" }} /> Conventional Clinic
                   </div>
-                  <div className="d02-compare-mobile-text">{row.legacy}</div>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.legacy}</div>
                 </div>
-                <div className="d02-compare-mobile-row d02-compare-mobile-smilecraft">
-                  <div className="d02-compare-mobile-label">
+                <div className="bg-[rgba(2,132,199,0.08)] border border-[rgba(2,132,199,0.25)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
                     <CheckIcon size={14} style={{ color: "#0284C7" }} /> SmileCraft Digital Studio
                   </div>
-                  <div className="d02-compare-mobile-text">{row.smilecraft}</div>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.smilecraft}</div>
                 </div>
               </div>
             ))}
@@ -780,37 +777,37 @@ export default function HomePage() {
       </section>
 
       {/* ─── 4-Step Digital Workflow Timeline ─── */}
-      <section id="workflow" className="d02-workflow-section">
-        <div className="d02-section-container" ref={workflowRef}>
-          <div className={`d02-fade-up ${workflowInView ? "d02-in-view" : ""}`}>
-            <div className="d02-workflow-kicker">
-              <span className="d02-kicker-dot" />
+      <section id="workflow" className={styles.workflowSection}>
+        <div className={styles.sectionContainer} ref={workflowRef}>
+          <div className={`${styles.fadeUp} ${workflowInView ? styles.inView : ""}`}>
+            <div className={styles.workflowKicker}>
+              <span className={styles.kickerDot} />
               <span>DIGITAL EXCELLENCE</span>
             </div>
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               Our 4-Stage Digital Patient Journey
             </h2>
           </div>
 
-          <div className="d02-workflow-grid">
+          <div className={styles.workflowGrid}>
             {[
               { num: "01", title: "60-Sec Optical Scan", desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color." },
               { num: "02", title: "3D AI Diagnosis", desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors." },
               { num: "03", title: "Robotic & Guided Care", desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery." },
               { num: "04", title: "Instant Restoration", desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners." },
-            ].map((step, i) => (
+            ].map((step) => (
               <div
                 key={step.num}
-                className="d02-workflow-card"
+                className={styles.workflowCard}
               >
                 <div className="flex flex-row items-center justify-between gap-3 w-full">
                   <div className="flex items-center gap-2.5">
-                    <span className="d02-workflow-status-dot" />
-                    <h3 className="d02-workflow-title">{step.title}</h3>
+                    <span className={styles.workflowStatusDot} />
+                    <h3 className={styles.workflowTitle}>{step.title}</h3>
                   </div>
-                  <span className="d02-workflow-num-badge">{step.num}</span>
+                  <span className={styles.workflowNumBadge}>{step.num}</span>
                 </div>
-                <p className="d02-workflow-desc">{step.desc}</p>
+                <p className={styles.workflowDesc}>{step.desc}</p>
               </div>
             ))}
           </div>
@@ -818,37 +815,37 @@ export default function HomePage() {
       </section>
 
       {/* ─── Testimonials Section ─── */}
-      <section className="d02-testi-section">
-        <div className="d02-section-container" ref={testiRef}>
+      <section className={styles.testiSection}>
+        <div className={styles.sectionContainer} ref={testiRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               800+ Verified Patients. Zero Guesswork.
             </h2>
           </motion.div>
 
-          <div className="d02-testi-grid">
+          <div className={styles.testiGrid}>
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
-                className="d02-testi-card"
+                className={styles.testiCard}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
               >
                 <StarRating count={t.rating} size={15} />
-                <blockquote className="d02-testi-quote">&ldquo;{t.text}&rdquo;</blockquote>
-                <div className="d02-testi-footer">
-                  <div className="d02-testi-avatar">{t.initials}</div>
+                <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
+                <div className={styles.testiFooter}>
+                  <div className={styles.testiAvatar}>{t.initials}</div>
                   <div>
-                    <div className="d02-testi-name">{t.name}</div>
-                    <div className="d02-testi-role">{t.role}</div>
-                    <div className="d02-testi-treatment">{t.treatment}</div>
+                    <div className={styles.testiName}>{t.name}</div>
+                    <div className={styles.testiRole}>{t.role}</div>
+                    <div className={styles.testiTreatment}>{t.treatment}</div>
                   </div>
                 </div>
               </motion.div>
@@ -858,44 +855,43 @@ export default function HomePage() {
       </section>
 
       {/* ─── Doctors Section ─── */}
-      <section id="specialists" className="d02-doctors-section">
-        <div className="d02-section-container" ref={docRef}>
+      <section id="specialists" className={styles.doctorsSection}>
+        <div className={styles.sectionContainer} ref={docRef}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-section-title">
+            <h2 className={styles.sectionTitle}>
               Digital Dental Surgeons & Specialists
             </h2>
           </motion.div>
 
-          <div className="d02-doctors-grid">
+          <div className={styles.doctorsGrid}>
             {doctors.map((doc, i) => (
               <motion.div
                 key={doc.name}
-                className="d02-doc-card"
+                className={styles.docCard}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
               >
-                <div className="d02-doc-avatar" style={{ "--avatar-color": doc.color } as React.CSSProperties}>
+                <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
                   <span>{doc.initials}</span>
-                  <div className="d02-doc-avatar-ring" />
                 </div>
-                <h3 className="d02-doc-name">{doc.name}</h3>
-                <div className="d02-doc-badge">{doc.role}</div>
-                <div className="d02-doc-deg">{doc.degrees}</div>
-                <div className="d02-doc-cert">
+                <h3 className={styles.docName}>{doc.name}</h3>
+                <div className={styles.docBadge}>{doc.role}</div>
+                <div className={styles.docDeg}>{doc.degrees}</div>
+                <div className={styles.docCert}>
                   <CheckIcon size={15} color="#0284C7" />
                   <span>{doc.cert}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => openDoctorBooking(doc)}
-                  className="d02-doc-book-btn"
+                  className={styles.docBookBtn}
                 >
                   Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
                 </button>
@@ -906,40 +902,40 @@ export default function HomePage() {
       </section>
 
       {/* ─── CTA Section ─── */}
-      <section id="book" className="d02-cta-section" ref={ctaRef}>
-        <div className="d02-cta-inner">
+      <section id="book" className={styles.ctaSection} ref={ctaRef}>
+        <div className={styles.ctaInner}>
           <motion.div
-            className="d02-cta-left"
+            className={styles.ctaLeft}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <h2 className="d02-cta-h2">
+            <h2 className={styles.ctaH2}>
               Experience Dental Care Powered by Technology.
             </h2>
-            <div className="d02-cta-offer-badge">
+            <div className={styles.ctaOfferBadge}>
               <TargetIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
             </div>
-            <p className="d02-cta-sub">
+            <p className={styles.ctaSub}>
               Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
             </p>
           </motion.div>
 
           <motion.div
-            className="d02-cta-right"
+            className={styles.ctaRight}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            <div className="d02-cta-address-card">
-              <div className="d02-cta-address-title">
+            <div className={styles.ctaAddressCard}>
+              <div className={styles.ctaAddressTitle}>
                 <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
               </div>
-              <div className="d02-cta-address-line">Road No. 12, Banjara Hills</div>
-              <div className="d02-cta-address-line">Hyderabad — 500 034, Telangana</div>
-              <div className="d02-cta-address-hours">Mon–Sat: 9:00 AM – 8:00 PM</div>
+              <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
+              <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
+              <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -949,7 +945,7 @@ export default function HomePage() {
                   setSelectedDoctor(null);
                   setBookingOpen(true);
                 }}
-                className="d02-btn-primary"
+                className={styles.btnPrimary}
                 style={{ padding: "1.1rem 2.5rem", background: "#0b0f19", color: "#fff" }}
               >
                 Book 3D Oral Scan Online
@@ -958,7 +954,7 @@ export default function HomePage() {
                 href="https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20would%20like%20to%20book%20a%203D%20Digital%20Dental%20Scan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="d02-btn-whatsapp"
+                className={styles.btnWhatsapp}
                 style={{ textAlign: "center", padding: "1.1rem 2.5rem" }}
               >
                 <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp +91 98765 43210
@@ -969,7 +965,6 @@ export default function HomePage() {
       </section>
 
       <Footer />
-
 
       {/* ─── Interactive Diagnostic Booking Drawer Modal ─── */}
       <BookingModal
