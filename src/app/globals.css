@@ -1,4 +1,5 @@
- @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
 /* ─── Global resets and base ─── */
 *, *::before, *::after {
@@ -14,21 +15,41 @@ html {
   text-rendering: optimizeLegibility;
 }
 
-/* ─── Custom scrollbar ─── */
 :root {
-  --scrollbar-thumb: #d4c5b0;
-  --scrollbar-track: #f5f0ea;
+  --d02-dark: #090D16;
+  --d02-surface: #0F172A;
+  --d02-card: #151E2E;
+  --d02-card-hover: #1C273C;
+  --d02-blue: #0369A1;
+  --d02-cyan: #93C5FD;
+  --d02-white: #FFFFFF;
+  --d02-text-muted: #94A3B8;
+  --d02-border: rgba(255, 255, 255, 0.08);
+  --d02-border-accent: rgba(147, 197, 253, 0.2);
+  --font-display: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Barlow', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --scrollbar-thumb: #1E293B;
+  --scrollbar-track: #090D16;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb);
-  border-radius: 3px;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1E293B #090D16;
 }
 
 /* ─── Text selection ─── */
