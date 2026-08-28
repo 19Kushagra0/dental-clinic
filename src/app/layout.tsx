@@ -77,6 +77,15 @@ export const metadata: Metadata = {
       "Sub-micron 3D oral scanning, same-day CEREC® crowns, and guided implant surgery in Banjara Hills.",
     images: ["/og-image.jpg"],
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-icon.svg", type: "image/svg+xml" },
+    ],
+  },
   robots: {
     index: true,
     follow: true,

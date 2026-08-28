@@ -3,6 +3,7 @@
 import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
 import { openBookingDialog } from "@/components/BookingModalPortal";
+import { SmileCraftLogoIcon } from "@/icons";
 import MobileSidebar from "./MobileSidebar";
 
 export default function Header() {
@@ -28,19 +29,7 @@ export default function Header() {
           {/* ── Logo ── */}
           <a href="/" className={styles.logo}>
             <div className={styles.logoIcon}>
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                width="20"
-                height="20"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 2C8.5 2 6 4.5 6 8c0 3.5 1.5 6 3 8l1.5 4c.2.6.8 1 1.5 1h0c.7 0 1.3-.4 1.5-1l1.5-4c1.5-2 3-4.5 3-8 0-3.5-2.5-6-6-6z" />
-                <circle cx="12" cy="8" r="2" />
-              </svg>
+              <SmileCraftLogoIcon size={26} />
             </div>
             <div className={styles.logoText}>
               <span className={styles.logoTitle}>SmileCraft Digital</span>
