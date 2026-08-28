@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import "./home.css";
+import "@/styles/HomePage.css";
 import {
   DentalImplantIcon,
   SmileDesignIcon,
@@ -32,6 +32,7 @@ import {
 } from "@/icons";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingModal from "@/components/BookingModal";
 
 /* ─── Data ─── */
 const technologies = [
@@ -260,9 +261,6 @@ export default function HomePage() {
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedTech, setSelectedTech] = useState("3D Digital Oral Scan & Smile Simulation");
   const [selectedDoctor, setSelectedDoctor] = useState<string | null>(null);
-  const [patientName, setPatientName] = useState("");
-  const [patientPhone, setPatientPhone] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Before/After Slider State
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -306,12 +304,6 @@ export default function HomePage() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [bookingOpen]);
 
-  // Phone input formatting
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value.replace(/[^\d+]/g, "");
-    setPatientPhone(input);
-  };
-
   // Before/After Slider Drag Handling
   const handleSliderMove = useCallback((clientX: number) => {
     if (!sliderContainerRef.current) return;
@@ -336,17 +328,9 @@ export default function HomePage() {
     setBookingOpen(true);
   };
 
-  const handleBookingSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-  };
-
   const resetBooking = () => {
-    setIsSubmitted(false);
     setBookingOpen(false);
     setSelectedDoctor(null);
-    setPatientName("");
-    setPatientPhone("");
   };
 
   return (
@@ -369,7 +353,7 @@ export default function HomePage() {
         <div className="d02-hero-grid-lines" />
 
         <div className="d02-hero-content">
-          <motion.h1 
+          <motion.h1
             className="d02-hero-title"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -382,7 +366,7 @@ export default function HomePage() {
             Outcomes.
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             className="d02-hero-lead"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -392,7 +376,7 @@ export default function HomePage() {
             same-day CAD/CAM ceramic crowns, and computer-guided keyhole implant surgery in Banjara Hills.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="d02-hero-actions"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -417,7 +401,7 @@ export default function HomePage() {
               { num: "03", val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
               { num: "04", val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 className="d02-telemetry-item"
                 initial={{ opacity: 0, scale: 0.9, y: 15 }}
@@ -451,7 +435,7 @@ export default function HomePage() {
       {/* ─── Interactive Technology Showcase Section ─── */}
       <section id="technology" className="d02-tech-section">
         <div className="d02-section-container" ref={techRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -463,7 +447,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Tab buttons */}
-          <motion.div 
+          <motion.div
             className="d02-tech-tabs-nav"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -483,7 +467,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Active tech card (Laboratory Console HUD) */}
-          <motion.div 
+          <motion.div
             className="d02-tech-card-active"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -536,7 +520,7 @@ export default function HomePage() {
       {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
       <section id="simulation" className="d02-smile-sim-section">
         <div className="d02-section-container" ref={smileRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -550,7 +534,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="d02-sim-card"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -679,13 +663,16 @@ export default function HomePage() {
       {/* ─── Treatments Ribbon ─── */}
       <section id="treatments" className="d02-treatments-section">
         <div className="d02-section-container" ref={treatRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <span className="d02-treatments-kicker">ADVANCED PROTOCOLS</span>
+            <div className="d02-treatments-kicker">
+              <span className="d02-kicker-dot" />
+              <span>ADVANCED PROTOCOLS</span>
+            </div>
             <h2 className="d02-section-title">
               Comprehensive Digital Dental Care
             </h2>
@@ -723,7 +710,7 @@ export default function HomePage() {
       {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
       <section id="comparison" className="d02-compare-section">
         <div className="d02-section-container" ref={compRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -738,7 +725,7 @@ export default function HomePage() {
           </motion.div>
 
           {/* Desktop / Tablet Table */}
-          <motion.div 
+          <motion.div
             className="d02-compare-table-wrapper"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -796,7 +783,10 @@ export default function HomePage() {
       <section id="workflow" className="d02-workflow-section">
         <div className="d02-section-container" ref={workflowRef}>
           <div className={`d02-fade-up ${workflowInView ? "d02-in-view" : ""}`}>
-            <span className="d02-workflow-kicker">DIGITAL EXCELLENCE</span>
+            <div className="d02-workflow-kicker">
+              <span className="d02-kicker-dot" />
+              <span>DIGITAL EXCELLENCE</span>
+            </div>
             <h2 className="d02-section-title">
               Our 4-Stage Digital Patient Journey
             </h2>
@@ -813,11 +803,13 @@ export default function HomePage() {
                 key={step.num}
                 className="d02-workflow-card"
               >
-                <div className="d02-workflow-top">
+                <div className="flex flex-row items-center justify-between gap-3 w-full">
+                  <div className="flex items-center gap-2.5">
+                    <span className="d02-workflow-status-dot" />
+                    <h3 className="d02-workflow-title">{step.title}</h3>
+                  </div>
                   <span className="d02-workflow-num-badge">{step.num}</span>
-                  <span className="d02-workflow-status-dot" />
                 </div>
-                <h3 className="d02-workflow-title">{step.title}</h3>
                 <p className="d02-workflow-desc">{step.desc}</p>
               </div>
             ))}
@@ -828,7 +820,7 @@ export default function HomePage() {
       {/* ─── Testimonials Section ─── */}
       <section className="d02-testi-section">
         <div className="d02-section-container" ref={testiRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -868,7 +860,7 @@ export default function HomePage() {
       {/* ─── Doctors Section ─── */}
       <section id="specialists" className="d02-doctors-section">
         <div className="d02-section-container" ref={docRef}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -916,7 +908,7 @@ export default function HomePage() {
       {/* ─── CTA Section ─── */}
       <section id="book" className="d02-cta-section" ref={ctaRef}>
         <div className="d02-cta-inner">
-          <motion.div 
+          <motion.div
             className="d02-cta-left"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -934,7 +926,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="d02-cta-right"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -980,111 +972,13 @@ export default function HomePage() {
 
 
       {/* ─── Interactive Diagnostic Booking Drawer Modal ─── */}
-      {bookingOpen && (
-        <div
-          className="d02-modal-backdrop"
-          onClick={resetBooking}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="d02-modal-card" onClick={(e) => e.stopPropagation()}>
-            <button type="button" className="d02-modal-close" onClick={resetBooking}>
-              <CloseIcon size={18} />
-            </button>
-
-            {!isSubmitted ? (
-              <>
-                <h3 className="d02-modal-title">Book 3D Digital Dental Scan</h3>
-                <p className="d02-modal-sub">
-                  Select your requested technology procedure. Our clinical coordinator will confirm your diagnostic slot within 30 minutes.
-                </p>
-
-                {/* Doctor Pre-Selection Callout if selected */}
-                {selectedDoctor && (
-                  <div className="d02-selected-doc-banner">
-                    <div className="d02-doc-banner-icon">
-                      <DoctorIcon size={18} />
-                    </div>
-                    <div>
-                      <div className="d02-doc-banner-title">Requested Faculty: <strong>{selectedDoctor}</strong></div>
-                      <div className="d02-doc-banner-sub">Direct consultation reserved with specialist</div>
-                    </div>
-                  </div>
-                )}
-
-                <form onSubmit={handleBookingSubmit} className="d02-modal-form">
-                  <div className="d02-form-group">
-                    <label className="d02-form-label">Selected Technology / Treatment</label>
-                    <select
-                      value={selectedTech}
-                      onChange={(e) => setSelectedTech(e.target.value)}
-                      className="d02-form-select"
-                    >
-                      <option value="3D Digital Oral Scan & Smile Simulation">3D Digital Oral Scan & Smile Simulation (Planmeca)</option>
-                      <option value="Same-Day CEREC CAD/CAM Crown Assessment">Same-Day CEREC® CAD/CAM Crown (60 Min)</option>
-                      <option value="3D CBCT Guided Implant Consultation">3D CBCT Guided Implant Consultation</option>
-                      <option value="Biolase Pain-Free Laser Therapy">Biolase® Pain-Free Laser Therapy</option>
-                      <option value="Invisalign 3D Outcome Preview">Invisalign® 3D Outcome Preview</option>
-                      <option value="Microscopic Root Canal Therapy">Microscopic Root Canal Therapy (Zeiss 20x)</option>
-                    </select>
-                  </div>
-
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                    <div className="d02-form-group">
-                      <label className="d02-form-label">Full Name</label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Rahul Verma"
-                        value={patientName}
-                        onChange={(e) => setPatientName(e.target.value)}
-                        className="d02-form-input"
-                      />
-                    </div>
-                    <div className="d02-form-group">
-                      <label className="d02-form-label">Phone Number (+91)</label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 98765 43210"
-                        value={patientPhone}
-                        onChange={handlePhoneChange}
-                        className="d02-form-input"
-                      />
-                    </div>
-                  </div>
-
-                  <button type="submit" className="d02-btn-primary" style={{ width: "100%", marginTop: "1rem" }}>
-                    Confirm Diagnostic Reservation ↗
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div style={{ textAlign: "center", padding: "2rem 1rem" }}>
-                <div className="d02-modal-success-icon">
-                  <CheckIcon size={48} style={{ display: "inline" }} />
-                </div>
-                <h3 className="d02-modal-title">Reservation Requested</h3>
-                <p className="d02-modal-sub">
-                  Thank you, <strong>{patientName}</strong>. We have registered your reservation for <strong>{selectedTech}</strong>
-                  {selectedDoctor ? ` with ${selectedDoctor}` : ""}.
-                </p>
-                <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-                  <a
-                    href={`https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20have%20booked%20${encodeURIComponent(selectedTech)}%20${selectedDoctor ? `with%20${encodeURIComponent(selectedDoctor)}%20` : ""}under%20${encodeURIComponent(patientName)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="d02-btn-whatsapp"
-                  >
-                    <WhatsAppIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Message on WhatsApp
-                  </a>
-                  <button type="button" onClick={resetBooking} className="d02-btn-secondary">Close</button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      <BookingModal
+        isOpen={bookingOpen}
+        onClose={resetBooking}
+        selectedTech={selectedTech}
+        setSelectedTech={setSelectedTech}
+        selectedDoctor={selectedDoctor}
+      />
     </div>
   );
 }

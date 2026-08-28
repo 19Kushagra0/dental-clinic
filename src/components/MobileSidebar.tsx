@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/MobileSidebar.css";
+
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
