@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
 import {
@@ -30,7 +30,11 @@ import {
 } from "@/icons";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
+
+// Lazy-load BookingModal off the critical path for instant TBT
+const BookingModal = dynamic(() => import("@/components/BookingModal"), {
+  ssr: false,
+});
 
 /* ─── Data ─── */
 const technologies = [
@@ -236,23 +240,6 @@ const certBadges = [
   { label: "BIS Sterilization", icon: <ShieldSterileIcon size={16} /> },
 ];
 
-/* ─── Intersection Observer Hook ─── */
-function useInView(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
 /* ─── Page Component ─── */
 export default function HomePage() {
   const [activeTechIndex, setActiveTechIndex] = useState(0);
@@ -280,16 +267,6 @@ export default function HomePage() {
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-
-  // Scroll reveal refs
-  const { ref: techRef } = useInView();
-  const { ref: smileRef } = useInView();
-  const { ref: treatRef } = useInView();
-  const { ref: compRef } = useInView();
-  const { ref: workflowRef, inView: workflowInView } = useInView();
-  const { ref: docRef } = useInView();
-  const { ref: testiRef } = useInView();
-  const { ref: ctaRef } = useInView();
 
   // Escape key closes modal
   useEffect(() => {
@@ -343,42 +320,28 @@ export default function HomePage() {
             alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
             fill
             priority
-            sizes="100vw"
+            quality={80}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
         </div>
         <div className={styles.heroOverlay} />
 
         <div className={styles.heroContent}>
-          <motion.h1
-            className={styles.heroTitle}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <h1 className={`${styles.heroTitle} ${styles.animFadeInUp}`}>
             Digital Precision.
             <br />
             <span className={styles.heroTitleCyan}>Measurable</span>
             <br />
             Outcomes.
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            className={styles.heroLead}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
+          <p className={`${styles.heroLead} ${styles.animFadeInUp} ${styles.animDelay1}`}>
             Rejecting obsolete guesswork and messy impression trays. Experience sub-micron 3D oral scanning,
             same-day CAD/CAM ceramic crowns, and computer-guided keyhole implant surgery in Banjara Hills.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className={styles.heroActions}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          >
+          <div className={`${styles.heroActions} ${styles.animFadeInUp} ${styles.animDelay2}`}>
             <button type="button" onClick={() => setBookingOpen(true)} className={styles.btnPrimary}>
               Book 3D Optical Scan
             </button>
@@ -386,7 +349,7 @@ export default function HomePage() {
               <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
               Clinical Desk: +91 40 2345 6789
             </a>
-          </motion.div>
+          </div>
         </div>
 
         {/* Telemetry HUD Data Strip (Centered) */}
@@ -398,20 +361,13 @@ export default function HomePage() {
               { num: "03", val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
               { num: "04", val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
             ].map((item, i) => (
-              <motion.div
-                key={i}
-                className={styles.telemetryItem}
-                initial={{ opacity: 0, scale: 0.9, y: 15 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
-              >
+              <div key={i} className={styles.telemetryItem}>
                 <div className={styles.telemetryNum}>{item.num}</div>
                 <div className={styles.telemetryData}>
                   <span className={styles.telemetryVal}>{telemetryInView ? item.val : "—"}</span>
                   <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -431,26 +387,15 @@ export default function HomePage() {
 
       {/* ─── Interactive Technology Showcase Section ─── */}
       <section id="technology" className={styles.techSection}>
-        <div className={styles.sectionContainer} ref={techRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <h2 className={styles.sectionTitle}>
               Engineered for Precision. Built for Comfort.
             </h2>
-          </motion.div>
+          </div>
 
           {/* Tab buttons */}
-          <motion.div
-            className={styles.techTabsNav}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          >
+          <div className={styles.techTabsNav}>
             {technologies.map((t, idx) => (
               <button
                 key={t.id}
@@ -461,16 +406,10 @@ export default function HomePage() {
                 {t.name}
               </button>
             ))}
-          </motion.div>
+          </div>
 
           {/* Active tech card */}
-          <motion.div
-            className={styles.techCardActive}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          >
+          <div className={styles.techCardActive}>
             <div className={styles.techHeader}>
               <div className={styles.techHeaderLeft}>
                 <div className={styles.techIconWrap}>{activeTech.icon}</div>
@@ -510,34 +449,23 @@ export default function HomePage() {
                 Book Diagnostic Scan <ArrowUpRightIcon size={14} style={{ display: "inline", verticalAlign: "middle", marginLeft: "4px" }} />
               </button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
       <section id="simulation" className={styles.smileSimSection}>
-        <div className={styles.sectionContainer} ref={smileRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <h2 className={styles.sectionTitle}>
               Interactive 3D Smile Design Simulator
             </h2>
             <p style={{ color: "rgba(255,255,255,0.75)", maxWidth: "680px", lineHeight: 1.7, marginBottom: "2.5rem" }}>
               Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className={styles.simCard}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          >
+          <div className={styles.simCard}>
             {/* Simulation Header Telemetry */}
             <div className={styles.simHeader}>
               <div className={styles.simCaseTag}>
@@ -587,7 +515,6 @@ export default function HomePage() {
                   fill
                   sizes="(max-width: 1200px) 100vw, 1200px"
                   style={{ objectFit: "cover" }}
-                  priority
                 />
                 <div className={`${styles.sliderBadge} ${styles.badgeAfter}`}>
                   After · Digital Smile Design
@@ -606,7 +533,6 @@ export default function HomePage() {
                     fill
                     sizes="(max-width: 1200px) 100vw, 1200px"
                     style={{ objectFit: "cover" }}
-                    priority
                   />
                 </div>
                 <div className={`${styles.sliderBadge} ${styles.badgeBefore}`}>
@@ -653,19 +579,14 @@ export default function HomePage() {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ─── Treatments Ribbon ─── */}
       <section id="treatments" className={styles.treatmentsSection}>
-        <div className={styles.sectionContainer} ref={treatRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <div className={styles.treatmentsKicker}>
               <span className={styles.kickerDot} />
               <span>ADVANCED PROTOCOLS</span>
@@ -676,10 +597,10 @@ export default function HomePage() {
             <p className={styles.treatmentsSubTitle}>
               Fully digitized dental procedures using 3D imaging, precision lasers, and AI-assisted CAD/CAM restoration.
             </p>
-          </motion.div>
+          </div>
           <div className={styles.treatmentsGrid}>
-            {treatments.map((t, i) => (
-              <motion.button
+            {treatments.map((t) => (
+              <button
                 key={t.label}
                 type="button"
                 onClick={() => {
@@ -688,17 +609,13 @@ export default function HomePage() {
                   setBookingOpen(true);
                 }}
                 className={styles.treatmentChip}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
               >
                 <div className={styles.treatmentIconWrap}>{t.icon}</div>
                 <div className={styles.treatmentText}>
                   <span className={styles.treatmentLabel}>{t.label}</span>
                   <span className={styles.treatmentSub}>{t.sub}</span>
                 </div>
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>
@@ -706,29 +623,18 @@ export default function HomePage() {
 
       {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
       <section id="comparison" className={styles.compareSection}>
-        <div className={styles.sectionContainer} ref={compRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <h2 className={styles.sectionTitle}>
               The Conventional Clinic vs. SmileCraft Digital
             </h2>
             <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: "600px", lineHeight: 1.7, marginBottom: "3rem" }}>
               Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
             </p>
-          </motion.div>
+          </div>
 
           {/* Desktop / Tablet Table */}
-          <motion.div
-            className={styles.compareTableWrapper}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          >
+          <div className={styles.compareTableWrapper}>
             <table className={styles.compareTable}>
               <thead>
                 <tr>
@@ -751,7 +657,7 @@ export default function HomePage() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
+          </div>
 
           {/* Mobile Cards View (<640px) */}
           <div className={styles.compareMobileCards}>
@@ -778,8 +684,8 @@ export default function HomePage() {
 
       {/* ─── 4-Step Digital Workflow Timeline ─── */}
       <section id="workflow" className={styles.workflowSection}>
-        <div className={styles.sectionContainer} ref={workflowRef}>
-          <div className={`${styles.fadeUp} ${workflowInView ? styles.inView : ""}`}>
+        <div className={styles.sectionContainer}>
+          <div>
             <div className={styles.workflowKicker}>
               <span className={styles.kickerDot} />
               <span>DIGITAL EXCELLENCE</span>
@@ -816,27 +722,18 @@ export default function HomePage() {
 
       {/* ─── Testimonials Section ─── */}
       <section className={styles.testiSection}>
-        <div className={styles.sectionContainer} ref={testiRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <h2 className={styles.sectionTitle}>
               800+ Verified Patients. Zero Guesswork.
             </h2>
-          </motion.div>
+          </div>
 
           <div className={styles.testiGrid}>
-            {testimonials.map((t, i) => (
-              <motion.div
+            {testimonials.map((t) => (
+              <div
                 key={t.name}
                 className={styles.testiCard}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
               >
                 <StarRating count={t.rating} size={15} />
                 <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
@@ -848,7 +745,7 @@ export default function HomePage() {
                     <div className={styles.testiTreatment}>{t.treatment}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -856,27 +753,18 @@ export default function HomePage() {
 
       {/* ─── Doctors Section ─── */}
       <section id="specialists" className={styles.doctorsSection}>
-        <div className={styles.sectionContainer} ref={docRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className={styles.sectionContainer}>
+          <div>
             <h2 className={styles.sectionTitle}>
               Digital Dental Surgeons & Specialists
             </h2>
-          </motion.div>
+          </div>
 
           <div className={styles.doctorsGrid}>
-            {doctors.map((doc, i) => (
-              <motion.div
+            {doctors.map((doc) => (
+              <div
                 key={doc.name}
                 className={styles.docCard}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
               >
                 <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
                   <span>{doc.initials}</span>
@@ -895,22 +783,16 @@ export default function HomePage() {
                 >
                   Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ─── CTA Section ─── */}
-      <section id="book" className={styles.ctaSection} ref={ctaRef}>
+      <section id="book" className={styles.ctaSection}>
         <div className={styles.ctaInner}>
-          <motion.div
-            className={styles.ctaLeft}
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+          <div className={styles.ctaLeft}>
             <h2 className={styles.ctaH2}>
               Experience Dental Care Powered by Technology.
             </h2>
@@ -920,15 +802,9 @@ export default function HomePage() {
             <p className={styles.ctaSub}>
               Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className={styles.ctaRight}
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          >
+          <div className={styles.ctaRight}>
             <div className={styles.ctaAddressCard}>
               <div className={styles.ctaAddressTitle}>
                 <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
@@ -960,13 +836,13 @@ export default function HomePage() {
                 <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp +91 98765 43210
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       <Footer />
 
-      {/* ─── Interactive Diagnostic Booking Drawer Modal ─── */}
+      {/* ─── Interactive Diagnostic Booking Drawer Modal (Deferred / Code Split) ─── */}
       <BookingModal
         isOpen={bookingOpen}
         onClose={resetBooking}

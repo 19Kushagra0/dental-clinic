@@ -8,11 +8,47 @@
   overflow-x: hidden;
 }
 
-/* ─── Scroll Reveal Animations ─── */
+/* ─── Scroll Reveal & Hardware-Accelerated Animations ─── */
+@keyframes fadeInUpAnim {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleInAnim {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animFadeInUp {
+  animation: fadeInUpAnim 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animScaleIn {
+  animation: scaleInAnim 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animDelay1 { animation-delay: 0.1s; }
+.animDelay2 { animation-delay: 0.2s; }
+.animDelay3 { animation-delay: 0.3s; }
+.animDelay4 { animation-delay: 0.4s; }
+
 .fadeUp {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 .fadeUp.inView {
   opacity: 1;
