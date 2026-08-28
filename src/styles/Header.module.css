@@ -1,0 +1,181 @@
+/* ─── SmileCraft Digital — Header & Navigation Module ─── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #090D16;
+  border-bottom: 1px solid var(--d02-border, rgba(255, 255, 255, 0.08));
+}
+
+.nav {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 42px;
+  height: 42px;
+  background: #0284C7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.logoTitle {
+  font-family: var(--font-display, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.logoSub {
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--d02-text-muted, #94A3B8);
+  font-weight: 500;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 1.85rem;
+}
+
+.navLink {
+  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 600;
+}
+
+.navLink:hover {
+  color: #38BDF8;
+}
+
+.navCta {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.45rem !important;
+}
+
+/* ─── Hamburger Button ─── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--d02-border, rgba(255, 255, 255, 0.12));
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 9px 10px;
+  flex-shrink: 0;
+}
+
+.hamburgerLine {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+/* Animate into X when open */
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  transform: translateY(8.5px) rotate(45deg);
+}
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+  transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ─── Responsive Breakpoints for Header ─── */
+@media (max-width: 1150px) {
+  .nav {
+    padding: 0 1.25rem;
+  }
+
+  .logoIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logoTitle {
+    font-size: 1.08rem;
+  }
+
+  .logoSub {
+    font-size: 0.68rem;
+  }
+
+  .navMenu {
+    gap: 1.1rem;
+  }
+
+  .navLink {
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  .navCta {
+    font-size: 0.88rem !important;
+    padding: 0.6rem 1.1rem !important;
+  }
+}
+
+@media (max-width: 930px) {
+  .navMenu {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 66px;
+  }
+  .nav {
+    height: 66px;
+    padding: 0 1.25rem;
+  }
+}

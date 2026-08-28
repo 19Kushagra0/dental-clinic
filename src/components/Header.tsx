@@ -1,6 +1,6 @@
 "use client";
 
-import "@/styles/Header.css";
+import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
 import MobileSidebar from "./MobileSidebar";
 
@@ -26,11 +26,11 @@ export default function Header({ onBookClick }: HeaderProps) {
 
   return (
     <>
-      <header className="d02-header">
-        <nav className="d02-nav">
+      <header className={styles.header}>
+        <nav className={styles.nav}>
           {/* ── Logo ── */}
-          <a href="/" className="d02-logo">
-            <div className="d02-logo-icon">
+          <a href="/" className={styles.logo}>
+            <div className={styles.logoIcon}>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -45,20 +45,24 @@ export default function Header({ onBookClick }: HeaderProps) {
                 <circle cx="12" cy="8" r="2" />
               </svg>
             </div>
-            <div className="d02-logo-text">
-              <span className="d02-logo-title">SmileCraft Digital</span>
-              <span className="d02-logo-sub">Precision Dental Studio</span>
+            <div className={styles.logoText}>
+              <span className={styles.logoTitle}>SmileCraft Digital</span>
+              <span className={styles.logoSub}>Precision Dental Studio</span>
             </div>
           </a>
 
           {/* ── Desktop nav ── */}
-          <div className="d02-nav-menu">
-            <a href="#technology" className="d02-nav-link">Technology</a>
-            <a href="#simulation" className="d02-nav-link">3D Smile Simulation</a>
-            <a href="#treatments" className="d02-nav-link">Treatments</a>
-            <a href="#comparison" className="d02-nav-link">Digital vs. Legacy</a>
-            <a href="#specialists" className="d02-nav-link">Specialists</a>
-            <button type="button" onClick={onBookClick} className="d02-btn-primary">
+          <div className={styles.navMenu}>
+            <a href="#technology" className={styles.navLink}>Technology</a>
+            <a href="#simulation" className={styles.navLink}>3D Smile Simulation</a>
+            <a href="#treatments" className={styles.navLink}>Treatments</a>
+            <a href="#comparison" className={styles.navLink}>Digital vs. Legacy</a>
+            <a href="#specialists" className={styles.navLink}>Specialists</a>
+            <button
+              type="button"
+              onClick={onBookClick}
+              className={`d02-btn-primary ${styles.navCta}`}
+            >
               Book 3D Scan
             </button>
           </div>
@@ -66,14 +70,14 @@ export default function Header({ onBookClick }: HeaderProps) {
           {/* ── Hamburger button (mobile only) ── */}
           <button
             type="button"
-            className={`d02-hamburger${menuOpen ? " d02-hamburger--open" : ""}`}
+            className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            <span className="d02-hamburger-line" />
-            <span className="d02-hamburger-line" />
-            <span className="d02-hamburger-line" />
+            <span className={styles.hamburgerLine} />
+            <span className={styles.hamburgerLine} />
+            <span className={styles.hamburgerLine} />
           </button>
         </nav>
       </header>
