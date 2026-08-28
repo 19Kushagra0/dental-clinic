@@ -375,7 +375,7 @@ export default function HomePage() {
       {/* ─── Interactive Technology Showcase Section ─── */}
       <section id="technology" className={styles.techSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Engineered for Precision. Built for Comfort.
             </h2>
@@ -443,11 +443,11 @@ export default function HomePage() {
       {/* ─── Interactive Before / After Digital Smile Simulator ─── */}
       <section id="simulation" className={styles.smileSimSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Interactive 3D Smile Design Simulator
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.75)", maxWidth: "680px", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+            <p className={styles.sectionSubText}>
               Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
             </p>
           </div>
@@ -575,7 +575,7 @@ export default function HomePage() {
       {/* ─── Treatments Ribbon ─── */}
       <section id="treatments" className={styles.treatmentsSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <div className={styles.treatmentsKicker}>
               <span className={styles.kickerDot} />
               <span>ADVANCED PROTOCOLS</span>
@@ -613,11 +613,11 @@ export default function HomePage() {
       {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
       <section id="comparison" className={styles.compareSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               The Conventional Clinic vs. SmileCraft Digital
             </h2>
-            <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: "600px", lineHeight: 1.7, marginBottom: "3rem" }}>
+            <p className={styles.sectionSubText}>
               Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
             </p>
           </div>
@@ -674,7 +674,7 @@ export default function HomePage() {
       {/* ─── 4-Step Digital Workflow Timeline ─── */}
       <section id="workflow" className={styles.workflowSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <div className={styles.workflowKicker}>
               <span className={styles.kickerDot} />
               <span>DIGITAL EXCELLENCE</span>
@@ -712,7 +712,7 @@ export default function HomePage() {
       {/* ─── Testimonials Section ─── */}
       <section className={styles.testiSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               800+ Verified Patients. Zero Guesswork.
             </h2>
@@ -743,7 +743,7 @@ export default function HomePage() {
       {/* ─── Doctors Section ─── */}
       <section id="specialists" className={styles.doctorsSection}>
         <div className={styles.sectionContainer}>
-          <div>
+          <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
               Digital Dental Surgeons & Specialists
             </h2>
