@@ -7,7 +7,6 @@ import MobileSidebar from "./MobileSidebar";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { openBooking } = useBooking();
 
   // Close menu on resize to desktop
   useEffect(() => {

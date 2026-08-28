@@ -176,6 +176,7 @@ export default function HomePage() {
               Clinical Desk: +91 40 2345 6789
             </a>
           </div>
+        </div>
 
         {/* Telemetry HUD Data Strip */}
         <div className={styles.telemetryStrip}>
@@ -192,32 +193,31 @@ export default function HomePage() {
                   <span className={styles.telemetryVal}>{item.val}</span>
                   <span className={styles.telemetryLbl}>{item.lbl}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ─── Certification Badge Strip ─── */}
-        <div className={styles.certStrip}>
-          <div className={styles.certInner}>
-            {certBadges.map((b) => (
-              <div key={b.label} className={styles.certBadge}>
-                <span className={styles.badgeIcon}>{b.icon}</span>
-                <span>{b.label}</span>
               </div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* ─── Interactive Technology Showcase Section ─── */}
-        <section id="technology" className={styles.techSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                Engineered for Precision. Built for Comfort.
-              </h2>
+      {/* ─── Certification Badge Strip ─── */}
+      <div className={styles.certStrip}>
+        <div className={styles.certInner}>
+          {certBadges.map((b) => (
+            <div key={b.label} className={styles.certBadge}>
+              <span className={styles.badgeIcon}>{b.icon}</span>
+              <span>{b.label}</span>
             </div>
-            <TechShowcase technologies={technologies} />
+          ))}
+        </div>
+      </div>
+
+      {/* ─── Interactive Technology Showcase Section ─── */}
+      <section id="technology" className={styles.techSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Engineered for Precision. Built for Comfort.
+            </h2>
           </div>
           <TechShowcase />
         </div>
@@ -271,63 +271,143 @@ export default function HomePage() {
         </div>
       </section>
 
-            <div className={styles.testiGrid}>
-              {testimonials.map((t) => (
-                <div
-                  key={t.name}
-                  className={styles.testiCard}
-                >
-                  <StarRating count={t.rating} size={15} />
-                  <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
-                  <div className={styles.testiFooter}>
-                    <div className={styles.testiAvatar}>{t.initials}</div>
-                    <div>
-                      <div className={styles.testiName}>{t.name}</div>
-                      <div className={styles.testiRole}>{t.role}</div>
-                      <div className={styles.testiTreatment}>{t.treatment}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+      {/* ─── Conventional vs. Digital Comparison Matrix ─── */}
+      <section id="comparison" className={styles.compareSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              The Conventional Clinic vs. SmileCraft Digital
+            </h2>
+            <p className={styles.sectionSubText}>
+              Why settling for traditional dentistry means more appointments, more pain, and unnecessary guesswork:
+            </p>
           </div>
-        </section>
 
-        {/* ─── Doctors Section ─── */}
-        <section id="specialists" className={styles.doctorsSection}>
-          <div className={styles.sectionContainer}>
-            <div className={styles.sectionHeader}>
-              <h2 className={styles.sectionTitle}>
-                Digital Dental Surgeons & Specialists
-              </h2>
-            </div>
+          {/* Desktop / Tablet Table */}
+          <div className={styles.compareTableWrapper}>
+            <table className={styles.compareTable}>
+              <thead>
+                <tr>
+                  <th style={{ width: "22%", background: "#0b0f19", color: "#9ca3af" }}>Procedure Phase</th>
+                  <th className={styles.thLegacy}>
+                    <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
+                  </th>
+                  <th className={styles.thSmilecraft}>
+                    <CheckIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> SmileCraft Precision Studio
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonData.map((row) => (
+                  <tr key={row.feature}>
+                    <td className={styles.tdFeature}>{row.feature}</td>
+                    <td className={styles.tdLegacy}>{row.legacy}</td>
+                    <td className={styles.tdSmilecraft}>{row.smilecraft}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-            <div className={styles.doctorsGrid}>
-              {doctors.map((doc) => (
-                <div
-                  key={doc.name}
-                  className={styles.docCard}
-                >
-                  <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
-                    <span>{doc.initials}</span>
+          {/* Mobile Cards View (<640px) */}
+          <div className={styles.compareMobileCards}>
+            {comparisonData.map((row) => (
+              <div key={row.feature} className="bg-[#111827] border border-[rgba(255,255,255,0.08)] rounded-lg p-5 flex flex-col gap-3">
+                <div className="font-bold text-white border-b border-[rgba(255,255,255,0.08)] pb-2">{row.feature}</div>
+                <div className="bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
+                    <XMarkIcon size={14} style={{ color: "#EF4444" }} /> Conventional Clinic
                   </div>
-                  <h3 className={styles.docName}>{doc.name}</h3>
-                  <div className={styles.docBadge}>{doc.role}</div>
-                  <div className={styles.docDeg}>{doc.degrees}</div>
-                  <div className={styles.docCert}>
-                    <CheckIcon size={15} color="#0284C7" />
-                    <span>{doc.cert}</span>
-                  </div>
-                  <BookButton
-                    doctor={doc.name}
-                    treatment={doc.defaultTreatment}
-                    className={styles.docBookBtn}
-                  >
-                    Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
-                  </BookButton>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.legacy}</div>
                 </div>
-              ))}
+                <div className="bg-[rgba(2,132,199,0.08)] border border-[rgba(2,132,199,0.25)] rounded-md p-3 flex flex-col gap-1">
+                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
+                    <CheckIcon size={14} style={{ color: "#0284C7" }} /> SmileCraft Digital Studio
+                  </div>
+                  <div className="text-sm leading-relaxed text-slate-300">{row.smilecraft}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 4-Step Digital Workflow Timeline ─── */}
+      <section id="workflow" className={styles.workflowSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.workflowKicker}>
+              <span className={styles.kickerDot} />
+              <span>DIGITAL EXCELLENCE</span>
             </div>
+            <h2 className={styles.sectionTitle}>
+              Our 4-Stage Digital Patient Journey
+            </h2>
+          </div>
+
+          <div className={styles.workflowGrid}>
+            {[
+              { num: "01", title: "60-Sec Optical Scan", desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color." },
+              { num: "02", title: "3D AI Diagnosis", desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors." },
+              { num: "03", title: "Robotic & Guided Care", desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery." },
+              { num: "04", title: "Instant Restoration", desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners." },
+            ].map((step) => (
+              <div
+                key={step.num}
+                className={styles.workflowCard}
+              >
+                <div className="flex flex-row items-center justify-between gap-3 w-full">
+                  <div className="flex items-center gap-2.5">
+                    <span className={styles.workflowStatusDot} />
+                    <h3 className={styles.workflowTitle}>{step.title}</h3>
+                  </div>
+                  <span className={styles.workflowNumBadge}>{step.num}</span>
+                </div>
+                <p className={styles.workflowDesc}>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Testimonials Section ─── */}
+      <section className={styles.testiSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              800+ Verified Patients. Zero Guesswork.
+            </h2>
+          </div>
+
+          <div className={styles.testiGrid}>
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className={styles.testiCard}
+              >
+                <StarRating count={t.rating} size={15} />
+                <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
+                <div className={styles.testiFooter}>
+                  <div className={styles.testiAvatar}>{t.initials}</div>
+                  <div>
+                    <div className={styles.testiName}>{t.name}</div>
+                    <div className={styles.testiRole}>{t.role}</div>
+                    <div className={styles.testiTreatment}>{t.treatment}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Doctors Section ─── */}
+      <section id="specialists" className={styles.doctorsSection}>
+        <div className={styles.sectionContainer}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              Digital Dental Surgeons & Specialists
+            </h2>
           </div>
 
           <div className={styles.doctorsGrid}>
@@ -354,20 +434,35 @@ export default function HomePage() {
                   Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
                 </BookButton>
               </div>
-              <p className={styles.ctaSub}>
-                Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
-              </p>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className={styles.ctaRight}>
-              <div className={styles.ctaAddressCard}>
-                <div className={styles.ctaAddressTitle}>
-                  <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
-                </div>
-                <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
-                <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
-                <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
+      {/* ─── CTA Section ─── */}
+      <section id="book" className={styles.ctaSection}>
+        <div className={styles.ctaInner}>
+          <div className={styles.ctaLeft}>
+            <h2 className={styles.ctaH2}>
+              Experience Dental Care Powered by Technology.
+            </h2>
+            <div className={styles.ctaOfferBadge}>
+              <TargetIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
+            </div>
+            <p className={styles.ctaSub}>
+              Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
+            </p>
+          </div>
+
+          <div className={styles.ctaRight}>
+            <div className={styles.ctaAddressCard}>
+              <div className={styles.ctaAddressTitle}>
+                <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
               </div>
+              <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
+              <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
+              <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
+            </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <BookButton
@@ -387,7 +482,10 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <Footer />
 
       {/* Zero-overhead Event-Driven Booking Portal */}
       <BookingModalPortal />
