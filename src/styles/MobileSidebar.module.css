@@ -65,9 +65,27 @@
 }
 
 .bookBtn {
-  width: 100% !important;
-  margin-top: 1.5rem !important;
-  justify-content: center !important;
+  width: 100%;
+  margin-top: 1.5rem;
+  justify-content: center;
+  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  background: #0284C7;
+  padding: 0.85rem 1.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.bookBtn:hover {
+  background: #0369A1;
+  cursor: pointer;
 }
 
 /* ─── Show on mobile viewports ─── */

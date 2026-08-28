@@ -50,7 +50,7 @@ export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSi
           </nav>
           <button
             type="button"
-            className={`d02-btn-primary ${styles.bookBtn}`}
+            className={styles.bookBtn}
             onClick={handleBookClick}
           >
             Book 3D Scan ↗

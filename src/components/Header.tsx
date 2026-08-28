@@ -61,7 +61,7 @@ export default function Header({ onBookClick }: HeaderProps) {
             <button
               type="button"
               onClick={onBookClick}
-              className={`d02-btn-primary ${styles.navCta}`}
+              className={styles.navCta}
             >
               Book 3D Scan
             </button>
