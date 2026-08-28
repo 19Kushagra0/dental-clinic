@@ -1,6 +1,6 @@
 "use client";
 
-import "@/styles/BookingModal.css";
+import styles from "@/styles/BookingModal.module.css";
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -207,10 +207,10 @@ export default function BookingModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="sc-console-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby="modal-headline">
           {/* Backdrop */}
           <motion.div
-            className="sc-console-backdrop"
+            className={styles.backdrop}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -220,7 +220,7 @@ export default function BookingModal({
 
           {/* Modal Container */}
           <motion.div
-            className="sc-console-window"
+            className={styles.window}
             initial={{ opacity: 0, scale: 0.97, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 10 }}
@@ -228,17 +228,17 @@ export default function BookingModal({
             onClick={(e) => e.stopPropagation()}
           >
             {/* Clean Clinic Header */}
-            <div className="sc-modal-header">
-              <div className="sc-header-branding">
+            <div className={styles.modalHeader}>
+              <div className={styles.headerBranding}>
                 <div>
-                  <h2 id="modal-headline" className="sc-header-title">Reserve Clinical Consultation</h2>
-                  <p className="sc-header-sub">SmileCraft Digital Dental Studio · Banjara Hills, Hyderabad</p>
+                  <h2 id="modal-headline" className={styles.headerTitle}>Reserve Clinical Consultation</h2>
+                  <p className={styles.headerSub}>SmileCraft Digital Dental Studio · Banjara Hills, Hyderabad</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={handleClose}
-                className="sc-header-close"
+                className={styles.headerClose}
                 aria-label="Close modal"
               >
                 <CloseIcon size={18} />
@@ -247,72 +247,72 @@ export default function BookingModal({
 
             {!isSubmitted ? (
               /* ─── Two-Column Split Layout ─── */
-              <div className="sc-modal-body">
+              <div className={styles.modalBody}>
                 {/* Left Column: Patient Summary & Transparency */}
-                <aside className="sc-sidebar-panel">
+                <aside className={styles.sidebarPanel}>
                   {/* Selected Procedure Highlight */}
-                  <div className="sc-summary-card">
-                    <div className="sc-summary-badge">Selected Treatment</div>
-                    <h3 className="sc-summary-title">{currentProtocol.name}</h3>
-                    <p className="sc-summary-suite">{currentProtocol.suite} · {currentProtocol.duration}</p>
-                    <div className="sc-summary-pill">{currentProtocol.advantage}</div>
+                  <div className={styles.summaryCard}>
+                    <div className={styles.summaryBadge}>Selected Treatment</div>
+                    <h3 className={styles.summaryTitle}>{currentProtocol.name}</h3>
+                    <p className={styles.summarySuite}>{currentProtocol.suite} · {currentProtocol.duration}</p>
+                    <div className={styles.summaryPill}>{currentProtocol.advantage}</div>
                   </div>
 
                   {/* Specialist Banner (if chosen) */}
                   {selectedDoctor && (
-                    <div className="sc-doctor-banner">
-                      <div className="sc-doctor-avatar">
+                    <div className={styles.doctorBanner}>
+                      <div className={styles.doctorAvatar}>
                         <DoctorIcon size={16} />
                       </div>
                       <div>
-                        <div className="sc-doctor-name">{selectedDoctor}</div>
-                        <div className="sc-doctor-role">Attending Specialist</div>
+                        <div className={styles.doctorName}>{selectedDoctor}</div>
+                        <div className={styles.doctorRole}>Attending Specialist</div>
                       </div>
                     </div>
                   )}
 
                   {/* Transparent Fee Schedule */}
-                  <div className="sc-fee-card">
-                    <div className="sc-fee-title">Fee Breakdown</div>
-                    <div className="sc-fee-list">
-                      <div className="sc-fee-item">
+                  <div className={styles.feeCard}>
+                    <div className={styles.feeTitle}>Fee Breakdown</div>
+                    <div className={styles.feeList}>
+                      <div className={styles.feeItem}>
                         <span>3D Optical Digital Scan</span>
-                        <span className="sc-fee-val">₹500</span>
+                        <span className={styles.feeVal}>₹500</span>
                       </div>
-                      <div className="sc-fee-item">
+                      <div className={styles.feeItem}>
                         <span>AI Smile Design Simulation</span>
-                        <span className="sc-fee-included">Included</span>
+                        <span className={styles.feeIncluded}>Included</span>
                       </div>
-                      <div className="sc-fee-item">
+                      <div className={styles.feeItem}>
                         <span>Doctor Consultation & Plan</span>
-                        <span className="sc-fee-included">Included</span>
+                        <span className={styles.feeIncluded}>Included</span>
                       </div>
-                      <div className="sc-fee-total">
+                      <div className={styles.feeTotal}>
                         <span>Payable at clinic</span>
-                        <span className="sc-fee-price">₹500</span>
+                        <span className={styles.feePrice}>₹500</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Location & Zero Advance Guarantee */}
-                  <div className="sc-location-block">
-                    <div className="sc-location-line">
+                  <div className={styles.locationBlock}>
+                    <div className={styles.locationLine}>
                       <LocationPinIcon size={14} />
                       <span>Road No. 12, Banjara Hills</span>
                     </div>
-                    <p className="sc-guarantee-text">
+                    <p className={styles.guaranteeText}>
                       ✓ No advance payment required · Pay at front desk after consultation
                     </p>
                   </div>
                 </aside>
 
                 {/* Right Column: Streamlined Selection & Booking Form */}
-                <main className="sc-form-panel">
-                  <form onSubmit={handleSubmit} className="sc-booking-form">
+                <main className={styles.formPanel}>
+                  <form onSubmit={handleSubmit} className={styles.bookingForm}>
                     {/* 1. Select Treatment */}
-                    <div className="sc-form-section">
-                      <label className="sc-section-label">Select Treatment</label>
-                      <div className="sc-treatment-matrix">
+                    <div className={styles.formSection}>
+                      <label className={styles.sectionLabel}>Select Treatment</label>
+                      <div className={styles.treatmentMatrix}>
                         {CLINICAL_PROTOCOLS.map((protocol) => {
                           const isSelected = selectedTech === protocol.value;
                           return (
@@ -320,14 +320,14 @@ export default function BookingModal({
                               key={protocol.id}
                               type="button"
                               onClick={() => setSelectedTech(protocol.value)}
-                              className={`sc-treatment-btn ${isSelected ? "sc-treatment-btn--active" : ""}`}
+                              className={`${styles.treatmentBtn} ${isSelected ? styles.treatmentBtnActive : ""}`}
                             >
-                              <span className="sc-treatment-icon">{protocol.icon}</span>
-                              <div className="sc-treatment-info">
-                                <span className="sc-treatment-btn-name">{protocol.name}</span>
-                                <span className="sc-treatment-btn-meta">{protocol.duration}</span>
+                              <span className={styles.treatmentIcon}>{protocol.icon}</span>
+                              <div className={styles.treatmentInfo}>
+                                <span className={styles.treatmentBtnName}>{protocol.name}</span>
+                                <span className={styles.treatmentBtnMeta}>{protocol.duration}</span>
                               </div>
-                              {isSelected && <CheckIcon size={14} className="sc-check-active" />}
+                              {isSelected && <CheckIcon size={14} className={styles.checkActive} />}
                             </button>
                           );
                         })}
@@ -335,11 +335,11 @@ export default function BookingModal({
                     </div>
 
                     {/* 2. Select Date & Time */}
-                    <div className="sc-form-section">
-                      <label className="sc-section-label">Select Date & Time</label>
+                    <div className={styles.formSection}>
+                      <label className={styles.sectionLabel}>Select Date & Time</label>
                       
                       {/* Date Ribbon */}
-                      <div className="sc-calendar-row">
+                      <div className={styles.calendarRow}>
                         {availableDates.map((d, idx) => {
                           const isSelected = selectedDateIndex === idx;
                           return (
@@ -347,17 +347,17 @@ export default function BookingModal({
                               key={d.fullDateStr}
                               type="button"
                               onClick={() => setSelectedDateIndex(idx)}
-                              className={`sc-calendar-pill ${isSelected ? "sc-calendar-pill--active" : ""}`}
+                              className={`${styles.calendarPill} ${isSelected ? styles.calendarPillActive : ""}`}
                             >
-                              <span className="sc-cal-weekday">{d.weekday}</span>
-                              <span className="sc-cal-date">{d.dayMonth}</span>
+                              <span className={styles.calWeekday}>{d.weekday}</span>
+                              <span className={styles.calDate}>{d.dayMonth}</span>
                             </button>
                           );
                         })}
                       </div>
 
                       {/* Time Window Pills */}
-                      <div className="sc-slot-row">
+                      <div className={styles.slotRow}>
                         {TIME_SLOTS.map((slot) => {
                           const isSelected = selectedSlot === slot.id;
                           return (
@@ -365,10 +365,10 @@ export default function BookingModal({
                               key={slot.id}
                               type="button"
                               onClick={() => setSelectedSlot(slot.id)}
-                              className={`sc-slot-pill ${isSelected ? "sc-slot-pill--active" : ""}`}
+                              className={`${styles.slotPill} ${isSelected ? styles.slotPillActive : ""}`}
                             >
-                              <span className="sc-slot-label">{slot.label}</span>
-                              <span className="sc-slot-time">{slot.time}</span>
+                              <span className={styles.slotLabel}>{slot.label}</span>
+                              <span className={styles.slotTime}>{slot.time}</span>
                             </button>
                           );
                         })}
@@ -376,24 +376,24 @@ export default function BookingModal({
                     </div>
 
                     {/* 3. Patient Contact */}
-                    <div className="sc-form-section">
-                      <label className="sc-section-label">Your Details</label>
-                      <div className="sc-inputs-grid">
-                        <div className="sc-input-wrapper">
-                          <label className="sc-field-label">Full Name</label>
+                    <div className={styles.formSection}>
+                      <label className={styles.sectionLabel}>Your Details</label>
+                      <div className={styles.inputsGrid}>
+                        <div className={styles.inputWrapper}>
+                          <label className={styles.fieldLabel}>Full Name</label>
                           <input
                             type="text"
                             required
                             value={patientName}
                             onChange={(e) => setPatientName(e.target.value)}
                             placeholder="e.g. Ananya Rao"
-                            className="sc-text-input"
+                            className={styles.textInput}
                           />
                         </div>
-                        <div className="sc-input-wrapper">
-                          <label className="sc-field-label">WhatsApp Mobile</label>
-                          <div className="sc-phone-input-group">
-                            <span className="sc-country-code">+91</span>
+                        <div className={styles.inputWrapper}>
+                          <label className={styles.fieldLabel}>WhatsApp Mobile</label>
+                          <div className={styles.phoneInputGroup}>
+                            <span className={styles.countryCode}>+91</span>
                             <input
                               type="tel"
                               required
@@ -401,7 +401,7 @@ export default function BookingModal({
                               onChange={handlePhoneChange}
                               placeholder="98765 43210"
                               maxLength={10}
-                              className="sc-phone-input"
+                              className={styles.phoneInput}
                             />
                           </div>
                         </div>
@@ -409,11 +409,11 @@ export default function BookingModal({
                     </div>
 
                     {/* Action Bar (Always Anchored) */}
-                    <div className="sc-action-bar">
+                    <div className={styles.actionBar}>
                       <button
                         type="submit"
                         disabled={isSubmitting || !patientName.trim() || patientPhone.length < 10}
-                        className="sc-submit-btn"
+                        className={styles.submitBtn}
                       >
                         {isSubmitting ? (
                           <span>Reserving Appointment...</span>
@@ -425,18 +425,18 @@ export default function BookingModal({
                         )}
                       </button>
 
-                      <div className="sc-action-sublinks">
+                      <div className={styles.actionSublinks}>
                         <a
                           href={getWhatsAppBookingUrl()}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="sc-whatsapp-link"
+                          className={styles.whatsappLink}
                         >
                           <WhatsAppIcon size={15} />
                           <span>Reserve via WhatsApp Concierge</span>
                         </a>
-                        <span className="sc-divider-dot">•</span>
-                        <a href="tel:+914023456789" className="sc-call-link">
+                        <span className={styles.dividerDot}>•</span>
+                        <a href="tel:+914023456789" className={styles.callLink}>
                           <PhoneIcon size={12} />
                           <span>Call Front Desk</span>
                         </a>
@@ -447,51 +447,51 @@ export default function BookingModal({
               </div>
             ) : (
               /* ─── Confirmation Boarding Pass View ─── */
-              <div className="sc-confirmation-view">
-                <div className="sc-confirmation-card">
-                  <div className="sc-confirm-badge">
+              <div className={styles.confirmationView}>
+                <div className={styles.confirmationCard}>
+                  <div className={styles.confirmBadge}>
                     <CheckIcon size={24} />
                   </div>
-                  <h3 className="sc-confirm-headline">Consultation Confirmed</h3>
-                  <p className="sc-confirm-sub">
-                    We look forward to welcoming you, <strong style={{ color: "#FFFFFF" }}>{patientName}</strong>.
+                  <h3 className={styles.confirmHeadline}>Consultation Confirmed</h3>
+                  <p className={styles.confirmSub}>
+                    We look forward to welcoming you, <strong style={{ color: "#0F172A" }}>{patientName}</strong>.
                   </p>
 
-                  <div className="sc-pass-code-tag">
+                  <div className={styles.passCodeTag}>
                     CONFIRMATION CODE: {bookingRef}
                   </div>
 
-                  <div className="sc-ticket-summary">
-                    <div className="sc-ticket-item">
-                      <span className="sc-ticket-key">Procedure</span>
-                      <span className="sc-ticket-val">{currentProtocol.name}</span>
+                  <div className={styles.ticketSummary}>
+                    <div className={styles.ticketItem}>
+                      <span className={styles.ticketKey}>Procedure</span>
+                      <span className={styles.ticketVal}>{currentProtocol.name}</span>
                     </div>
                     {selectedDoctor && (
-                      <div className="sc-ticket-item">
-                        <span className="sc-ticket-key">Specialist</span>
-                        <span className="sc-ticket-val">{selectedDoctor}</span>
+                      <div className={styles.ticketItem}>
+                        <span className={styles.ticketKey}>Specialist</span>
+                        <span className={styles.ticketVal}>{selectedDoctor}</span>
                       </div>
                     )}
-                    <div className="sc-ticket-item">
-                      <span className="sc-ticket-key">Date & Time</span>
-                      <span className="sc-ticket-val">{currentDateObj.fullDateStr} · {currentSlotObj.label}</span>
+                    <div className={styles.ticketItem}>
+                      <span className={styles.ticketKey}>Date & Time</span>
+                      <span className={styles.ticketVal}>{currentDateObj.fullDateStr} · {currentSlotObj.label}</span>
                     </div>
-                    <div className="sc-ticket-item">
-                      <span className="sc-ticket-key">Location</span>
-                      <span className="sc-ticket-val">Road No. 12, Banjara Hills, Hyderabad</span>
+                    <div className={styles.ticketItem}>
+                      <span className={styles.ticketKey}>Location</span>
+                      <span className={styles.ticketVal}>Road No. 12, Banjara Hills, Hyderabad</span>
                     </div>
-                    <div className="sc-ticket-item sc-ticket-item--total">
-                      <span className="sc-ticket-key">Consultation Fee</span>
-                      <span className="sc-ticket-val" style={{ color: "#10B981" }}>₹500 (Pay at Clinic)</span>
+                    <div className={`${styles.ticketItem} ${styles.ticketItemTotal}`}>
+                      <span className={styles.ticketKey}>Consultation Fee</span>
+                      <span className={styles.ticketVal} style={{ color: "#10B981" }}>₹500 (Pay at Clinic)</span>
                     </div>
                   </div>
 
-                  <div className="sc-confirm-actions">
+                  <div className={styles.confirmActions}>
                     <a
                       href={getGoogleCalendarUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="sc-confirm-secondary-btn"
+                      className={styles.confirmSecondaryBtn}
                     >
                       <span>Add to Calendar</span>
                       <ArrowUpRightIcon size={14} />
@@ -500,7 +500,7 @@ export default function BookingModal({
                       href={getWhatsAppBookingUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="sc-confirm-secondary-btn sc-confirm-whatsapp-btn"
+                      className={`${styles.confirmSecondaryBtn} ${styles.confirmWhatsappBtn}`}
                     >
                       <WhatsAppIcon size={15} />
                       <span>WhatsApp Support</span>
@@ -510,7 +510,7 @@ export default function BookingModal({
                   <button
                     type="button"
                     onClick={handleClose}
-                    className="sc-submit-btn"
+                    className={styles.submitBtn}
                     style={{ marginTop: "0.5rem" }}
                   >
                     Done & Return to Studio
