@@ -61,6 +61,13 @@ export const metadata: Metadata = {
         type: "image/jpeg",
         alt: "SmileCraft Digital Dental Studio - High-Precision 3D Dental Technology Banjara Hills",
       },
+      {
+        url: "/og-image-square.jpg",
+        width: 800,
+        height: 800,
+        type: "image/jpeg",
+        alt: "SmileCraft Digital Dental Studio Banjara Hills",
+      },
     ],
   },
   twitter: {
