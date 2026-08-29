@@ -26,11 +26,11 @@ const siteUrl =
 
 export const metadata: Metadata = {
   title: {
-    default: "SmileCraft Digital Dental Studio – High-Precision Dental Clinic in Banjara Hills, Hyderabad",
-    template: "%s | SmileCraft Digital Dental Studio Hyderabad",
+    default: "SmileCraft Digital – Precision Dental Clinic Hyderabad",
+    template: "%s | SmileCraft Hyderabad",
   },
   description:
-    "SmileCraft Digital Dental Studio in Banjara Hills, Hyderabad offers cutting-edge digital dentistry: sub-micron 3D oral scanning, same-day CEREC® crowns, 3D CBCT guided implants, and Biolase® pain-free laser care. Rated 4.9/5 by 800+ patients. Book your 3D scan today.",
+    "SmileCraft Digital Dental Studio in Banjara Hills, Hyderabad offers 3D oral scanning, same-day CEREC crowns, guided implants, and pain-free laser care. Rated 4.9/5.",
   keywords: [
     "digital dentist in Hyderabad",
     "3D dental scan Hyderabad",
@@ -45,12 +45,15 @@ export const metadata: Metadata = {
   authors: [{ name: "SmileCraft Digital Dental Studio" }],
   creator: "SmileCraft Digital Dental Studio",
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
     siteName: "SmileCraft Digital Dental Studio",
-    title: "SmileCraft Digital – High-Precision Dental Technology in Hyderabad",
+    title: "SmileCraft Digital – Precision Dental Clinic Hyderabad",
     description:
       "Sub-micron 3D intraoral scanning, same-day ceramic crowns, and computer-guided keyhole implants in Banjara Hills, Hyderabad.",
     images: [
@@ -63,8 +66,8 @@ export const metadata: Metadata = {
       },
       {
         url: "/og-image-square.jpg",
-        width: 800,
-        height: 800,
+        width: 600,
+        height: 600,
         type: "image/jpeg",
         alt: "SmileCraft Digital Dental Studio Banjara Hills",
       },
@@ -72,7 +75,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SmileCraft Digital Dental Studio – Precision Dental Technology",
+    title: "SmileCraft Digital – Precision Dental Clinic Hyderabad",
     description:
       "Sub-micron 3D oral scanning, same-day CEREC® crowns, and guided implant surgery in Banjara Hills.",
     images: ["/og-image.jpg"],
