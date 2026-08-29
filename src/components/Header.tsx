@@ -29,7 +29,7 @@ export default function Header() {
           {/* ── Logo ── */}
           <a href="/" className={styles.logo}>
             <div className={styles.logoIcon}>
-              <SmileCraftLogoIcon size={26} />
+              <SmileCraftLogoIcon size={34} />
             </div>
             <div className={styles.logoText}>
               <span className={styles.logoTitle}>SmileCraft Digital</span>

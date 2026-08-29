@@ -208,9 +208,9 @@ export const StarRating: React.FC<{ count?: number; size?: number; className?: s
   </div>
 );
 
-/* ─── SmileCraft Digital Studio Brand Logo Icon ─── */
+/* ─── SmileCraft Digital Studio Brand Logo Icon (Illustrated Badge) ─── */
 export const SmileCraftLogoIcon: React.FC<IconProps> = ({
-  size = 24,
+  size = 32,
   className,
   ...props
 }) => (
@@ -223,28 +223,39 @@ export const SmileCraftLogoIcon: React.FC<IconProps> = ({
     className={className}
     {...props}
   >
-    <defs>
-      <linearGradient id="scLogoGrad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#38BDF8" />
-        <stop offset="100%" stopColor="#0284C7" />
-      </linearGradient>
-      <linearGradient id="scLogoSpark" x1="12" y1="10" x2="20" y2="18" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stopColor="#FFFFFF" />
-        <stop offset="100%" stopColor="#BAE6FD" />
-      </linearGradient>
-    </defs>
-    {/* High-Precision Modern Tooth Contour */}
+    {/* Outer Badge Rim */}
+    <circle cx="16" cy="16" r="14.5" fill="#38BDF8" stroke="#0F172A" strokeWidth="2" />
+    
+    {/* Lower Inner Depth Crescent */}
     <path
-      d="M9.5 5C6.8 5 5 7.6 5 11.5C5 15.5 6.8 19 9.2 22.5L11.5 26.5C12.1 27.5 13.4 27.8 14.3 27L15.4 25.8C15.8 25.4 16.2 25.4 16.6 25.8L17.7 27C18.6 27.8 19.9 27.5 20.5 26.5L22.8 22.5C25.2 19 27 15.5 27 11.5C27 7.6 25.2 5 22.5 5C19.8 5 17.5 7.2 16 7.4C14.5 7.2 12.2 5 9.5 5Z"
-      fill="url(#scLogoGrad)"
-      stroke="#38BDF8"
-      strokeWidth="1.2"
+      d="M4.5 20C7 25.5 11.2 28.5 16 28.5C20.8 28.5 25 25.5 27.5 20C24.5 24 19.5 26 16 26C12.5 26 7.5 24 4.5 20Z"
+      fill="#0284C7"
     />
-    {/* 3D Laser Optical Sparkle Node */}
+    
+    {/* Clean White Stylized Tooth with dark outline */}
     <path
-      d="M16 9.5L17.2 13.3L21 14.5L17.2 15.7L16 19.5L14.8 15.7L11 14.5L14.8 13.3L16 9.5Z"
-      fill="url(#scLogoSpark)"
+      d="M10.2 7.5C8 7.5 6.5 9.5 6.5 12.8C6.5 16.2 8.2 19.2 10 22L11.8 24.8C12.3 25.5 13.2 25.7 13.8 25.2L14.6 24.6C15 24.3 15.6 24.3 16 24.6L16.8 25.2C17.4 25.7 18.3 25.5 18.8 24.8L20.6 22C22.4 19.2 24.1 16.2 24.1 12.8C24.1 9.5 22.6 7.5 20.4 7.5C18.8 7.5 17.5 8.6 15.3 8.7C13.1 8.6 11.8 7.5 10.2 7.5Z"
+      fill="#FFFFFF"
+      stroke="#0F172A"
+      strokeWidth="1.6"
+      strokeLinejoin="round"
     />
-    <circle cx="16" cy="14.5" r="1.1" fill="#0284C7" />
+    
+    {/* Subtle Inner Ice-Blue Tooth Shading */}
+    <path
+      d="M10.2 9C9 9 8 10.2 8 12.5C8 14.5 9 17 10 19L11.5 21C11.5 21 9.8 17.5 9.8 13C9.8 10.8 10.5 9.5 10.2 9Z"
+      fill="#E0F2FE"
+    />
+
+    {/* Precision Smile Arc */}
+    <path
+      d="M11 14.5C12.5 17.5 18.1 17.5 19.6 14.5"
+      stroke="#0284C7"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+    />
+
+    {/* Warm Gold Precision Alignment Dot */}
+    <circle cx="15.3" cy="11.5" r="1.5" fill="#FBBF24" stroke="#0F172A" strokeWidth="0.8" />
   </svg>
 );

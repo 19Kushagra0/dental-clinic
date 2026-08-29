@@ -28,15 +28,11 @@
 }
 
 .logoIcon {
-  width: 42px;
-  height: 42px;
-  background: radial-gradient(circle at 30% 30%, #111A2C 0%, #090E1A 100%);
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9px;
-  border: 1px solid rgba(56, 189, 248, 0.28);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
 
