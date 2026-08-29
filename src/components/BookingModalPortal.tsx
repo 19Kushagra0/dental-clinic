@@ -38,8 +38,24 @@ export default function BookingModalPortal() {
       });
     };
 
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement | null)?.closest<HTMLElement>(
+        "[data-book-trigger], [data-book-tech], [data-book-doc]"
+      );
+      if (target) {
+        e.preventDefault();
+        const tech = target.getAttribute("data-book-tech") || undefined;
+        const doctor = target.getAttribute("data-book-doc") || null;
+        openBookingDialog(tech, doctor);
+      }
+    };
+
     window.addEventListener("open-booking-modal", handleOpen);
-    return () => window.removeEventListener("open-booking-modal", handleOpen);
+    document.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("open-booking-modal", handleOpen);
+      document.removeEventListener("click", handleClick);
+    };
   }, []);
 
   if (!modalState.isOpen) return null;

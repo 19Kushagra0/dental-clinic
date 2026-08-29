@@ -24,12 +24,18 @@ import {
   ArrowUpRightIcon,
   StarRating,
 } from "@/icons";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TechShowcase from "@/components/TechShowcase";
-import SmileSimulator from "@/components/SmileSimulator";
-import { BookButton } from "@/components/BookingTrigger";
 import BookingModalPortal from "@/components/BookingModalPortal";
+
+const TechShowcase = dynamic(() => import("@/components/TechShowcase"), {
+  ssr: true,
+});
+
+const SmileSimulator = dynamic(() => import("@/components/SmileSimulator"), {
+  ssr: true,
+});
 
 /* ─── Static Data (Zero Client Hydration Overhead) ─── */
 const comparisonData = [
@@ -169,9 +175,13 @@ export default function HomePage() {
           </p>
 
           <div className={styles.heroActions}>
-            <BookButton className={styles.btnPrimary}>
+            <button
+              type="button"
+              data-book-trigger="true"
+              className={styles.btnPrimary}
+            >
               Book 3D Optical Scan
-            </BookButton>
+            </button>
             <a href="tel:+914023456789" className={styles.btnSecondary}>
               <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
               Clinical Desk: +91 40 2345 6789
@@ -232,7 +242,7 @@ export default function HomePage() {
               Interactive 3D Smile Design Simulator
             </h2>
             <p className={styles.sectionSubText}>
-              Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer & alignment result:
+              Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer &amp; alignment result:
             </p>
           </div>
           <SmileSimulator />
@@ -256,9 +266,10 @@ export default function HomePage() {
           </div>
           <div className={styles.treatmentsGrid}>
             {treatments.map((t) => (
-              <BookButton
+              <button
                 key={t.label}
-                treatment={t.bookingTech}
+                type="button"
+                data-book-tech={t.bookingTech}
                 className={styles.treatmentChip}
               >
                 <div className={styles.treatmentIconWrap}>{t.icon}</div>
@@ -266,7 +277,7 @@ export default function HomePage() {
                   <span className={styles.treatmentLabel}>{t.label}</span>
                   <span className={styles.treatmentSub}>{t.sub}</span>
                 </div>
-              </BookButton>
+              </button>
             ))}
           </div>
         </div>
@@ -407,7 +418,7 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              Digital Dental Surgeons & Specialists
+              Digital Dental Surgeons &amp; Specialists
             </h2>
           </div>
 
@@ -427,13 +438,14 @@ export default function HomePage() {
                   <CheckIcon size={15} color="#0284C7" />
                   <span>{doc.cert}</span>
                 </div>
-                <BookButton
-                  doctor={doc.name}
-                  treatment={doc.defaultTreatment}
+                <button
+                  type="button"
+                  data-book-tech={doc.defaultTreatment}
+                  data-book-doc={doc.name}
                   className={styles.docBookBtn}
                 >
                   Book with {doc.name.split(" ")[1]} <ArrowUpRightIcon size={12} style={{ display: "inline", verticalAlign: "middle" }} />
-                </BookButton>
+                </button>
               </div>
             ))}
           </div>
@@ -466,12 +478,14 @@ export default function HomePage() {
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              <BookButton
+              <button
+                type="button"
+                data-book-trigger="true"
                 className={styles.btnPrimary}
                 style={{ padding: "1.1rem 2.5rem", background: "#0b0f19", color: "#fff" }}
               >
                 Book 3D Oral Scan Online
-              </BookButton>
+              </button>
               <a
                 href="https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20would%20like%20to%20book%20a%203D%20Digital%20Dental%20Scan"
                 target="_blank"

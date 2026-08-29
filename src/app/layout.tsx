@@ -4,9 +4,10 @@ import "./globals.css";
 
 const barlow = Barlow({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
   variable: "--font-barlow",
   display: "swap",
+  preload: true,
 });
 
 const barlowCondensed = Barlow_Condensed({
@@ -14,6 +15,7 @@ const barlowCondensed = Barlow_Condensed({
   weight: ["700", "800"],
   variable: "--font-barlow-condensed",
   display: "swap",
+  preload: true,
 });
 
 const siteUrl =

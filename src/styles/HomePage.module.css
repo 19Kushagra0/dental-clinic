@@ -44,19 +44,7 @@
 .animDelay3 { animation-delay: 0.3s; }
 .animDelay4 { animation-delay: 0.4s; }
 
-.fadeUp {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-.fadeUp.inView {
-  opacity: 1;
-  transform: translateY(0);
-}
-.delay1 { transition-delay: 0.1s; }
-.delay2 { transition-delay: 0.2s; }
-.delay3 { transition-delay: 0.3s; }
+/* Removed unused fadeUp/inView scroll-reveal (was never applied in JSX) */
 
 /* ─── Telemetry Entrance ─── */
 @keyframes countIn {
@@ -350,6 +338,8 @@
   background: #0C1220;
   padding: 6.5rem 2rem;
   border-bottom: 1px solid var(--d02-border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 .techTabsNav {
   display: flex;
@@ -508,6 +498,8 @@
   background: var(--d02-dark);
   padding: 6.5rem 2rem;
   border-bottom: 1px solid var(--d02-border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 .simCard {
   background: var(--d02-card);
@@ -709,6 +701,8 @@
   padding: 6.5rem 2rem;
   border-top: 1px solid #E2E8F0;
   border-bottom: 1px solid #E2E8F0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 .treatmentsKicker,
 .workflowKicker,
@@ -812,6 +806,8 @@
   background: #0C1220;
   padding: 6.5rem 2rem;
   border-bottom: 1px solid var(--d02-border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
 }
 .compareTableWrapper {
   width: 100%;
@@ -883,6 +879,8 @@
   border-top: 1px solid #E2E8F0;
   border-bottom: 1px solid #E2E8F0;
   color: #0F172A;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 .workflowSection .sectionTitle {
   color: #0F172A;
@@ -953,6 +951,8 @@
   background: #0C1220;
   padding: 6.5rem 2rem;
   border-bottom: 1px solid var(--d02-border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 .testiGrid {
   display: grid;
@@ -1027,6 +1027,8 @@
   background: var(--d02-dark);
   padding: 6.5rem 2rem;
   border-bottom: 1px solid var(--d02-border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 .doctorsGrid {
   display: grid;
@@ -1122,6 +1124,8 @@
   background: #0284C7;
   padding: 5.5rem 2rem;
   color: #ffffff;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 .ctaInner {
   max-width: 1200px;
