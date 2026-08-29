@@ -24,18 +24,11 @@ import {
   ArrowUpRightIcon,
   StarRating,
 } from "@/icons";
-import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingModalPortal from "@/components/BookingModalPortal";
-
-const TechShowcase = dynamic(() => import("@/components/TechShowcase"), {
-  ssr: true,
-});
-
-const SmileSimulator = dynamic(() => import("@/components/SmileSimulator"), {
-  ssr: true,
-});
+import TechShowcaseIsland from "@/components/TechShowcaseIsland";
+import SmileSimulatorIsland from "@/components/SmileSimulatorIsland";
 
 /* ─── Static Data (Zero Client Hydration Overhead) ─── */
 const comparisonData = [
@@ -230,7 +223,7 @@ export default function HomePage() {
               Engineered for Precision. Built for Comfort.
             </h2>
           </div>
-          <TechShowcase />
+          <TechShowcaseIsland />
         </div>
       </section>
 
@@ -245,7 +238,7 @@ export default function HomePage() {
               Drag the interactive divider to compare the clinical baseline against the CAD/CAM porcelain veneer &amp; alignment result:
             </p>
           </div>
-          <SmileSimulator />
+          <SmileSimulatorIsland />
         </div>
       </section>
 

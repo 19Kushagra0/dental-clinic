@@ -5,7 +5,7 @@ import styles from "@/styles/MobileSidebar.module.css";
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  onBookClick: () => void;
+  onBookClick?: () => void;
 }
 
 const navLinks = [
@@ -16,12 +16,7 @@ const navLinks = [
   { href: "#specialists", label: "Specialists" },
 ];
 
-export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSidebarProps) {
-  const handleBookClick = () => {
-    onClose();
-    onBookClick();
-  };
-
+export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
   return (
     <>
       {/* ── Overlay ── */}
@@ -48,10 +43,12 @@ export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSi
               </a>
             ))}
           </nav>
+          {/* data-book-trigger delegates to BookingModalPortal via event delegation */}
           <button
             type="button"
+            data-book-trigger="true"
             className={styles.bookBtn}
-            onClick={handleBookClick}
+            onClick={onClose}
           >
             Book 3D Scan ↗
           </button>
@@ -60,3 +57,4 @@ export default function MobileSidebar({ isOpen, onClose, onBookClick }: MobileSi
     </>
   );
 }
+
