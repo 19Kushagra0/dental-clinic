@@ -18,6 +18,7 @@ export function openBookingDialog(tech?: string, doctor: string | null = null) {
 }
 
 export default function BookingModalPortal() {
+  const [ready, setReady] = useState(false);
   const [modalState, setModalState] = useState<{
     isOpen: boolean;
     tech: string;
@@ -28,16 +29,8 @@ export default function BookingModalPortal() {
     doctor: null,
   });
 
+  /* ── Attach click listener immediately so book buttons work on first tap ── */
   useEffect(() => {
-    const handleOpen = (e: Event) => {
-      const detail = (e as CustomEvent).detail || {};
-      setModalState({
-        isOpen: true,
-        tech: detail.tech || "3D Digital Oral Scan & Smile Simulation",
-        doctor: detail.doctor || null,
-      });
-    };
-
     const handleClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement | null)?.closest<HTMLElement>(
         "[data-book-trigger], [data-book-tech], [data-book-doc]"
@@ -46,19 +39,51 @@ export default function BookingModalPortal() {
         e.preventDefault();
         const tech = target.getAttribute("data-book-tech") || undefined;
         const doctor = target.getAttribute("data-book-doc") || null;
-        openBookingDialog(tech, doctor);
+        // Mark as ready and open the modal in one tick
+        setReady(true);
+        setModalState({
+          isOpen: true,
+          tech: tech || "3D Digital Oral Scan & Smile Simulation",
+          doctor,
+        });
       }
     };
 
-    window.addEventListener("open-booking-modal", handleOpen);
     document.addEventListener("click", handleClick);
-    return () => {
-      window.removeEventListener("open-booking-modal", handleOpen);
-      document.removeEventListener("click", handleClick);
-    };
+    return () => document.removeEventListener("click", handleClick);
   }, []);
 
-  if (!modalState.isOpen) return null;
+  /* ── Delay hydrating the full portal until after the main thread is idle ── */
+  useEffect(() => {
+    const hydrate = () => setReady(true);
+
+    if (typeof requestIdleCallback !== "undefined") {
+      // Mount after browser's first idle period (max 4 s fallback)
+      const id = requestIdleCallback(hydrate, { timeout: 4000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      // Fallback for Safari / older browsers
+      const id = setTimeout(hydrate, 2000);
+      return () => clearTimeout(id);
+    }
+  }, []);
+
+  /* ── Custom-event API still works for programmatic access ── */
+  useEffect(() => {
+    if (!ready) return;
+    const handleOpen = (e: Event) => {
+      const detail = (e as CustomEvent).detail || {};
+      setModalState({
+        isOpen: true,
+        tech: detail.tech || "3D Digital Oral Scan & Smile Simulation",
+        doctor: detail.doctor || null,
+      });
+    };
+    window.addEventListener("open-booking-modal", handleOpen);
+    return () => window.removeEventListener("open-booking-modal", handleOpen);
+  }, [ready]);
+
+  if (!ready || !modalState.isOpen) return null;
 
   return (
     <BookingModal

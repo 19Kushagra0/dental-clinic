@@ -1,82 +1,43 @@
-"use client";
-
+/* Server Component — Logo + Nav links render with zero JS */
 import styles from "@/styles/Header.module.css";
-import { useState, useEffect } from "react";
-import { openBookingDialog } from "@/components/BookingModalPortal";
 import { SmileCraftLogoIcon } from "@/icons";
-import MobileSidebar from "./MobileSidebar";
+import HeaderInteractive from "./HeaderInteractive";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  // Close menu on resize to desktop
-  useEffect(() => {
-    const close = () => setMenuOpen(false);
-    window.addEventListener("resize", close);
-    return () => window.removeEventListener("resize", close);
-  }, []);
-
-  // Prevent body scroll while menu is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
-
   return (
-    <>
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          {/* ── Logo ── */}
-          <a href="/" className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <SmileCraftLogoIcon size={34} />
-            </div>
-            <div className={styles.logoText}>
-              <span className={styles.logoTitle}>SmileCraft Digital</span>
-              <span className={styles.logoSub}>Precision Dental Studio</span>
-            </div>
-          </a>
-
-          {/* ── Desktop nav ── */}
-          <div className={styles.navMenu}>
-            <a href="#technology" className={styles.navLink}>Technology</a>
-            <a href="#simulation" className={styles.navLink}>3D Smile Simulation</a>
-            <a href="#treatments" className={styles.navLink}>Treatments</a>
-            <a href="#comparison" className={styles.navLink}>Digital vs. Legacy</a>
-            <a href="#specialists" className={styles.navLink}>Specialists</a>
-            <button
-              type="button"
-              onClick={() => openBookingDialog()}
-              className={styles.navCta}
-            >
-              Book 3D Scan
-            </button>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        {/* ── Logo ── */}
+        <a href="/" className={styles.logo}>
+          <div className={styles.logoIcon}>
+            <SmileCraftLogoIcon size={34} />
           </div>
+          <div className={styles.logoText}>
+            <span className={styles.logoTitle}>SmileCraft Digital</span>
+            <span className={styles.logoSub}>Precision Dental Studio</span>
+          </div>
+        </a>
 
-          {/* ── Hamburger button (mobile only) ── */}
+        {/* ── Desktop nav (server-rendered, zero JS) ── */}
+        <div className={styles.navMenu}>
+          <a href="#technology" className={styles.navLink}>Technology</a>
+          <a href="#simulation" className={styles.navLink}>3D Smile Simulation</a>
+          <a href="#treatments" className={styles.navLink}>Treatments</a>
+          <a href="#comparison" className={styles.navLink}>Digital vs. Legacy</a>
+          <a href="#specialists" className={styles.navLink}>Specialists</a>
+          {/* Book button uses data attribute delegation — no JS component needed */}
           <button
             type="button"
-            className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
+            data-book-trigger="true"
+            className={styles.navCta}
           >
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
+            Book 3D Scan
           </button>
-        </nav>
-      </header>
+        </div>
 
-      {/* ── Mobile Sidebar ── */}
-      <MobileSidebar
-        isOpen={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        onBookClick={() => {
-          setMenuOpen(false);
-          openBookingDialog();
-        }}
-      />
-    </>
+        {/* ── Client island: hamburger + mobile sidebar only ── */}
+        <HeaderInteractive />
+      </nav>
+    </header>
   );
 }

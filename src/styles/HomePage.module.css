@@ -55,6 +55,29 @@
   animation: countIn 0.5s ease forwards;
 }
 
+/* ─── Async Component Skeleton Placeholders ─── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.techSkeletonCard {
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #111827 25%, #1a2537 50%, #111827 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+.simSkeletonCard {
+  width: 100%;
+  height: 480px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #0f172a 25%, #1a2537 50%, #0f172a 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+
 /* ─── Buttons ─── */
 .btnPrimary {
   font-family: var(--font-body);
