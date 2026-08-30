@@ -10,11 +10,20 @@ import {
   LocationPinIcon,
   StarRating,
 } from "@/icons";
+import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingModalPortal from "@/components/BookingModalPortal";
 import TechShowcaseIsland from "@/components/TechShowcaseIsland";
 import SmileSimulatorIsland from "@/components/SmileSimulatorIsland";
+
+const TechShowcase = dynamic(() => import("@/components/TechShowcase"), {
+  ssr: true,
+});
+
+const SmileSimulator = dynamic(() => import("@/components/SmileSimulator"), {
+  ssr: true,
+});
 
 /* ─── Static Data (Zero Client Hydration Overhead) ─── */
 const comparisonData = [
