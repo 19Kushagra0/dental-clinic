@@ -132,7 +132,6 @@ export default function TechShowcase() {
       <div className={styles.techCardActive}>
         <div className={styles.techHeader}>
           <div className={styles.techHeaderLeft}>
-            <div className={styles.techIconWrap}>{activeTech.icon}</div>
             <div>
               <h3 className={styles.techH3}>{activeTech.name}</h3>
             </div>
