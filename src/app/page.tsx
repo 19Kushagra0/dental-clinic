@@ -1,27 +1,13 @@
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
 import {
-  DentalImplantIcon,
-  SmileDesignIcon,
-  AlignerIcon,
-  CrownIcon,
-  MicroscopeIcon,
-  LaserIcon,
-  GumCareIcon,
-  PediatricIcon,
-  TargetIcon,
-  LocationPinIcon,
   PhoneIcon,
   WhatsAppIcon,
-  InstitutionIcon,
-  FellowshipIcon,
-  IsoBadgeIcon,
-  ScanBadgeIcon,
-  DiamondBadgeIcon,
-  ShieldSterileIcon,
   CheckIcon,
   XMarkIcon,
   ArrowUpRightIcon,
+  TargetIcon,
+  LocationPinIcon,
   StarRating,
 } from "@/icons";
 import Header from "@/components/Header";
@@ -55,14 +41,14 @@ const comparisonData = [
 ];
 
 const treatments = [
-  { icon: <DentalImplantIcon size={26} />, label: "Dental Implants", sub: "3D CBCT Guided", bookingTech: "3D CBCT Guided Implant Consultation" },
-  { icon: <SmileDesignIcon size={26} />, label: "Smile Design", sub: "Digital DSD Protocol", bookingTech: "3D Digital Oral Scan & Smile Simulation" },
-  { icon: <AlignerIcon size={26} />, label: "Invisalign®", sub: "Diamond Provider", bookingTech: "Invisalign 3D Outcome Preview" },
-  { icon: <CrownIcon size={26} />, label: "Same-Day Crowns", sub: "CEREC® In-House", bookingTech: "Same-Day CEREC CAD/CAM Crown Assessment" },
-  { icon: <MicroscopeIcon size={26} />, label: "Microscopic RCT", sub: "Zeiss 20× Optics", bookingTech: "Microscopic Root Canal Therapy" },
-  { icon: <LaserIcon size={26} />, label: "Laser Therapy", sub: "Biolase® Waterlase", bookingTech: "Biolase Pain-Free Laser Therapy" },
-  { icon: <GumCareIcon size={26} />, label: "Gum Surgery", sub: "Flapless Laser", bookingTech: "Biolase Pain-Free Laser Therapy" },
-  { icon: <PediatricIcon size={26} />, label: "Paediatric Care", sub: "Anxiety-Free Protocol", bookingTech: "3D Digital Oral Scan & Smile Simulation" },
+  { label: "Dental Implants", sub: "3D CBCT Guided", bookingTech: "3D CBCT Guided Implant Consultation" },
+  { label: "Smile Design", sub: "Digital DSD Protocol", bookingTech: "3D Digital Oral Scan & Smile Simulation" },
+  { label: "Invisalign®", sub: "Diamond Provider", bookingTech: "Invisalign 3D Outcome Preview" },
+  { label: "Same-Day Crowns", sub: "CEREC® In-House", bookingTech: "Same-Day CEREC CAD/CAM Crown Assessment" },
+  { label: "Microscopic RCT", sub: "Zeiss 20× Optics", bookingTech: "Microscopic Root Canal Therapy" },
+  { label: "Laser Therapy", sub: "Biolase® Waterlase", bookingTech: "Biolase Pain-Free Laser Therapy" },
+  { label: "Gum Care", sub: "Flapless Laser", bookingTech: "Biolase Pain-Free Laser Therapy" },
+  { label: "Paediatric Care", sub: "Anxiety-Free Protocol", bookingTech: "3D Digital Oral Scan & Smile Simulation" },
 ];
 
 const doctors = [
@@ -123,12 +109,12 @@ const testimonials = [
 ];
 
 const certBadges = [
-  { label: "IDA Member", icon: <InstitutionIcon size={16} /> },
-  { label: "ICOI Fellow", icon: <FellowshipIcon size={16} /> },
-  { label: "ISO 9001 Certified", icon: <IsoBadgeIcon size={16} /> },
-  { label: "Planmeca® Authorized", icon: <ScanBadgeIcon size={16} /> },
-  { label: "Invisalign® Diamond", icon: <DiamondBadgeIcon size={16} /> },
-  { label: "BIS Sterilization", icon: <ShieldSterileIcon size={16} /> },
+  { label: "IDA Member" },
+  { label: "ICOI Fellow" },
+  { label: "ISO 9001 Certified" },
+  { label: "Planmeca® Authorized" },
+  { label: "Invisalign® Diamond" },
+  { label: "BIS Sterilization" },
 ];
 
 /* ─── Server-Rendered Landing Page (Zero JS Hydration Overhead) ─── */
@@ -186,13 +172,12 @@ export default function HomePage() {
         <div className={styles.telemetryStrip}>
           <div className={styles.telemetryInner}>
             {[
-              { num: "01", val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
-              { num: "02", val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
-              { num: "03", val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
-              { num: "04", val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
+              { val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
+              { val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
+              { val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
+              { val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
             ].map((item, i) => (
               <div key={i} className={styles.telemetryItem}>
-                <div className={styles.telemetryNum}>{item.num}</div>
                 <div className={styles.telemetryData}>
                   <span className={styles.telemetryVal}>{item.val}</span>
                   <span className={styles.telemetryLbl}>{item.lbl}</span>
@@ -208,7 +193,6 @@ export default function HomePage() {
         <div className={styles.certInner}>
           {certBadges.map((b) => (
             <div key={b.label} className={styles.certBadge}>
-              <span className={styles.badgeIcon}>{b.icon}</span>
               <span>{b.label}</span>
             </div>
           ))}
@@ -247,7 +231,6 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <div className={styles.treatmentsKicker}>
-              <span className={styles.kickerDot} />
               <span>ADVANCED PROTOCOLS</span>
             </div>
             <h2 className={styles.sectionTitle}>
@@ -265,7 +248,6 @@ export default function HomePage() {
                 data-book-tech={t.bookingTech}
                 className={styles.treatmentChip}
               >
-                <div className={styles.treatmentIconWrap}>{t.icon}</div>
                 <div className={styles.treatmentText}>
                   <span className={styles.treatmentLabel}>{t.label}</span>
                   <span className={styles.treatmentSub}>{t.sub}</span>
@@ -342,7 +324,6 @@ export default function HomePage() {
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
             <div className={styles.workflowKicker}>
-              <span className={styles.kickerDot} />
               <span>DIGITAL EXCELLENCE</span>
             </div>
             <h2 className={styles.sectionTitle}>

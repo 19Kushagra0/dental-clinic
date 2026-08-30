@@ -1,0 +1,9 @@
+{
+  "public/dental-scanner-3d.jpg": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoQAAkABUB8JYwCdAEKIR+isAD+7A7vmhXwu25bCUiCmP0KD9O6Mts1TX1DTcVzVSKkWhKTUHhWfKzctFqhqAAA",
+  "public/smile-before.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAACwAQCdASoQAAkABUB8JaACdAENWmgAAP4zkyCARBDwQnerdxoGxNs+RzJQYXJRAMo2kMqBB8XLlaK7A1SAAA==",
+  "public/smile-after.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAAAQAgCdASoQAAkABUB8JZgC7AEPds4jwkzAAP6r5V0Yzrec1hkVG/VCOg+iES+eefh+VGeX4tKSq/w2WYAAAA==",
+  "public/og-image.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABUB8JbACdADHt0hMAAD+0Dz/QRWKCiGMDsDTA6ZEHOm5KkcKnOkP7lfvtw5EmKY/AaW4AA==",
+  "public/og-image-square.jpg": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAABwAQCdASoQAAkABUB8JQBOgApQAAD+7wRPb79iv6EqO2hsJEgijFjHgtZhKLnjlgUPvLrfFPRjgAAA",
+  "src/app/opengraph-image.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABUB8JbACdADHt0hMAAD+0Dz/QRWKCiGMDsDTA6ZEHOm5KkcKnOkP7lfvtw5EmKY/AaW4AA==",
+  "src/app/twitter-image.jpg": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAkABUB8JbACdADHt0hMAAD+0Dz/QRWKCiGMDsDTA6ZEHOm5KkcKnOkP7lfvtw5EmKY/AaW4AA=="
+}
