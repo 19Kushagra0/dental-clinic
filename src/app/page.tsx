@@ -411,12 +411,16 @@ export default function HomePage() {
                 key={doc.name}
                 className={styles.docCard}
               >
-                <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
-                  <span>{doc.initials}</span>
+                <div className={styles.docHeaderRow}>
+                  <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
+                    <span>{doc.initials}</span>
+                  </div>
+                  <div className={styles.docDetails}>
+                    <h3 className={styles.docName}>{doc.name}</h3>
+                    <div className={styles.docBadge}>{doc.role}</div>
+                    <div className={styles.docDeg}>{doc.degrees}</div>
+                  </div>
                 </div>
-                <h3 className={styles.docName}>{doc.name}</h3>
-                <div className={styles.docBadge}>{doc.role}</div>
-                <div className={styles.docDeg}>{doc.degrees}</div>
                 <div className={styles.docCert}>
                   <CheckIcon size={15} color="#0284C7" />
                   <span>{doc.cert}</span>
