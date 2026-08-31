@@ -2,7 +2,7 @@
 import styles from "@/styles/Header.module.css";
 import { SmileCraftLogoIcon } from "@/icons";
 import HeaderInteractive from "./HeaderInteractive";
-
+ 
 export default function Header() {
   return (
     <header className={styles.header}>
