@@ -1374,22 +1374,22 @@
   margin-bottom: 2.25rem;
 }
 .ctaBtnPrimary {
-  background: #ffffff;
-  color: #0369a1;
+  background: #090d16;
+  color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 700;
   padding: 1.1rem 2rem;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .ctaBtnPrimary:hover {
-  background: #f0f9ff;
-  color: #0284c7;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: #151e2e;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 .ctaBtnWhatsapp {
   background: #25D366;
