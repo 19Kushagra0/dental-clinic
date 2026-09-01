@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "@/styles/MobileSidebar.module.css";
+import { SmileCraftLogoIcon } from "@/icons";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -50,11 +51,11 @@ export default function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             className={styles.bookBtn}
             onClick={onClose}
           >
-            Book 3D Scan ↗
+            <SmileCraftLogoIcon size={18} />
+            Book 3D Scan
           </button>
         </div>
       </div>
     </>
   );
 }
-

@@ -31,7 +31,6 @@ export default function SmileSimulator() {
       {/* Simulation Header Telemetry */}
       <div className={styles.simHeader}>
         <div className={styles.simCaseTag}>
-          <span className={styles.pulseCyan} />
           <span>Clinical Study #SC-8420 · Porcelain Veneers & Whitening</span>
         </div>
         <div className={styles.simQuickPresets}>

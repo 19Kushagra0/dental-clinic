@@ -19,14 +19,14 @@ html {
   --d02-surface: #0F172A;
   --d02-card: #151E2E;
   --d02-card-hover: #1C273C;
-  --d02-blue: #0369A1;
-  --d02-cyan: #93C5FD;
+  --d02-blue: #0284C7;
+  --d02-cyan: #0284C7;
   --d02-white: #FFFFFF;
   --d02-text-muted: #94A3B8;
   --d02-border: rgba(255, 255, 255, 0.08);
   --d02-border-accent: rgba(147, 197, 253, 0.2);
-  --font-display: var(--font-barlow-condensed), 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: var(--font-barlow), 'Barlow', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-display: var(--font-outfit), 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-plus-jakarta), 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --scrollbar-thumb: #1E293B;
   --scrollbar-track: #090D16;
 }

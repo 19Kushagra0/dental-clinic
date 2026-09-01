@@ -1,0 +1,538 @@
+/* ─── Hero Section — Pixel-Perfect Match to Reference Design ─── */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 72px;
+  /* White background with larger tile grid matching reference */
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  background-size: 180px 180px;
+  overflow: visible;
+}
+
+/* ─── Main 2-column content grid ─── */
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 4rem 2rem 4rem 5rem;
+  display: grid;
+  grid-template-columns: 42fr 58fr;
+  gap: 2rem;
+  align-items: center;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
+}
+
+/* ─── Left Column: Typography & CTAs ─── */
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+/* Headline */
+.heroTitle {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: clamp(2.75rem, 4.2vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: #111827;
+  margin: 0 0 1.25rem 0;
+}
+
+/* Subtitle / subtext */
+.heroSubtext {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: #6B7280;
+  margin: 0 0 2.25rem 0;
+  max-width: 340px;
+}
+
+/* CTA button row */
+.heroActions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+/* Primary blue button - Pure flat solid royal blue matching reference */
+.btnPrimary {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  background: #0284C7;
+  border: none;
+  padding: 0.8rem 1.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+.btnPrimary:hover {
+  background-color: #0369A1;
+  box-shadow: none;
+}
+
+/* Secondary gray button - Flat soft slate gray matching reference */
+.btnSecondary {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #1E293B;
+  background: #E2E6EB;
+  border: 1px solid #D5DAE1;
+  padding: 0.8rem 1.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.btnSecondary:hover {
+  background-color: #D5DAE1;
+  border-color: #C2C8D2;
+  box-shadow: none;
+}
+
+/* ─── Right Column: Tablet Mockup + Z-Indexed Modals ─── */
+.heroRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.tabletMockupContainer {
+  position: relative;
+  width: 100%;
+  max-width: 610px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ─── Floating Modals / Telemetry Pills (Z-Index Layer) ─── */
+.floatingPill {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #FFFFFF;
+  padding: 3px 12px 3px 4px;
+  border-radius: 9999px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow:
+    0 10px 24px -4px rgba(15, 23, 42, 0.1),
+    0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  z-index: 10;
+  white-space: nowrap;
+  user-select: none;
+  transition: box-shadow 0.22s ease;
+}
+
+.floatingPill:hover {
+  box-shadow:
+    0 14px 30px -4px rgba(15, 23, 42, 0.14),
+    0 6px 12px -2px rgba(15, 23, 42, 0.06);
+}
+
+.pillLabel {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #1E293B;
+  letter-spacing: -0.01em;
+}
+
+/* Pill Icon Badge Container - Prominent colored background matching Image 3 style */
+.pillIconBadge {
+  height: 22px;
+  min-width: 22px;
+  padding: 0 5px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconBgGreen {
+  background: #D1FAE5;
+}
+
+.iconBgPink {
+  background: #FFE4E6;
+}
+
+.iconBgEmerald {
+  background: #CCFBF1;
+}
+
+.iconBgSky {
+  background: #E0F2FE;
+}
+
+/* 3Dto scan 9.2% Pill - Custom Sleek Padding matching Image 3 */
+.pillMidLeft {
+  padding: 3px 4px 3px 12px;
+  top: 13%;
+  left: -22px;
+}
+
+.pillPercentBadge {
+  background: #0284C7;
+  color: #FFFFFF;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.26rem 0.85rem;
+  border-radius: 9999px;
+  margin-left: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+}
+
+/* Specific Pill Absolute Positioning Matching Reference */
+.pillTopRight {
+  top: -12px;
+  right: 36px;
+}
+
+
+
+.pillBottomLeft {
+  bottom: 23%;
+  left: -32px;
+}
+
+.pillBottomCenter {
+  bottom: -15px;
+  left: 24%;
+}
+
+.pillBottomRight {
+  bottom: 25%;
+  right: -22px;
+}
+
+/* ─── Tablet Device Frame ─── */
+.tabletFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  border-radius: 32px;
+  background: #64748B;
+  padding: 9px;
+  box-shadow:
+    0 25px 60px -15px rgba(15, 23, 42, 0.18),
+    0 10px 25px -10px rgba(15, 23, 42, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  border: 2px solid #525E71;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.tabletScreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 23px;
+  background: #EFF2F6;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top Nav on Tablet Screen */
+.tabletTopNav {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 6;
+  pointer-events: auto;
+}
+
+.topNavPill {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  border-radius: 6px;
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.topNavBtn {
+  background: none;
+  border: none;
+  padding: 3px 5px;
+  color: #64748B;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.topNavBtn:hover {
+  color: #1E293B;
+}
+
+.topNavBtnActive {
+  color: #2563EB;
+}
+
+.activeTabLine {
+  position: absolute;
+  bottom: -2px;
+  left: 3px;
+  right: 3px;
+  height: 2px;
+  background: #2563EB;
+  border-radius: 2px;
+}
+
+/* Left Toolbar on Tablet */
+.tabletLeftDock {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  border: 1px solid #CBD5E1;
+  padding: 4px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.toolIconActive {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: #3B82F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolIconBtn {
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.toolIconBtn:hover {
+  background: #F1F5F9;
+}
+
+/* Right Toolbar on Tablet */
+.tabletRightDock {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  border: 1px solid #CBD5E1;
+  padding: 4px 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Viewport Image Area */
+.tabletViewport {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.viewportImg {
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Bottom Home Indicator */
+.tabletBottomBar {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.homeIndicatorPill {
+  width: 90px;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Responsive: Tablet & Below ─── */
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    padding: 3.5rem 2rem 2.5rem;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .heroLeft {
+    align-items: center;
+    order: 1;
+  }
+
+  .heroRight {
+    order: 2;
+  }
+
+  .heroSubtext {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .tabletMockupContainer {
+    max-width: 500px;
+  }
+
+  .pillMidLeft {
+    left: -10px;
+  }
+
+  .pillBottomLeft {
+    left: -10px;
+  }
+
+  .pillBottomRight {
+    right: -10px;
+  }
+
+  .pillTopRight {
+    right: 0px;
+  }
+}
+
+/* ─── Responsive: Mobile ─── */
+@media (max-width: 640px) {
+  .heroContent {
+    padding: 3rem 1.25rem 2rem;
+    gap: 2.5rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(2.1rem, 8.5vw, 2.8rem);
+  }
+
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .tabletMockupContainer {
+    max-width: 100%;
+  }
+
+  .floatingPill {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .pillMidLeft {
+    left: -6px;
+    top: 8%;
+  }
+
+  .pillBottomLeft {
+    left: -6px;
+    bottom: 12%;
+  }
+
+  .pillBottomRight {
+    right: -6px;
+    bottom: 12%;
+  }
+
+  .pillTopRight {
+    right: -6px;
+    top: -10px;
+  }
+
+  .pillBottomCenter {
+    left: 10%;
+    bottom: -12px;
+  }
+}

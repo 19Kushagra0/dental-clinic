@@ -31,6 +31,7 @@ export default function Header() {
             data-book-trigger="true"
             className={styles.navCta}
           >
+            <SmileCraftLogoIcon size={18} />
             Book 3D Scan
           </button>
         </div>
