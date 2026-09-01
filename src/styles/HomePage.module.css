@@ -916,8 +916,8 @@
 }
 .treatmentChip {
   background: #FFFFFF;
-  border: none;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  border: 1px solid #E2E8F0;
+  box-shadow: none;
   border-radius: 10px;
   padding: 1.75rem 1.5rem;
   display: flex;
@@ -926,12 +926,13 @@
   gap: 1.25rem;
   text-align: left;
   cursor: pointer;
-  transition: box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 .treatmentChip:hover {
-  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
+  border-color: #0284C7;
+  box-shadow: none;
   background: #FFFFFF;
 }
 .treatmentArrow {

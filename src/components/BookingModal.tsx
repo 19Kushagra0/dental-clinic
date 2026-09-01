@@ -237,64 +237,8 @@ export default function BookingModal({
             </div>
 
             {!isSubmitted ? (
-              /* ─── Two-Column Split Layout ─── */
+              /* ─── Modal Form Layout ─── */
               <div className={styles.modalBody}>
-                {/* Left Column: Patient Summary & Transparency */}
-                <aside className={styles.sidebarPanel}>
-                  {/* Selected Procedure Highlight */}
-                  <div className={styles.summaryCard}>
-                    <div className={styles.summaryBadge}>Selected Treatment</div>
-                    <h3 className={styles.summaryTitle}>{currentProtocol.name}</h3>
-                    <p className={styles.summarySuite}>{currentProtocol.suite} · {currentProtocol.duration}</p>
-                  </div>
-
-                  {/* Specialist Banner (if chosen) */}
-                  {selectedDoctor && (
-                    <div className={styles.doctorBanner}>
-                      <div className={styles.doctorAvatar}>
-                        <DoctorIcon size={16} />
-                      </div>
-                      <div>
-                        <div className={styles.doctorName}>{selectedDoctor}</div>
-                        <div className={styles.doctorRole}>Attending Specialist</div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Transparent Fee Schedule */}
-                  <div className={styles.feeCard}>
-                    <div className={styles.feeTitle}>Fee Breakdown</div>
-                    <div className={styles.feeList}>
-                      <div className={styles.feeItem}>
-                        <span>3D Optical Digital Scan</span>
-                        <span className={styles.feeVal}>₹500</span>
-                      </div>
-                      <div className={styles.feeItem}>
-                        <span>AI Smile Design Simulation</span>
-                        <span className={styles.feeIncluded}>Included</span>
-                      </div>
-                      <div className={styles.feeItem}>
-                        <span>Doctor Consultation & Plan</span>
-                        <span className={styles.feeIncluded}>Included</span>
-                      </div>
-                      <div className={styles.feeTotal}>
-                        <span>Payable at clinic</span>
-                        <span className={styles.feePrice}>₹500</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Location & Zero Advance Guarantee */}
-                  <div className={styles.locationBlock}>
-                    <div className={styles.locationLine}>
-                      <LocationPinIcon size={14} />
-                      <span>Road No. 12, Banjara Hills</span>
-                    </div>
-                    <p className={styles.guaranteeText}>
-                      ✓ No advance payment required · Pay at front desk after consultation
-                    </p>
-                  </div>
-                </aside>
 
                 {/* Right Column: Streamlined Selection & Booking Form */}
                 <main className={styles.formPanel}>

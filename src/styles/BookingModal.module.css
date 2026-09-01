@@ -1,13 +1,13 @@
 /* ─── SmileCraft Bespoke Studio Booking Modal (CSS Module) ─── */
 
-/* Sleek Dark Scrollbars */
+/* Clean Complementary Scrollbars */
 .modalBody,
 .formPanel,
 .sidebarPanel,
 .window,
 .overlay {
   scrollbar-width: thin;
-  scrollbar-color: #1E293B #080D18;
+  scrollbar-color: #CBD5E1 transparent;
 }
 
 .modalBody::-webkit-scrollbar,
@@ -15,8 +15,8 @@
 .sidebarPanel::-webkit-scrollbar,
 .window::-webkit-scrollbar,
 .overlay::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 .modalBody::-webkit-scrollbar-track,
@@ -24,7 +24,7 @@
 .sidebarPanel::-webkit-scrollbar-track,
 .window::-webkit-scrollbar-track,
 .overlay::-webkit-scrollbar-track {
-  background: #080D18;
+  background: transparent;
 }
 
 .modalBody::-webkit-scrollbar-thumb,
@@ -32,8 +32,8 @@
 .sidebarPanel::-webkit-scrollbar-thumb,
 .window::-webkit-scrollbar-thumb,
 .overlay::-webkit-scrollbar-thumb {
-  background: #1E293B;
-  border-radius: 4px;
+  background: #CBD5E1;
+  border-radius: 999px;
 }
 
 .modalBody::-webkit-scrollbar-thumb:hover,
@@ -41,7 +41,7 @@
 .sidebarPanel::-webkit-scrollbar-thumb:hover,
 .window::-webkit-scrollbar-thumb:hover,
 .overlay::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #94A3B8;
 }
 
 .overlay {
@@ -72,7 +72,9 @@
   height: 100vh;
   height: 100dvh;
   z-index: 1;
-  background: #090D16;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   animation: modalFadeIn 0.2s ease forwards;
 }
 
@@ -80,13 +82,13 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: 980px;
-  height: min(780px, calc(100vh - 4rem));
-  height: min(780px, calc(100dvh - 4rem));
+  max-width: 680px;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
   background: #FFFFFF;
-  border: 1px solid #1E293B;
-  border-radius: 12px;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   color: #0F172A;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
@@ -95,14 +97,14 @@
   animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Modal Top Header (Dark Blue) */
+/* Modal Top Header */
 .modalHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 1.6rem;
-  background: #090E1A;
-  border-bottom: 1px solid #1E293B;
+  padding: 1.25rem 1.75rem;
+  background: #FFFFFF;
+  border-bottom: 1px solid #F1F5F9;
   flex-shrink: 0;
 }
 
@@ -114,27 +116,27 @@
 
 .headerTitle {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', system-ui, sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: #FFFFFF;
-  line-height: 1.2;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0F172A;
+  line-height: 1.25;
   margin: 0;
 }
 
 .headerSub {
   font-size: 0.8rem;
-  color: #94A3B8;
+  color: #64748B;
   margin: 3px 0 0 0;
   font-weight: 400;
   letter-spacing: 0;
 }
 
 .headerClose {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  color: #94A3B8;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  color: #64748B;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -145,15 +147,15 @@
 }
 
 .headerClose:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.3);
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #CBD5E1;
 }
 
-/* Body Split Grid */
+/* Body Container */
 .modalBody {
-  display: grid;
-  grid-template-columns: 310px 1fr;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
   flex: 1;
   overflow: hidden;
@@ -176,7 +178,7 @@
 
 .summaryCard {
   background: #111A2C;
-  border: 1px solid #1E3A5F;
+  border: none;
   border-radius: 8px;
   padding: 1.1rem;
 }
@@ -218,7 +220,7 @@
 /* Doctor Banner */
 .doctorBanner {
   background: #111A2C;
-  border: 1px solid #1E293B;
+  border: none;
   border-radius: 8px;
   padding: 0.75rem 0.85rem;
   display: flex;
@@ -256,7 +258,7 @@
 /* Fee Summary */
 .feeCard {
   background: #111A2C;
-  border: 1px solid #1E293B;
+  border: none;
   border-radius: 8px;
   padding: 1rem 1.1rem;
 }
@@ -951,7 +953,8 @@
     position: sticky;
     top: 0;
     z-index: 40;
-    background: #090E1A;
+    background: #FFFFFF;
+    border-bottom: 1px solid #F1F5F9;
     border-radius: 0;
     flex-shrink: 0;
   }
