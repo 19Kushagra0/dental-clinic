@@ -562,7 +562,7 @@ export default function HomePage() {
               Experience Dental Care Powered by Technology.
             </h2>
             <p className={styles.ctaSub}>
-              Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
+              Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan in one 45 minute appointment.
             </p>
 
             <div className={styles.ctaActions}>

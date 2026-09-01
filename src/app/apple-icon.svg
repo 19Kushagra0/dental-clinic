@@ -1,6 +1,45 @@
-<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M20 30 L50 15 L80 30 L80 60 L65 90 L50 75 L35 90 L20 60 Z" fill="#ffffff" stroke="#0284C7" stroke-width="8" stroke-linejoin="round"/>
-  <path d="M50 15 L50 75" stroke="#0284C7" stroke-width="8" stroke-opacity="0.3" stroke-linecap="round"/>
-  <path d="M20 30 L80 30" stroke="#0284C7" stroke-width="8" stroke-opacity="0.3" stroke-linecap="round"/>
-  <circle cx="50" cy="45" r="8" fill="#0284C7" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- Comic Style Tooth Body (Transparent Background) -->
+  <path
+    d="M9 3C5.5 3 3 5.8 3 10C3 14.5 5 18.5 7.5 23L9.8 27.5C10.5 28.8 11.8 29.2 13 28.2L14.5 26.8C15.3 26 16.7 26 17.5 26.8L19 28.2C20.2 29.2 21.5 28.8 22.2 27.5L24.5 23C27 18.5 29 14.5 29 10C29 5.8 26.5 3 23 3C20.2 3 18.2 5 16 5C13.8 5 11.8 3 9 3Z"
+    fill="#FFFFFF"
+    stroke="#0F172A"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Soft Cel-Shading on Bottom/Roots -->
+  <path
+    d="M7.5 23L9.8 27.5C10.5 28.8 11.8 29.2 13 28.2L14.5 26.8C15.3 26 16.7 26 17.5 26.8L19 28.2C20.2 29.2 21.5 28.8 22.2 27.5L24.5 23C26 19.5 27.5 16.5 28 13.5C26.5 18.5 24 22 22 24.5L20 26C19.2 26.6 18.2 26.4 17.5 25.6L16.2 24.2C15.3 23.2 14 23.2 13.2 24.2L11.8 25.6C11.2 26.4 10.2 26.6 9.5 26L7.5 24.5C5.5 22 3.5 18.5 2 13.5C2.5 16.5 4 19.5 7.5 23Z"
+    fill="#E0F2FE"
+  />
+
+  <!-- Rosy Blush Cheeks -->
+  <ellipse cx="7.5" cy="15" rx="2" ry="1.2" fill="#FB7185" />
+  <ellipse cx="24.5" cy="15" rx="2" ry="1.2" fill="#FB7185" />
+
+  <!-- Cute Big Cartoon Eyes -->
+  <ellipse cx="11.5" cy="12.5" rx="1.8" ry="2.4" fill="#0F172A" />
+  <ellipse cx="20.5" cy="12.5" rx="1.8" ry="2.4" fill="#0F172A" />
+  <!-- Eye Sparkle Highlights -->
+  <circle cx="12.2" cy="11.5" r="0.8" fill="#FFFFFF" />
+  <circle cx="21.2" cy="11.5" r="0.8" fill="#FFFFFF" />
+
+  <!-- Happy Comic Smile -->
+  <path
+    d="M12.5 15.5C13.5 18.8 18.5 18.8 19.5 15.5"
+    stroke="#0F172A"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  />
+
+  <!-- Comic Sparkle Star -->
+  <path
+    d="M26 1L27 4L30 5L27 6L26 9L25 6L22 5L25 4Z"
+    fill="#FACC15"
+    stroke="#0F172A"
+    stroke-width="0.8"
+    stroke-linejoin="round"
+  />
+  <circle cx="26" cy="5" r="0.8" fill="#FFFFFF" />
 </svg>
