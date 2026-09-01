@@ -72,7 +72,9 @@
   height: 100vh;
   height: 100dvh;
   z-index: 1;
-  background: #090D16;
+  background: rgba(9, 13, 22, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   animation: modalFadeIn 0.2s ease forwards;
 }
 
