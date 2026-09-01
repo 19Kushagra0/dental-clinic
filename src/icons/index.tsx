@@ -208,7 +208,6 @@ export const StarRating: React.FC<{ count?: number; size?: number; className?: s
   </div>
 );
 
-/* ─── SmileCraft Digital Studio Brand Logo Icon (Illustrated Badge) ─── */
 export const SmileCraftLogoIcon: React.FC<IconProps> = ({
   size = 32,
   className,
@@ -217,45 +216,27 @@ export const SmileCraftLogoIcon: React.FC<IconProps> = ({
   <svg
     width={size}
     height={size}
-    viewBox="0 0 32 32"
+    viewBox="0 0 100 100"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={className}
     {...props}
   >
-    {/* Outer Badge Rim */}
-    <circle cx="16" cy="16" r="14.5" fill="#38BDF8" stroke="#0F172A" strokeWidth="2" />
-    
-    {/* Lower Inner Depth Crescent */}
-    <path
-      d="M4.5 20C7 25.5 11.2 28.5 16 28.5C20.8 28.5 25 25.5 27.5 20C24.5 24 19.5 26 16 26C12.5 26 7.5 24 4.5 20Z"
-      fill="#0284C7"
-    />
-    
-    {/* Clean White Stylized Tooth with dark outline */}
-    <path
-      d="M10.2 7.5C8 7.5 6.5 9.5 6.5 12.8C6.5 16.2 8.2 19.2 10 22L11.8 24.8C12.3 25.5 13.2 25.7 13.8 25.2L14.6 24.6C15 24.3 15.6 24.3 16 24.6L16.8 25.2C17.4 25.7 18.3 25.5 18.8 24.8L20.6 22C22.4 19.2 24.1 16.2 24.1 12.8C24.1 9.5 22.6 7.5 20.4 7.5C18.8 7.5 17.5 8.6 15.3 8.7C13.1 8.6 11.8 7.5 10.2 7.5Z"
-      fill="#FFFFFF"
-      stroke="#0F172A"
-      strokeWidth="1.6"
-      strokeLinejoin="round"
-    />
-    
-    {/* Subtle Inner Ice-Blue Tooth Shading */}
-    <path
-      d="M10.2 9C9 9 8 10.2 8 12.5C8 14.5 9 17 10 19L11.5 21C11.5 21 9.8 17.5 9.8 13C9.8 10.8 10.5 9.5 10.2 9Z"
-      fill="#E0F2FE"
-    />
+    <path d="M20 30 L50 15 L80 30 L80 60 L65 90 L50 75 L35 90 L20 60 Z" fill="#ffffff" stroke="#0284C7" strokeWidth="4" strokeLinejoin="round"/>
+    <path d="M50 15 L50 75" stroke="#0284C7" strokeWidth="4" strokeOpacity="0.3" strokeLinecap="round"/>
+    <path d="M20 30 L80 30" stroke="#0284C7" strokeWidth="4" strokeOpacity="0.3" strokeLinecap="round"/>
+    <circle cx="50" cy="45" r="5" fill="#0284C7" />
+  </svg>
+);
 
-    {/* Precision Smile Arc */}
-    <path
-      d="M11 14.5C12.5 17.5 18.1 17.5 19.6 14.5"
-      stroke="#0284C7"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-    />
+export const ChevronUpIcon: React.FC<IconProps> = ({ size = 20, color = "currentColor", className, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M18 15l-6-6-6 6" />
+  </svg>
+);
 
-    {/* Warm Gold Precision Alignment Dot */}
-    <circle cx="15.3" cy="11.5" r="1.5" fill="#FBBF24" stroke="#0F172A" strokeWidth="0.8" />
+export const ChevronDownIcon: React.FC<IconProps> = ({ size = 20, color = "currentColor", className, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M6 9l6 6 6-6" />
   </svg>
 );

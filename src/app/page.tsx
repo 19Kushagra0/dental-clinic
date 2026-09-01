@@ -13,9 +13,11 @@ import {
 import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
 import BookingModalPortal from "@/components/BookingModalPortal";
 import TechShowcaseIsland from "@/components/TechShowcaseIsland";
 import SmileSimulatorIsland from "@/components/SmileSimulatorIsland";
+import ScrollNavButton from "@/components/ScrollNavButton";
 
 const TechShowcase = dynamic(() => import("@/components/TechShowcase"), {
   ssr: true,
@@ -64,6 +66,7 @@ const doctors = [
   {
     name: "Dr. Priya Sharma",
     initials: "PS",
+    image: "/doctors/dr-priya-sharma.jpg",
     role: "Lead Implantologist & Prosthodontist",
     degrees: "BDS, MDS (Prosthodontics) · 14 Yrs Practice",
     cert: "Certified Digital Implantologist (ICOI Fellow, USA)",
@@ -73,6 +76,7 @@ const doctors = [
   {
     name: "Dr. Arjun Mehta",
     initials: "AM",
+    image: "/doctors/dr-arjun-mehta.jpg",
     role: "Digital Orthodontics Specialist",
     degrees: "BDS, MDS (Orthodontics) · 10 Yrs Practice",
     cert: "Invisalign® Diamond Certified Provider & 3D Aligner Specialist",
@@ -82,11 +86,12 @@ const doctors = [
   {
     name: "Dr. Kavya Reddy",
     initials: "KR",
+    image: "/doctors/dr-kavya-reddy.jpg",
     role: "Micro-Endodontics & Restorative Specialist",
     degrees: "BDS, MDS (Endodontics) · 8 Yrs Practice",
     cert: "Microscopic Endodontics Specialist (Zeiss 20x Optics)",
     defaultTreatment: "Same-Day CEREC CAD/CAM Crown Assessment",
-    color: "#38BDF8",
+    color: "#0284C7",
   },
 ];
 
@@ -94,6 +99,7 @@ const testimonials = [
   {
     name: "Rohit Agarwal",
     initials: "RA",
+    avatarImage: "/patients/rohit-agarwal.jpg",
     role: "Business Executive, Jubilee Hills",
     rating: 5,
     text: "The 3D scan was genuinely futuristic — no gagging, no impression trays. My crown was ready the same day. I couldn't believe it was dentistry.",
@@ -102,6 +108,7 @@ const testimonials = [
   {
     name: "Sneha Pillai",
     initials: "SP",
+    avatarImage: "/patients/sneha-pillai.jpg",
     role: "Surgeon, Apollo Hospital",
     rating: 5,
     text: "As a doctor myself, I was skeptical. The CBCT imaging and surgical guide precision for my implant was exceptional. Zero pain, zero swelling. Reference-standard work.",
@@ -110,6 +117,7 @@ const testimonials = [
   {
     name: "Vikram Narayan",
     initials: "VN",
+    avatarImage: "/patients/vikram-narayan.jpg",
     role: "Tech Founder, Hitech City",
     rating: 5,
     text: "Got the Invisalign 3D outcome preview before committing — saw exactly what my smile would look like after 8 months. The tech sold itself. 10/10 experience.",
@@ -118,12 +126,42 @@ const testimonials = [
 ];
 
 const certBadges = [
-  { label: "IDA Member" },
-  { label: "ICOI Fellow" },
-  { label: "ISO 9001 Certified" },
-  { label: "Planmeca® Authorized" },
-  { label: "Invisalign® Diamond" },
-  { label: "BIS Sterilization" },
+  {
+    id: "ida",
+    label: "IDA Member",
+    accent: "blue",
+    icon: "tooth",
+  },
+  {
+    id: "icoi",
+    label: "ICOI Fellow",
+    accent: "gold",
+    icon: "caduceus",
+  },
+  {
+    id: "iso",
+    label: "ISO 9001:2015",
+    accent: "emerald",
+    icon: "quality",
+  },
+  {
+    id: "planmeca",
+    label: "Planmeca 3D Studio",
+    accent: "cyan",
+    icon: "scanner",
+  },
+  {
+    id: "invisalign",
+    label: "Invisalign Diamond",
+    accent: "sky",
+    icon: "aligner",
+  },
+  {
+    id: "bis",
+    label: "BIS Class-B",
+    accent: "rose",
+    icon: "sterile",
+  },
 ];
 
 /* ─── Server-Rendered Landing Page (Zero JS Hydration Overhead) ─── */
@@ -132,79 +170,121 @@ export default function HomePage() {
     <div className={styles.container}>
       <Header />
 
-      {/* ─── Hero Section ─── */}
-      <section className={styles.hero} aria-label="Digital Dental Technology Hero">
-        <div className={styles.heroBg}>
-          <Image
-            src="/dental-scanner-3d.jpg"
-            alt="Doctor performing 3D intraoral digital optical scan at SmileCraft Dental Studio Banjara Hills"
-            fill
-            priority
-            fetchPriority="high"
-            quality={65}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-            style={{ objectFit: "cover", objectPosition: "center" }}
-          />
-        </div>
-        <div className={styles.heroOverlay} />
+      {/* ─── Hero Section Component ─── */}
+      <HeroSection />
 
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>
-            Digital Precision.
-            <br />
-            <span className={styles.heroTitleCyan}>Measurable</span>
-            <br />
-            Outcomes.
-          </h1>
-
-          <p className={styles.heroLead}>
-            Rejecting obsolete guesswork and messy impression trays. Experience sub-micron 3D oral scanning,
-            same-day CAD/CAM ceramic crowns, and computer-guided keyhole implant surgery in Banjara Hills.
-          </p>
-
-          <div className={styles.heroActions}>
-            <button
-              type="button"
-              data-book-trigger="true"
-              className={styles.btnPrimary}
-            >
-              Book 3D Optical Scan
-            </button>
-            <a href="tel:+914023456789" className={styles.btnSecondary}>
-              <PhoneIcon size={14} style={{ marginRight: "6px", verticalAlign: "middle" }} />
-              Clinical Desk: +91 40 2345 6789
-            </a>
-          </div>
-        </div>
-
-        {/* Telemetry HUD Data Strip */}
-        <div className={styles.telemetryStrip}>
-          <div className={styles.telemetryInner}>
-            {[
-              { val: "< 20 µm", lbl: "3D Optical Scan Accuracy" },
-              { val: "60 Mins", lbl: "Same-Day CEREC® Crowns" },
-              { val: "90% Less", lbl: "Low-Dose CBCT Radiation" },
-              { val: "4.9 / 5.0 ★", lbl: "800+ Patient Reviews" },
-            ].map((item, i) => (
-              <div key={i} className={styles.telemetryItem}>
-                <div className={styles.telemetryData}>
-                  <span className={styles.telemetryVal}>{item.val}</span>
-                  <span className={styles.telemetryLbl}>{item.lbl}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Certification Badge Strip ─── */}
+      {/* ─── Certification Badge Strip (Exact 1:1 Match to Concept 6) ─── */}
       <div className={styles.certStrip}>
         <div className={styles.certInner}>
-          {certBadges.map((b) => (
-            <div key={b.label} className={styles.certBadge}>
-              <span>{b.label}</span>
+
+          {/* 6 Vertical Accreditations Columns with Hairline Dividers */}
+          <div className={styles.certGrid}>
+            {/* 1. IDA Member */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentBlue}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <path
+                    d="M16 9C11 9 8 13.5 8 20.5C8 28 12 34 16 39L19.5 43.5C20.5 44.8 22.5 45 23.5 43.8L24 43.2L24.5 43.8C25.5 45 27.5 44.8 28.5 43.5L32 39C36 34 40 28 40 20.5C40 13.5 37 9 32 9C28.5 9 26 11.5 24 11.5C22 11.5 19.5 9 16 9Z"
+                    stroke="#1E293B"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path d="M18 16C21 18 27 18 30 16" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>IDA Member</span>
             </div>
-          ))}
+
+            {/* 2. ICOI Fellow */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentGold}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <line x1="24" y1="8" x2="24" y2="43" stroke="#1E293B" strokeWidth="2.8" strokeLinecap="round" />
+                  <circle cx="24" cy="7" r="2.8" fill="#1E293B" />
+                  <path d="M24 13C17 11 11 15 9 19C14 18 19 19 24 21" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M24 13C31 11 37 15 39 19C34 18 29 19 24 21" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M16 23C13 26 16 31 24 31C32 31 35 26 32 23C29 20 19 20 16 23Z" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M18 35C15 37 17 41 24 41C31 41 33 37 30 35" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>ICOI Fellow</span>
+            </div>
+
+            {/* 3. ISO 9001:2015 */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentGreen}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <path
+                    d="M24 6L27.2 8.3L31.1 7.7L33.3 11L37.2 11.8L38 15.7L41.1 18.1L40.4 22L42.2 25.5L40 28.7L40.4 32.7L37 34.6L35.8 38.4L32 38.9L29.5 41.9L26 40.8L24 43L22 40.8L18.5 41.9L16 38.9L12.2 38.4L11 34.6L7.6 32.7L8 28.7L5.8 25.5L7.6 22L6.9 18.1L10 15.7L10.8 11.8L14.7 11L16.9 7.7L20.8 8.3L24 6Z"
+                    stroke="#1E293B"
+                    strokeWidth="2.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <polyline points="19 24 22.5 27.5 29 20.5" stroke="#1E293B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M17 38L14 44L20 41.5L24 44" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M31 38L34 44L28 41.5L24 44" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>ISO 9001:2015</span>
+            </div>
+
+            {/* 4. Planmeca 3D Studio */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentCyan}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <path d="M13 41H35" stroke="#1E293B" strokeWidth="2.8" strokeLinecap="round" />
+                  <path d="M13 41V12C13 9.8 14.8 8 17 8H31C33.2 8 35 9.8 35 12V41" stroke="#1E293B" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M18 16H30V26C30 29.3 27.3 32 24 32C20.7 32 18 29.3 18 26V16Z" stroke="#1E293B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <rect x="21" y="22" width="6" height="12" rx="1.5" stroke="#1E293B" strokeWidth="2.4" />
+                  <line x1="24" y1="34" x2="24" y2="41" stroke="#1E293B" strokeWidth="2.8" />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>Planmeca 3D Studio</span>
+            </div>
+
+            {/* 5. Invisalign Diamond */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentSky}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <path
+                    d="M10 24C10 19 13 14 18 12C20.5 15 23.5 15 24 15C24.5 15 27.5 15 30 12C35 14 38 19 38 24C38 31 34 37 29 40C27 36 21 36 19 40C14 37 10 31 10 24Z"
+                    stroke="#1E293B"
+                    strokeWidth="2.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path d="M14 22C16 26 20 28 24 28C28 28 32 26 34 22" stroke="#1E293B" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M37 6L38.2 9.8L42 11L38.2 12.2L37 16L35.8 12.2L32 11L35.8 9.8L37 6Z" fill="#1E293B" />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>Invisalign Diamond</span>
+            </div>
+
+            {/* 6. BIS Class-B */}
+            <div className={styles.certBadge}>
+              <div className={styles.iconContainer}>
+                <span className={`${styles.accentCircle} ${styles.accentRose}`} />
+                <svg width="46" height="46" viewBox="0 0 48 48" fill="none" className={styles.iconSvg}>
+                  <circle cx="24" cy="24" r="16.5" stroke="#1E293B" strokeWidth="2.8" />
+                  <path
+                    d="M21.5 14H26.5V21.5H34V26.5H26.5V34H21.5V26.5H14V21.5H21.5V14Z"
+                    fill="#1E293B"
+                    stroke="#1E293B"
+                    strokeWidth="1.2"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className={styles.certMainLabel}>BIS Class-B</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -212,6 +292,7 @@ export default function HomePage() {
       <section id="technology" className={styles.techSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
+            <div className={styles.kickerBadge}><span>3D DENTAL INNOVATION</span></div>
             <h2 className={styles.sectionTitle}>
               Engineered for Precision. Built for Comfort.
             </h2>
@@ -224,6 +305,7 @@ export default function HomePage() {
       <section id="simulation" className={styles.smileSimSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
+            <div className={styles.kickerBadge}><span>DIGITAL SMILE PREVIEW</span></div>
             <h2 className={styles.sectionTitle}>
               Interactive 3D Smile Design Simulator
             </h2>
@@ -261,6 +343,12 @@ export default function HomePage() {
                   <span className={styles.treatmentLabel}>{t.label}</span>
                   <span className={styles.treatmentSub}>{t.sub}</span>
                 </div>
+                <div className={styles.treatmentArrow}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </div>
               </button>
             ))}
           </div>
@@ -271,6 +359,7 @@ export default function HomePage() {
       <section id="comparison" className={styles.compareSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
+            <div className={styles.kickerBadge}><span>THE DIGITAL DIFFERENCE</span></div>
             <h2 className={styles.sectionTitle}>
               The Conventional Clinic vs. SmileCraft Digital
             </h2>
@@ -284,7 +373,7 @@ export default function HomePage() {
             <table className={styles.compareTable}>
               <thead>
                 <tr>
-                  <th style={{ width: "22%", background: "#0b0f19", color: "#9ca3af" }}>Procedure Phase</th>
+                  <th className={styles.thFeature}>Procedure Phase</th>
                   <th className={styles.thLegacy}>
                     <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
                   </th>
@@ -353,7 +442,6 @@ export default function HomePage() {
               >
                 <div className="flex flex-row items-center justify-between gap-3 w-full">
                   <div className="flex items-center gap-2.5">
-                    <span className={styles.workflowStatusDot} />
                     <h3 className={styles.workflowTitle}>{step.title}</h3>
                   </div>
                   <span className={styles.workflowNumBadge}>{step.num}</span>
@@ -369,6 +457,7 @@ export default function HomePage() {
       <section className={styles.testiSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
+            <div className={styles.kickerBadge}><span>PATIENT OUTCOMES</span></div>
             <h2 className={styles.sectionTitle}>
               800+ Verified Patients. Zero Guesswork.
             </h2>
@@ -383,7 +472,19 @@ export default function HomePage() {
                 <StarRating count={t.rating} size={15} />
                 <blockquote className={styles.testiQuote}>&ldquo;{t.text}&rdquo;</blockquote>
                 <div className={styles.testiFooter}>
-                  <div className={styles.testiAvatar}>{t.initials}</div>
+                  <div className={styles.testiAvatar}>
+                    {t.avatarImage ? (
+                      <Image
+                        src={t.avatarImage}
+                        alt={t.name}
+                        width={44}
+                        height={44}
+                        style={{ borderRadius: "50%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      t.initials
+                    )}
+                  </div>
                   <div>
                     <div className={styles.testiName}>{t.name}</div>
                     <div className={styles.testiRole}>{t.role}</div>
@@ -400,6 +501,7 @@ export default function HomePage() {
       <section id="specialists" className={styles.doctorsSection}>
         <div className={styles.sectionContainer}>
           <div className={styles.sectionHeader}>
+            <div className={styles.kickerBadge}><span>CLINICAL SURGEONS</span></div>
             <h2 className={styles.sectionTitle}>
               Digital Dental Surgeons &amp; Specialists
             </h2>
@@ -413,7 +515,17 @@ export default function HomePage() {
               >
                 <div className={styles.docHeaderRow}>
                   <div className={styles.docAvatar} style={{ "--avatar-color": doc.color } as React.CSSProperties}>
-                    <span>{doc.initials}</span>
+                    {doc.image ? (
+                      <Image
+                        src={doc.image}
+                        alt={doc.name}
+                        width={60}
+                        height={60}
+                        style={{ borderRadius: "50%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <span>{doc.initials}</span>
+                    )}
                   </div>
                   <div className={styles.docDetails}>
                     <h3 className={styles.docName}>{doc.name}</h3>
@@ -439,37 +551,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── CTA Section ─── */}
+      {/* ─── CTA & Studio Location Section ─── */}
       <section id="book" className={styles.ctaSection}>
         <div className={styles.ctaInner}>
           <div className={styles.ctaLeft}>
+            <div className={styles.ctaOfferBadge}>
+              <TargetIcon size={14} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
+            </div>
             <h2 className={styles.ctaH2}>
               Experience Dental Care Powered by Technology.
             </h2>
-            <div className={styles.ctaOfferBadge}>
-              <TargetIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> First 3D Oral Scan Consultation — ₹500 Only
-            </div>
             <p className={styles.ctaSub}>
               Get a complete digital diagnostic: 3D oral scan, AI bite analysis, and a personalised treatment plan — in one 45-minute appointment.
             </p>
-          </div>
 
-          <div className={styles.ctaRight}>
-            <div className={styles.ctaAddressCard}>
-              <div className={styles.ctaAddressTitle}>
-                <LocationPinIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> Find Us
-              </div>
-              <div className={styles.ctaAddressLine}>Road No. 12, Banjara Hills</div>
-              <div className={styles.ctaAddressLine}>Hyderabad — 500 034, Telangana</div>
-              <div className={styles.ctaAddressHours}>Mon–Sat: 9:00 AM – 8:00 PM</div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div className={styles.ctaActions}>
               <button
                 type="button"
                 data-book-trigger="true"
-                className={styles.btnPrimary}
-                style={{ padding: "1.1rem 2.5rem", background: "#0b0f19", color: "#fff" }}
+                className={styles.ctaBtnPrimary}
               >
                 Book 3D Oral Scan Online
               </button>
@@ -477,11 +577,55 @@ export default function HomePage() {
                 href="https://wa.me/919876543210?text=Hi%20SmileCraft,%20I%20would%20like%20to%20book%20a%203D%20Digital%20Dental%20Scan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.btnWhatsapp}
-                style={{ textAlign: "center", padding: "1.1rem 2.5rem" }}
+                className={styles.ctaBtnWhatsapp}
               >
-                <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp +91 98765 43210
+                <WhatsAppIcon size={18} style={{ display: "inline", verticalAlign: "middle", marginRight: "8px" }} /> WhatsApp Booking
               </a>
+            </div>
+
+            <div className={styles.ctaStudioMeta}>
+              <div className={styles.ctaMetaRow}>
+                <LocationPinIcon size={16} className={styles.ctaMetaIcon} />
+                <span>Road No. 12, Banjara Hills, Hyderabad 500034</span>
+              </div>
+              <div className={styles.ctaMetaRow}>
+                <span>Mon–Sat: 9:00 AM – 8:00 PM · Sunday by Appointment</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.ctaRight}>
+            <div className={styles.studioMapCard}>
+              <div className={styles.mapCardHeader}>
+                <div className={styles.mapCardHeaderLeft}>
+                  <span className={styles.mapStudioTitle}>SmileCraft Banjara Hills</span>
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Road+No.+12,+Banjara+Hills,+Hyderabad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mapExternalLink}
+                >
+                  Open in Maps ↗
+                </a>
+              </div>
+
+              <div className={styles.mapFrameWrapper}>
+                <iframe
+                  src="https://maps.google.com/maps?q=Banjara%20Hills%20Road%20No.%2012,%20Hyderabad&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                  className={styles.studioMapIframe}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="SmileCraft Dental Clinic Banjara Hills Map"
+                />
+              </div>
+
+              <div className={styles.mapCardFooter}>
+                <span className={styles.mapFeaturePill}>Valet Parking</span>
+                <span className={styles.mapFeaturePill}>Lift Access</span>
+                <span className={styles.mapFeaturePill}>Accessible</span>
+              </div>
             </div>
           </div>
         </div>
@@ -491,6 +635,7 @@ export default function HomePage() {
 
       {/* Zero-overhead Event-Driven Booking Portal */}
       <BookingModalPortal />
+      <ScrollNavButton />
     </div>
   );
 }

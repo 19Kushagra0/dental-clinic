@@ -61,8 +61,8 @@
 }
 
 @keyframes modalPopIn {
-  from { opacity: 0; transform: scale(0.97) translateY(8px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .backdrop {
@@ -72,9 +72,7 @@
   height: 100vh;
   height: 100dvh;
   z-index: 1;
-  background: rgba(9, 13, 22, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #090D16;
   animation: modalFadeIn 0.2s ease forwards;
 }
 
@@ -186,7 +184,7 @@
 .summaryBadge {
   font-size: 0.72rem;
   font-weight: 600;
-  color: #38BDF8;
+  color: #0284C7;
   margin-bottom: 0.4rem;
   letter-spacing: 0.01em;
 }
@@ -250,7 +248,7 @@
 
 .doctorRole {
   font-size: 0.72rem;
-  color: #38BDF8;
+  color: #0284C7;
   font-weight: 400;
   margin-top: 1px;
 }
@@ -310,7 +308,7 @@
 }
 
 .feePrice {
-  color: #38BDF8;
+  color: #0284C7;
   font-size: 1.15rem;
   font-weight: 700;
 }
@@ -378,7 +376,7 @@
 }
 
 .treatmentBtn {
-  background: #F8FAFC;
+  background: transparent;
   border: 1px solid #E2E8F0;
   border-radius: 8px;
   padding: 0.75rem 0.85rem;
@@ -664,14 +662,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
 }
 
 .submitBtn:hover:not(:disabled) {
   background: #0369A1;
   border-color: #0369A1;
-  transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
 }
 

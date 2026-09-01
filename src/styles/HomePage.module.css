@@ -12,11 +12,9 @@
 @keyframes fadeInUpAnim {
   from {
     opacity: 0;
-    transform: translateY(18px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -48,8 +46,8 @@
 
 /* ─── Telemetry Entrance ─── */
 @keyframes countIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .animateVal {
   animation: countIn 0.5s ease forwards;
@@ -90,7 +88,7 @@
   text-decoration: none;
   cursor: pointer;
   border-radius: 6px;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: background 0.2s ease;
   border: 1px solid rgba(255, 255, 255, 0.15);
   display: inline-flex;
   align-items: center;
@@ -99,8 +97,7 @@
   box-shadow: none;
 }
 .btnPrimary:hover {
-  background: #075985;
-  transform: translateY(-1px);
+  background: #0369A1;
   box-shadow: none;
 }
 .btnSecondary {
@@ -108,8 +105,10 @@
   font-size: 0.92rem;
   letter-spacing: 0.01em;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--d02-border-accent);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
   text-decoration: none;
@@ -119,11 +118,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 .btnSecondary:hover {
-  background: rgba(147, 197, 253, 0.08);
-  border-color: rgba(147, 197, 253, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
 }
 
 /* ─── WhatsApp Brand Button ─── */
@@ -139,7 +140,7 @@
   border-radius: 6px;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +151,6 @@
   background: #20BA5A !important;
   border-color: #1DA851 !important;
   color: #FFFFFF !important;
-  transform: translateY(-1px);
   box-shadow: none !important;
 }
 
@@ -215,21 +215,21 @@
   font-size: clamp(3.2rem, 5.5vw, 5.4rem);
   font-weight: 800;
   line-height: 0.98;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.025em;
   color: #ffffff;
   margin-bottom: 1.5rem;
   max-width: 800px;
 }
 .heroTitleCyan {
-  color: #93C5FD;
+  color: #0284C7;
 }
 .heroLead {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+  color: #CBD5E1;
   margin-bottom: 2.25rem;
-  max-width: 620px;
+  max-width: 640px;
 }
 .heroActions {
   display: flex;
@@ -237,14 +237,16 @@
   flex-wrap: wrap;
 }
 
-/* ─── Hero Telemetry HUD Strip ─── */
+/* ─── Telemetry HUD Strip ─── */
 .telemetryStrip {
   position: relative;
   width: 100%;
+  margin-top: 74px;
   background: #FFFFFF;
   padding: 1.25rem 2rem;
   z-index: 3;
-  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #E2E8F0;
 }
 .telemetryInner {
   max-width: 1100px;
@@ -293,41 +295,160 @@
   margin-top: 3px;
 }
 
-/* ─── Certification Badge Strip ─── */
+/* ─── Certification Badge Strip (Exact 1:1 Match to Concept 6) ─── */
 .certStrip {
-  background: #080C14;
-  border-bottom: 1px solid var(--d02-border);
-  padding: 1.1rem 2rem;
-  overflow: hidden;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  padding: 2.25rem 2rem;
+  position: relative;
+  z-index: 20;
 }
+
 .certInner {
   max-width: 1360px;
   margin: 0 auto;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 2.5rem;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
-.certBadge {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.6);
-  white-space: nowrap;
-  transition: color 0.2s;
-}
-.certBadge:hover {
-  color: #ffffff;
-}
-.badgeIcon {
+
+/* Left Status Chip: Blue Pill + Glowing Cyan Dot */
+.certStatusChip {
   display: inline-flex;
   align-items: center;
+  gap: 0.85rem;
+  background: #0284C7;
+  padding: 0.75rem 1.4rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.certPulseDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0284C7;
+  flex-shrink: 0;
+  animation: pulseDotAnim 2s infinite ease-in-out;
+}
+
+@keyframes pulseDotAnim {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.75;
+  }
+}
+
+.certStatusTextGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #FFFFFF;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* 6 Items Grid with Full-Height Hairline Dividers */
+.certGrid {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.certBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  color: #93C5FD;
+  gap: 0.95rem;
+  padding: 0 1.5rem;
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+
+/* Vertical Hairline Divider */
+.certBadge:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 5%;
+  height: 90%;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Icon Container with Offset Pastel Accent Circle */
+.iconContainer {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconSvg {
+  position: relative;
+  z-index: 2;
+}
+
+.accentCircle {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  z-index: 1;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Offset Pastel Circle Colors matching Concept 6 */
+.accentBlue {
+  background: #BFDBFE;
+}
+
+.accentGold {
+  background: #FDE68A;
+}
+
+.accentGreen {
+  background: #BBF7D0;
+}
+
+.accentCyan {
+  background: #BAE6FD;
+}
+
+.accentSky {
+  background: #E0F2FE;
+}
+
+.accentRose {
+  background: #FECDD3;
+}
+
+.certMainLabel {
+  font-family: var(--font-display, 'Outfit', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1E293B;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 /* ─── Shared Section Utility ─── */
@@ -373,7 +494,7 @@
   padding-bottom: 1.5rem;
 }
 .techTabBtn {
-  background: rgba(255, 255, 255, 0.04);
+  background: transparent;
   border: 1px solid var(--d02-border);
   color: rgba(255, 255, 255, 0.75);
   padding: 0.7rem 1.3rem;
@@ -399,13 +520,13 @@
 
 .techCardActive {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  border: 0.8px solid #CBD5E1;
   border-radius: 8px;
   padding: 2.75rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.3), 0 0 50px rgba(0, 0, 0, 0.15);
   color: #0F172A;
 }
 .techHeader {
@@ -442,19 +563,26 @@
 }
 .techBadge {
   display: inline-block;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #0F172A;
-  background: #F1F5F9;
-  border: 1px solid #CBD5E1;
-  border-radius: 6px;
-  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0284C7;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: transparent;
+  border: none;
+  padding: 0;
   width: fit-content;
 }
 .techBody {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
   gap: 2rem;
+  align-items: center;
+}
+.techBodyLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 .techP {
   font-size: 0.96rem;
@@ -463,10 +591,10 @@
   max-width: 60ch;
 }
 .benefitBox {
-  background: #FFFFFF;
-  border: 1px solid #BAE6FD;
+  background: transparent;
+  border: none;
   border-radius: 8px;
-  padding: 1.25rem;
+  padding: 1.25rem 0;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -477,6 +605,23 @@
   font-weight: 700;
   color: #0284C7;
   letter-spacing: 0.02em;
+}
+.techImageWrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #CBD5E1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+.techImg {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.techImageWrap:hover .techImg {
+  transform: scale(1.04);
 }
 .benefitDesc {
   font-size: 0.88rem;
@@ -557,7 +702,6 @@
   gap: 0.5rem;
 }
 .simPresetBtn {
-  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--d02-border);
   color: rgba(255, 255, 255, 0.75);
   font-family: var(--font-body);
@@ -734,15 +878,14 @@
   align-items: center;
   gap: 0.5rem;
   font-family: var(--font-body);
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: #0284C7;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: #F0F9FF;
-  border: 1px solid #BAE6FD;
-  padding: 0.35rem 0.85rem;
-  border-radius: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
   margin-bottom: 0.85rem;
   width: fit-content;
 }
@@ -772,25 +915,32 @@
   margin-top: 2.5rem;
 }
 .treatmentChip {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
+  background: #FFFFFF;
+  border: none;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  border-radius: 10px;
   padding: 1.75rem 1.5rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 1.25rem;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: box-shadow 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 .treatmentChip:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  border-color: #CBD5E1;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.06);
   background: #FFFFFF;
+}
+.treatmentArrow {
+  color: #0284C7;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.treatmentChip:hover .treatmentArrow {
+  opacity: 1;
 }
 .treatmentIconWrap {
   width: 44px;
@@ -814,7 +964,7 @@
   font-size: 1.05rem;
   font-weight: 700;
   color: #0F172A;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   display: block;
 }
 .treatmentSub {
@@ -836,58 +986,67 @@
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-radius: 8px;
-  border: 1px solid var(--d02-border);
-  background: var(--d02-card);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0F172A;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
 }
 .compareTable {
   width: 100%;
-  min-width: 660px;
+  min-width: 680px;
   border-collapse: collapse;
 }
 .compareTable th {
-  padding: 1.25rem 1.75rem;
+  padding: 1.5rem 2rem;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
   text-align: left;
-  border-bottom: 1px solid var(--d02-border);
+  background: #1E293B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+.thFeature {
+  color: #94A3B8;
+  width: 22%;
 }
 .thLegacy {
-  color: var(--d02-text-muted);
-  background: #0C1220;
+  color: #94A3B8;
   width: 39%;
 }
 .thSmilecraft {
-  color: var(--d02-cyan);
-  background: rgba(2, 132, 199, 0.1);
-  border-left: 2px solid var(--d02-blue);
+  color: #FFFFFF;
+  background: #0ea5e9 !important;
+  border-left: 2px solid #0284C7;
   width: 39%;
 }
 .compareTable td {
-  padding: 1.25rem 1.75rem;
-  border-bottom: 1px solid var(--d02-border);
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.92rem;
-  line-height: 1.6;
+  line-height: 1.65;
   vertical-align: top;
+}
+.compareTable tr:last-child td {
+  border-bottom: none;
 }
 .tdFeature {
   font-family: var(--font-body);
   font-weight: 700;
-  color: #fff;
+  color: #FFFFFF;
   font-size: 0.95rem;
   width: 22%;
+  background: #0F172A;
 }
 .tdLegacy {
-  color: rgba(255, 255, 255, 0.6);
-  background: #0C1220;
+  color: #CBD5E1;
+  background: #0F172A;
 }
 .tdSmilecraft {
-  color: #fff;
+  color: #FFFFFF;
   font-weight: 500;
-  background: rgba(2, 132, 199, 0.04);
-  border-left: 2px solid var(--d02-blue);
+  background: rgb(2, 132, 199);
+  border-left: 2px solid #0284C7;
 }
 
 /* Mobile Comparison Cards View */
@@ -917,15 +1076,16 @@
 }
 .workflowCard {
   background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 8px;
-  padding: 2.25rem 1.75rem;
+  border: none;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03), 0 0 0 1px rgba(15, 23, 42, 0.04);
+  border-radius: 12px;
+  padding: 2.25rem 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
   z-index: 1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
 .workflowTop {
   display: flex;
@@ -934,17 +1094,19 @@
   gap: 0.5rem;
 }
 .workflowNumBadge {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
   color: #0284C7;
-  background: #F0F9FF;
-  border: 1px solid #BAE6FD;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
-  display: inline-flex;
+  background: transparent;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .workflowStatusDot {
   width: 8px;
@@ -956,14 +1118,15 @@
 }
 .workflowTitle {
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #0F172A;
-  line-height: 1.2;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
   margin: 0;
 }
 .workflowDesc {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: #475569;
   line-height: 1.6;
   margin: 0;
@@ -1154,7 +1317,7 @@
   border-color: #0284C7;
 }
 
-/* ─── CTA Section ─── */
+/* ─── CTA & Studio Location Section ─── */
 .ctaSection {
   background: #0284C7;
   padding: 5.5rem 2rem;
@@ -1166,71 +1329,181 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
-  gap: 4rem;
+  gap: 3.5rem;
 }
 .ctaLeft {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .ctaOfferBadge {
-  display: inline-block;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.35rem 0.85rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-  border-radius: 20px;
-  margin-bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #BAE6FD;
+  margin-bottom: 0.85rem;
 }
 .ctaH2 {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.05;
   color: #ffffff;
   margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 .ctaSub {
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
   max-width: 520px;
-  line-height: 1.7;
+  line-height: 1.65;
+  margin-bottom: 2rem;
 }
-.ctaRight {
+.ctaActions {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
 }
-.ctaAddressCard {
-  background: rgba(9, 13, 22, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  min-width: 260px;
-}
-.ctaAddressTitle {
+.ctaBtnPrimary {
+  background: #ffffff;
+  color: #0369a1;
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 0.4rem;
+  padding: 1.1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.ctaAddressLine {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.55;
+.ctaBtnPrimary:hover {
+  background: #f0f9ff;
+  color: #0284c7;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
-.ctaAddressHours {
-  font-size: 0.78rem;
+.ctaBtnWhatsapp {
+  background: #25D366;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 1.1rem 1.75rem;
+  border-radius: 8px;
+  border: 1px solid #1EBE5D;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.ctaBtnWhatsapp:hover {
+  background: #20BA5A;
+  border-color: #1DA851;
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+.ctaStudioMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 100%;
+}
+.ctaMetaRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+.ctaMetaIcon {
+  color: #BAE6FD;
+  flex-shrink: 0;
+}
+
+/* Studio Map Card (Right Column) */
+.ctaRight {
+  width: 100%;
+}
+.studioMapCard {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.mapCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+}
+.mapCardHeaderLeft {
+  display: flex;
+  align-items: center;
+}
+.mapStudioTitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.01em;
+}
+.mapExternalLink {
+  font-size: 0.8rem;
   font-weight: 600;
-  color: #ffffff;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #0284C7;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.mapExternalLink:hover {
+  color: #0369A1;
+  text-decoration: underline;
+}
+.mapFrameWrapper {
+  width: 100%;
+  height: 240px;
+  background: #E2E8F0;
+  position: relative;
+}
+.studioMapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.mapCardFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #ffffff;
+  border-top: 1px solid #F1F5F9;
+  flex-wrap: wrap;
+}
+.mapFeaturePill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+  background: #F1F5F9;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
 }
 
 /* ─── Comprehensive Responsive Suite ─── */
@@ -1419,16 +1692,26 @@
     font-size: 0.68rem;
   }
   .certStrip {
-    padding: 1rem 1.25rem;
+    padding: 1.25rem 1rem;
   }
   .certInner {
-    gap: 0.75rem;
-    justify-content: center;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+  }
+  .certGrid {
+    display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
   }
   .certBadge {
-    font-size: 0.76rem;
-    padding: 0.35rem 0.65rem;
+    padding: 0.5rem 0.75rem;
+    flex: unset;
+  }
+  .certBadge:not(:last-child)::after {
+    display: none;
   }
   .techSection,
   .smileSimSection,
@@ -1507,11 +1790,24 @@
   .ctaSection {
     padding: 3.5rem 1.25rem;
   }
+  .ctaInner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
   .ctaH2 {
     font-size: clamp(2rem, 6.5vw, 2.8rem);
   }
-  .ctaAddressCard {
-    min-width: 0;
+  .ctaActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .ctaBtnPrimary,
+  .ctaBtnWhatsapp {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .studioMapCard {
     width: 100%;
   }
 }

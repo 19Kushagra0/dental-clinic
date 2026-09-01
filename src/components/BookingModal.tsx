@@ -246,7 +246,6 @@ export default function BookingModal({
                     <div className={styles.summaryBadge}>Selected Treatment</div>
                     <h3 className={styles.summaryTitle}>{currentProtocol.name}</h3>
                     <p className={styles.summarySuite}>{currentProtocol.suite} · {currentProtocol.duration}</p>
-                    <div className={styles.summaryPill}>{currentProtocol.advantage}</div>
                   </div>
 
                   {/* Specialist Banner (if chosen) */}

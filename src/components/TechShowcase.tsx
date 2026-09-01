@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
 import { ArrowUpRightIcon } from "@/icons";
 import { openBookingDialog } from "@/components/BookingModalPortal";
@@ -10,6 +11,7 @@ const technologies = [
     id: "scanner",
     name: "3D Intraoral Optical Scanner",
     badge: "Planmeca® Emerald S",
+    image: "/tech/intraoral-scanner.jpg",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="6" y="18" width="36" height="20" rx="3" stroke="currentColor" strokeWidth="2.2" />
@@ -30,6 +32,7 @@ const technologies = [
     id: "cbct",
     name: "3D Cone Beam CT (CBCT)",
     badge: "Planmeca® ProMax 3D",
+    image: "/tech/cbct-3d-xray.jpg",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <circle cx="24" cy="24" r="14" stroke="currentColor" strokeWidth="2.2" />
@@ -50,6 +53,7 @@ const technologies = [
     id: "cerec",
     name: "CAD/CAM 5-Axis Milling Unit",
     badge: "Dentsply Sirona CEREC®",
+    image: "/tech/cerec-milling.jpg",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <rect x="8" y="10" width="32" height="28" rx="3" stroke="currentColor" strokeWidth="2.2" />
@@ -70,6 +74,7 @@ const technologies = [
     id: "laser",
     name: "Biolase® Waterlase Laser",
     badge: "HydroPhotonics™ Dental Laser",
+    image: "/tech/biolase-laser.jpg",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M24 8v6M24 34v6M8 24h6M34 24h6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
@@ -90,6 +95,7 @@ const technologies = [
     id: "wand",
     name: "The Wand® Computerized Anesthesia",
     badge: "Milestone Scientific STA",
+    image: "/tech/intraoral-scanner.jpg",
     icon: (
       <svg viewBox="0 0 48 48" fill="none" className="w-8 h-8">
         <path d="M12 36L28 12l4 4L16 40z" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" />
@@ -140,11 +146,26 @@ export default function TechShowcase() {
         </div>
 
         <div className={styles.techBody}>
-          <p className={styles.techP}>{activeTech.desc}</p>
-          <div className={styles.benefitBox}>
-            <span className={styles.benefitTitle}>PATIENT ADVANTAGE</span>
-            <span className={styles.benefitDesc}>{activeTech.patientBenefit}</span>
+          <div className={styles.techBodyLeft}>
+            <p className={styles.techP}>{activeTech.desc}</p>
+            <div className={styles.benefitBox}>
+              <span className={styles.benefitTitle}>PATIENT ADVANTAGE</span>
+              <span className={styles.benefitDesc}>{activeTech.patientBenefit}</span>
+            </div>
           </div>
+
+          {activeTech.image && (
+            <div className={styles.techImageWrap}>
+              <Image
+                src={activeTech.image}
+                alt={activeTech.name}
+                fill
+                quality={85}
+                sizes="(max-width: 768px) 100vw, 480px"
+                className={styles.techImg}
+              />
+            </div>
+          )}
         </div>
 
         <div className={styles.techSpecsBar}>

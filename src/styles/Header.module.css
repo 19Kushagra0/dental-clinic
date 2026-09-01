@@ -6,8 +6,8 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: #090D16;
-  border-bottom: 1px solid var(--d02-border, rgba(255, 255, 255, 0.08));
+  background: #eff4fa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .nav {
@@ -45,15 +45,15 @@
 .logoTitle {
   font-family: var(--font-display, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0F172A;
 }
 
 .logoSub {
   font-size: 0.78rem;
   letter-spacing: 0.02em;
-  color: var(--d02-text-muted, #94A3B8);
+  color: #64748B;
   font-weight: 500;
 }
 
@@ -67,36 +67,35 @@
   font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 1.05rem;
   letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.9);
+  color: #475569;
   text-decoration: none;
   transition: color 0.2s ease;
   font-weight: 600;
 }
 
 .navLink:hover {
-  color: #38BDF8;
+  color: #0284C7;
 }
 
 .navCta {
   font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
   font-size: 0.96rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: #ffffff;
   background: #0284C7;
-  padding: 0.75rem 1.45rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  cursor: pointer;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, transform 0.15s ease;
+  gap: 8px;
+  transition: background 0.2s ease;
 }
 
 .navCta:hover {
   background: #0369A1;
-  transform: translateY(-1px);
   cursor: pointer;
 }
 
@@ -110,7 +109,7 @@
   width: 44px;
   height: 44px;
   background: transparent;
-  border: 1px solid var(--d02-border, rgba(255, 255, 255, 0.12));
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   cursor: pointer;
   padding: 9px 10px;
@@ -135,7 +134,7 @@
   display: block;
   width: 100%;
   height: 2.5px;
-  background: #ffffff;
+  background: #0F172A;
   border-radius: 2px;
   transition: transform 0.25s ease, opacity 0.2s ease;
   transform-origin: center;
