@@ -27,6 +27,10 @@ const SmileSimulator = dynamic(() => import("@/components/SmileSimulator"), {
   ssr: true,
 });
 
+const ComparisonTable = dynamic(() => import("@/components/ComparisonTable"), {
+  ssr: true,
+});
+
 /* ─── Static Data (Zero Client Hydration Overhead) ─── */
 const comparisonData = [
   {
@@ -368,52 +372,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Desktop / Tablet Table */}
-          <div className={styles.compareTableWrapper}>
-            <table className={styles.compareTable}>
-              <thead>
-                <tr>
-                  <th className={styles.thFeature}>Procedure Phase</th>
-                  <th className={styles.thLegacy}>
-                    <XMarkIcon size={15} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px", opacity: 0.6 }} /> Conventional Dental Clinic
-                  </th>
-                  <th className={styles.thSmilecraft}>
-                    <CheckIcon size={16} style={{ display: "inline", verticalAlign: "middle", marginRight: "6px" }} /> SmileCraft Precision Studio
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonData.map((row) => (
-                  <tr key={row.feature}>
-                    <td className={styles.tdFeature}>{row.feature}</td>
-                    <td className={styles.tdLegacy}>{row.legacy}</td>
-                    <td className={styles.tdSmilecraft}>{row.smilecraft}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Mobile Cards View (<640px) */}
-          <div className={styles.compareMobileCards}>
-            {comparisonData.map((row) => (
-              <div key={row.feature} className="bg-[#111827] border border-[rgba(255,255,255,0.08)] rounded-lg p-5 flex flex-col gap-3">
-                <div className="font-bold text-white border-b border-[rgba(255,255,255,0.08)] pb-2">{row.feature}</div>
-                <div className="bg-[rgba(239,68,68,0.06)] border border-[rgba(239,68,68,0.2)] rounded-md p-3 flex flex-col gap-1">
-                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
-                    <XMarkIcon size={14} style={{ color: "#EF4444" }} /> Conventional Clinic
-                  </div>
-                  <div className="text-sm leading-relaxed text-slate-300">{row.legacy}</div>
-                </div>
-                <div className="bg-[rgba(2,132,199,0.08)] border border-[rgba(2,132,199,0.25)] rounded-md p-3 flex flex-col gap-1">
-                  <div className="text-xs font-bold flex items-center gap-1.5 text-slate-200">
-                    <CheckIcon size={14} style={{ color: "#0284C7" }} /> SmileCraft Digital Studio
-                  </div>
-                  <div className="text-sm leading-relaxed text-slate-300">{row.smilecraft}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Comparison Table with Mobile Scroll Banner & Gradient Edge Peeks */}
+          <ComparisonTable data={comparisonData} />
         </div>
       </section>
 
@@ -431,22 +391,51 @@ export default function HomePage() {
 
           <div className={styles.workflowGrid}>
             {[
-              { num: "01", title: "60-Sec Optical Scan", desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color." },
-              { num: "02", title: "3D AI Diagnosis", desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors." },
-              { num: "03", title: "Robotic & Guided Care", desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery." },
-              { num: "04", title: "Instant Restoration", desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners." },
+              {
+                num: "01",
+                title: "60-Sec Optical Scan",
+                desc: "High-speed laser sensors create a photorealistic 3D virtual twin of your dental arch in true color.",
+                image: "/tech/intraoral-scanner.jpg",
+              },
+              {
+                num: "02",
+                title: "3D AI Diagnosis",
+                desc: "Sub-millimeter analysis of bone thickness, tooth alignment, and bite force distribution on 4K monitors.",
+                image: "/tech/cbct-3d-xray.jpg",
+              },
+              {
+                num: "03",
+                title: "Robotic & Guided Care",
+                desc: "Microscopic root canals, Biolase® pain-free laser therapy, or computer-guided keyhole implant surgery.",
+                image: "/treatments/micro-rct.jpg",
+              },
+              {
+                num: "04",
+                title: "Instant Restoration",
+                desc: "In-house 5-axis CEREC® milling of permanent zirconia crowns or delivery of custom Invisalign® aligners.",
+                image: "/tech/cerec-milling.jpg",
+              },
             ].map((step) => (
               <div
                 key={step.num}
                 className={styles.workflowCard}
               >
-                <div className="flex flex-row items-center justify-between gap-3 w-full">
-                  <div className="flex items-center gap-2.5">
-                    <h3 className={styles.workflowTitle}>{step.title}</h3>
-                  </div>
-                  <span className={styles.workflowNumBadge}>{step.num}</span>
+                <div className={styles.workflowImageWrap}>
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    width={480}
+                    height={300}
+                    className={styles.workflowImage}
+                  />
                 </div>
-                <p className={styles.workflowDesc}>{step.desc}</p>
+                <div className={styles.workflowContent}>
+                  <div className="flex flex-row items-center justify-between gap-2 w-full">
+                    <h3 className={styles.workflowTitle}>{step.title}</h3>
+                    <span className={styles.workflowNumBadge}>{step.num}</span>
+                  </div>
+                  <p className={styles.workflowDesc}>{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>

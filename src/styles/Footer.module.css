@@ -21,14 +21,28 @@
 .brandBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.65rem;
+}
+
+.brandHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brandIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .brandTitle {
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-display, 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
   color: #FFFFFF;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 
 .metaRow {

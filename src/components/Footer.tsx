@@ -1,5 +1,5 @@
 import styles from "@/styles/Footer.module.css";
-import { LocationPinIcon, PhoneIcon } from "@/icons";
+import { LocationPinIcon, PhoneIcon, SmileCraftLogoIcon } from "@/icons";
 
 export default function Footer() {
   return (
@@ -7,7 +7,12 @@ export default function Footer() {
       <div className={styles.footerInner}>
         {/* Brand & Studio Info */}
         <div className={styles.brandBlock}>
-          <div className={styles.brandTitle}>SmileCraft Digital Dental Studio</div>
+          <div className={styles.brandHeader}>
+            <div className={styles.brandIcon} aria-hidden="true">
+              <SmileCraftLogoIcon size={30} />
+            </div>
+            <div className={styles.brandTitle}>SmileCraft Digital Dental Studio</div>
+          </div>
           <div className={styles.metaRow}>
             <span className={styles.metaItem}>
               <LocationPinIcon size={13} />
