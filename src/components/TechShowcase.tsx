@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
-import { ArrowUpRightIcon } from "@/icons";
+import { ArrowUpRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@/icons";
 import { openBookingDialog } from "@/components/BookingModalPortal";
 
 const technologies = [
@@ -117,21 +117,40 @@ const technologies = [
 export default function TechShowcase() {
   const [activeTechIndex, setActiveTechIndex] = useState(0);
   const activeTech = technologies[activeTechIndex] || technologies[0];
+  const tabsRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollTabs = (dir: 'left' | 'right') => {
+    if (tabsRef.current) {
+      const scrollAmount = 200;
+      tabsRef.current.scrollBy({
+        left: dir === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <>
       {/* Tab buttons */}
-      <div className={styles.techTabsNav}>
-        {technologies.map((t, idx) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => setActiveTechIndex(idx)}
-            className={`${styles.techTabBtn} ${activeTechIndex === idx ? styles.techTabBtnActive : ""}`}
-          >
-            {t.name}
-          </button>
-        ))}
+      <div className={styles.techTabsWrapper}>
+        <button type="button" className={styles.techScrollBtn} onClick={() => scrollTabs('left')} aria-label="Scroll left">
+          <ChevronLeftIcon size={16} />
+        </button>
+        <div className={styles.techTabsNav} ref={tabsRef}>
+          {technologies.map((t, idx) => (
+            <button
+              key={t.id}
+              type="button"
+              onClick={() => setActiveTechIndex(idx)}
+              className={`${styles.techTabBtn} ${activeTechIndex === idx ? styles.techTabBtnActive : ""}`}
+            >
+              {t.name}
+            </button>
+          ))}
+        </div>
+        <button type="button" className={styles.techScrollBtn} onClick={() => scrollTabs('right')} aria-label="Scroll right">
+          <ChevronRightIcon size={16} />
+        </button>
       </div>
 
       {/* Active tech card */}

@@ -240,3 +240,15 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ size = 20, color = "curre
     <path d="M6 9l6 6 6-6" />
   </svg>
 );
+
+export const ChevronLeftIcon: React.FC<IconProps> = ({ size = 20, color = "currentColor", className, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+export const ChevronRightIcon: React.FC<IconProps> = ({ size = 20, color = "currentColor", className, ...props }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+);

@@ -62,17 +62,13 @@
   width: 100%;
   height: 320px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #111827 25%, #1a2537 50%, #111827 75%);
-  background-size: 600px 100%;
-  animation: shimmer 1.5s infinite linear;
+  background: #111827;
 }
 .simSkeletonCard {
   width: 100%;
   height: 480px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #0f172a 25%, #1a2537 50%, #0f172a 75%);
-  background-size: 600px 100%;
-  animation: shimmer 1.5s infinite linear;
+  background: #0f172a;
 }
 
 
@@ -485,13 +481,38 @@
   content-visibility: auto;
   contain-intrinsic-size: auto 800px;
 }
+.techTabsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--d02-border);
+  padding-bottom: 1.5rem;
+}
 .techTabsNav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--d02-border);
-  padding-bottom: 1.5rem;
+  flex: 1;
+}
+.techScrollBtn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--d02-border);
+  color: rgba(255, 255, 255, 0.75);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.techScrollBtn:hover {
+  border-color: var(--d02-border-accent);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
 }
 .techTabBtn {
   background: transparent;
@@ -983,6 +1004,80 @@
   content-visibility: auto;
   contain-intrinsic-size: auto 700px;
 }
+.compareContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* ─── Table Frame with Gradient Edge Peeks ─── */
+
+/* ─── Table Frame with Gradient Edge Peeks ─── */
+.compareTableFrame {
+  position: relative;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.compareGradientEdge {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.compareGradientLeft {
+  left: 12px;
+}
+.compareGradientRight {
+  right: 12px;
+}
+.gradientVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.peekChevronLeftWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  border: none;
+  color: #FFFFFF;
+  box-shadow: none;
+  filter: none;
+}
+.peekChevronRightWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0EA5E9;
+  border: none;
+  color: #FFFFFF;
+  box-shadow: none;
+  filter: none;
+}
+.peekChevron {
+  color: #FFFFFF;
+  flex-shrink: 0;
+  filter: none;
+}
+
 .compareTableWrapper {
   width: 100%;
   overflow-x: auto;
@@ -1077,58 +1172,65 @@
 }
 .workflowCard {
   background: #FFFFFF;
-  border: none;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03), 0 0 0 1px rgba(15, 23, 42, 0.04);
-  border-radius: 12px;
-  padding: 2.25rem 2rem;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  border-radius: 16px;
+  padding: 1rem 1rem 1.4rem 1rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
   z-index: 1;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
-.workflowTop {
+.workflowImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  background: #0F172A;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.workflowImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  display: block;
+}
+.workflowContent {
+  padding: 1.15rem 0.25rem 0.2rem 0.25rem;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-grow: 1;
 }
 .workflowNumBadge {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: #0284C7;
-  background: transparent;
+  background: #F0F9FF;
   border: 1px solid rgba(2, 132, 199, 0.2);
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-.workflowStatusDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #0284C7;
-  display: inline-block;
-  flex-shrink: 0;
-}
 .workflowTitle {
   font-family: var(--font-body);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 700;
   color: #0F172A;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   line-height: 1.3;
   margin: 0;
 }
 .workflowDesc {
-  font-size: 0.9rem;
-  color: #475569;
+  font-size: 0.88rem;
+  color: #64748B;
   line-height: 1.6;
   margin: 0;
 }
@@ -1728,14 +1830,20 @@
     font-size: clamp(2rem, 6.5vw, 2.8rem);
     margin-bottom: 1.75rem;
   }
+  .techTabsWrapper {
+    margin-bottom: 1.75rem;
+    padding-bottom: 0.75rem;
+  }
   .techTabsNav {
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.75rem;
     gap: 0.5rem;
+    scroll-behavior: smooth;
+  }
+  .techScrollBtn {
+    display: flex;
   }
   .techTabsNav::-webkit-scrollbar {
     display: none;
@@ -1753,6 +1861,21 @@
   .techH3 {
     font-size: 1.75rem;
   }
+  .techSpecsBar {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+  .techSpecsItems {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .techSpecCol {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+  }
   .simCard {
     padding: 1.5rem 1.25rem;
     gap: 1.5rem;
@@ -1760,6 +1883,9 @@
   .sliderContainer {
     aspect-ratio: 4 / 3;
     max-height: 380px;
+  }
+  .sliderBadge {
+    display: none;
   }
   .simFooter {
     grid-template-columns: 1fr 1fr;
@@ -1779,14 +1905,38 @@
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
+  .compareGradientEdge {
+    display: flex;
+  }
   .compareTableWrapper {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    border-radius: 8px;
-    border: 1px solid var(--d02-border);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    scrollbar-width: none;
+  }
+  .compareTableWrapper::-webkit-scrollbar {
+    display: none;
   }
   .compareTable {
     min-width: 620px;
+  }
+  .compareTable th,
+  .compareTable td {
+    padding: 1.15rem 1.25rem;
+    font-size: 0.88rem;
+  }
+  .thFeature,
+  .tdFeature {
+    width: 25%;
+  }
+  .thLegacy,
+  .tdLegacy {
+    width: 37.5%;
+  }
+  .thSmilecraft,
+  .tdSmilecraft {
+    width: 37.5%;
   }
   .ctaSection {
     padding: 3.5rem 1.25rem;
@@ -1868,9 +2018,33 @@
     grid-template-columns: 1fr;
     gap: 0.85rem;
   }
+  .techSpecsBar {
+    padding: 1.1rem 1rem;
+    gap: 1rem;
+  }
   .techSpecsItems {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.85rem;
+    gap: 0.65rem;
+  }
+  .techSpecsItems > *:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .techSpecCol {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+  }
+  .compareTable th,
+  .compareTable td {
+    padding: 1rem 0.9rem;
+    font-size: 0.82rem;
+  }
+  .compareGradientRight {
+    right: 8px;
+  }
+  .compareGradientLeft {
+    left: 8px;
   }
 }
