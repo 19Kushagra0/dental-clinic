@@ -2128,6 +2128,10 @@
     padding: 1.1rem 1rem;
     gap: 1rem;
   }
+  .techSpecsBar {
+    padding: 1.1rem 1rem;
+    gap: 1rem;
+  }
   .techSpecsItems {
     display: grid;
     grid-template-columns: 1fr 1fr;
