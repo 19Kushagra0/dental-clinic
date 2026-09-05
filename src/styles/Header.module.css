@@ -7,7 +7,9 @@
   right: 0;
   z-index: 100;
   background: #eff4fa;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: none;
+  color: #0F172A;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 .nav {
@@ -25,6 +27,21 @@
   align-items: center;
   gap: 0.85rem;
   text-decoration: none;
+  color: #0F172A;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.logo:focus,
+.logo:focus-visible,
+.logo:active,
+.logo:hover {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+  background: transparent;
 }
 
 .logoIcon {
@@ -34,12 +51,18 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .logoText {
   display: flex;
   flex-direction: column;
   line-height: 1.15;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .logoTitle {
@@ -118,6 +141,13 @@
   cursor: pointer;
   padding: 9px 10px;
   flex-shrink: 0;
+  outline: none;
+}
+
+.hamburger:focus,
+.hamburger:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Placeholder same size as hamburger to prevent layout shift while island loads */

@@ -1,4 +1,4 @@
-/* ─── SmileCraft Digital — Bespoke Mobile Sidebar Drawer ─── */
+/* ─── SmileCraft Digital — Bespoke Clinical Mobile Drawer ─── */
 
 /* ─── Backdrop Blur Overlay ─── */
 .overlay {
@@ -6,12 +6,12 @@
   position: fixed;
   inset: 0;
   z-index: 98;
-  background: rgba(3, 7, 18, 0.7);
+  background: rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.25s ease;
 }
 
 .overlayVisible {
@@ -27,12 +27,12 @@
   right: 0;
   bottom: 0;
   z-index: 99;
-  width: min(340px, 86vw);
-  background: #080E18;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.75);
+  width: min(350px, 88vw);
+  background: #FFFFFF;
+  border-left: 1px solid #E2E8F0;
+  box-shadow: -12px 0 40px rgba(15, 23, 42, 0.14);
   transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   will-change: transform;
 }
@@ -41,281 +41,219 @@
   transform: translateX(0);
 }
 
-/* ─── Right Edge Organic Wave Graphic ─── */
-.waveGraphic {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 90px;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.9;
+/* ─── Top Header Bar ─── */
+.headerBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.35rem;
+  background: #EFF4FA;
+  border-bottom: 1px solid #E2E8F0;
 }
 
-/* ─── Floating Circular Close Button ─── */
-.closeBtn {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  z-index: 10;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 255, 255, 0.85);
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-
-.closeBtn:hover,
-.closeBtn:active {
-  color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
-}
-
-/* ─── Main Drawer Content Scroll Area ─── */
-.drawerContent {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 2.25rem 1.65rem 1.85rem;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.drawerContent::-webkit-scrollbar {
-  display: none;
-}
-
-/* ─── Header Area ─── */
-.headerArea {
-  margin-bottom: 1.85rem;
-}
-
-.brandRow {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-.toothLogoWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
   flex-shrink: 0;
 }
 
 .brandTitles {
   display: flex;
   flex-direction: column;
+  line-height: 1.15;
 }
 
 .brandTitle {
   font-family: var(--font-display, 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 1.45rem;
+  font-size: 1.12rem;
   font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.025em;
-  line-height: 1.15;
+  color: #0F172A;
+  letter-spacing: -0.02em;
 }
 
 .brandSub {
   font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 600;
-  color: #94A3B8;
-  letter-spacing: 0.12em;
+  color: #0284C7;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 
-.goldLine {
-  width: 28px;
-  height: 1.5px;
-  background: #C5A880;
-  margin: 1.15rem 0 0.95rem 0;
-  border-radius: 1px;
+/* ─── Circular Close Button ─── */
+.closeBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  flex-shrink: 0;
 }
 
-.tagline {
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: #5B6E88;
-  letter-spacing: 0.14em;
-  line-height: 1.6;
+.closeBtn:hover,
+.closeBtn:active {
+  background: #F1F5F9;
+  color: #0F172A;
+  border-color: #94A3B8;
+}
+
+/* ─── Scrollable Body ─── */
+.drawerBody {
+  position: relative;
+  height: calc(100% - 65px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.1rem 1.25rem 1.25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.drawerBody::-webkit-scrollbar {
+  display: none;
 }
 
 /* ─── Navigation Section ─── */
 .navSection {
   display: flex;
   flex-direction: column;
-  margin-bottom: auto;
+  gap: 0.35rem;
 }
 
 .navRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.15rem 0.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 0.95rem;
+  border-radius: 8px;
   text-decoration: none;
-  color: #FFFFFF;
-  transition: all 0.2s ease;
+  background: transparent;
+  border-bottom: 1px solid #F8FAFC;
+  transition: background-color 0.15s ease;
 }
 
 .navRow:hover,
 .navRow:active {
-  color: #38BDF8;
-  padding-left: 0.5rem;
+  background: #F0F9FF;
 }
 
-.navRow:hover .navChevron {
-  color: #FFFFFF;
-  transform: translateX(3px);
+.navRow:hover .navLabel,
+.navRow:active .navLabel {
+  color: #0284C7;
 }
 
-.navRow:hover .navIcon {
-  color: #38BDF8;
-}
-
-.navLeft {
+.navTextBox {
   display: flex;
-  align-items: center;
-  gap: 1.1rem;
-}
-
-.navIcon {
-  color: #CBD5E1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  flex-shrink: 0;
-  transition: color 0.2s ease;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 
 .navLabel {
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: #FFFFFF;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0F172A;
   letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.navSub {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.72rem;
+  color: #64748B;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .navChevron {
-  color: #64748B;
+  color: #94A3B8;
   flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.15s ease, color 0.15s ease;
 }
 
-/* ─── Book 3D Scan Button (Ice Blue) ─── */
+.navRow:hover .navChevron,
+.navRow:active .navChevron {
+  color: #0284C7;
+  transform: translateX(2px);
+}
+
+/* ─── Call to Actions ─── */
 .ctaArea {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid #E2E8F0;
 }
 
 .bookBtn {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.95rem 1.25rem;
-  background: #BAE6FD;
-  border-radius: 12px;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.25rem;
+  background: #0284C7;
+  color: #FFFFFF;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease;
-  box-shadow: none;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: background-color 0.15s ease;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
 }
 
 .bookBtn:hover,
 .bookBtn:active {
-  background: #93C5FD;
-  box-shadow: none;
-  transform: none;
+  background: #0369A1;
 }
 
-.bookBtnLeft {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.calendarIcon {
-  color: #0F172A;
-  flex-shrink: 0;
-}
-
-.bookBtnText {
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  color: #0F172A;
-  letter-spacing: -0.01em;
-}
-
-.bookBtnChevron {
-  color: #0F172A;
-  flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.bookBtn:hover .bookBtnChevron {
-  transform: translateX(3px);
-}
-
-/* ─── Footer Area ─── */
-.footerArea {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.leafIconWrap {
-  color: #38BDF8;
+.phoneBtn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-}
-
-.footerText {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.footerPillars {
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 0.75rem;
-  color: #8195AE;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.footerTagline {
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, sans-serif);
-  font-size: 0.62rem;
-  color: #5B6E88;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #F8FAFC;
+  color: #1E293B;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.88rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.phoneBtn:hover,
+.phoneBtn:active {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
 }
 
 /* ─── Show on mobile viewports ─── */

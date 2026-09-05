@@ -478,6 +478,46 @@
   }
 }
 
+/* ─── Responsive: Tablet & Mobile Header Adjustment ─── */
+@media (max-width: 768px) {
+  .hero {
+    margin-top: 66px;
+  }
+
+  .floatingPill {
+    padding: 2px 8px 2px 4px;
+    gap: 0.3rem;
+    box-shadow:
+      0 6px 16px -2px rgba(15, 23, 42, 0.08),
+      0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  }
+
+  .pillLabel {
+    font-size: 0.68rem;
+  }
+
+  .pillIconBadge {
+    height: 18px;
+    min-width: 18px;
+    padding: 0 4px;
+  }
+
+  .pillIconBadge svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .pillPercentBadge {
+    font-size: 0.68rem;
+    padding: 0.18rem 0.6rem;
+    margin-left: 0.25rem;
+  }
+
+  .pillMidLeft {
+    padding: 2px 4px 2px 8px;
+  }
+}
+
 /* ─── Responsive: Mobile ─── */
 @media (max-width: 640px) {
   .heroContent {
@@ -507,32 +547,57 @@
   }
 
   .floatingPill {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.7rem;
+    padding: 2px 6px 2px 3px;
+    gap: 0.22rem;
+    box-shadow:
+      0 4px 12px -2px rgba(15, 23, 42, 0.08),
+      0 1px 3px rgba(15, 23, 42, 0.04);
+  }
+
+  .pillLabel {
+    font-size: 0.6rem;
+  }
+
+  .pillIconBadge {
+    height: 15px;
+    min-width: 15px;
+    padding: 0 3px;
+  }
+
+  .pillIconBadge svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .pillPercentBadge {
+    font-size: 0.6rem;
+    padding: 0.12rem 0.45rem;
+    margin-left: 0.2rem;
   }
 
   .pillMidLeft {
-    left: -6px;
-    top: 8%;
-  }
-
-  .pillBottomLeft {
-    left: -6px;
-    bottom: 12%;
-  }
-
-  .pillBottomRight {
-    right: -6px;
-    bottom: 12%;
+    padding: 2px 3px 2px 6px;
+    left: -4px;
+    top: 6%;
   }
 
   .pillTopRight {
-    right: -6px;
-    top: -10px;
+    right: 4px;
+    top: -8px;
+  }
+
+  .pillBottomLeft {
+    left: -4px;
+    bottom: 14%;
+  }
+
+  .pillBottomRight {
+    right: -4px;
+    bottom: 14%;
   }
 
   .pillBottomCenter {
-    left: 10%;
-    bottom: -12px;
+    left: 20%;
+    bottom: -10px;
   }
 }
